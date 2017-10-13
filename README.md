@@ -2,7 +2,7 @@
 
 `运行环境配置`
 `node && git && chrome  `
-``
+
 ****
 适合IE10+  chrome  firefox
 ****
