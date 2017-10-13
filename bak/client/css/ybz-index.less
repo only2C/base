@@ -1,0 +1,852 @@
+@import './ybz/ybz.less';
+// 引入FC-EXPENSE之前  友报账的基础样式
+@import './rccheckbox/index.css';
+@import '../common/css/bootstrap-datetimepicker.min.css';
+@import '../common/css/react-datepicker.css';
+
+.success {
+  color: #5cb85c;
+}
+
+.warning {
+  color: #f0ad4e;
+}
+
+.error {
+  color: #fe631f;
+}
+
+// 友报账web-报销标准
+.flights-title {
+  .tc;
+  color: @importantFontColor;
+  .f16;
+}
+
+.flights-nav {
+  .mt20;
+  .tc;
+  .f16;
+  ul {
+    display: inline-block;
+    margin: 0 auto;
+    border-bottom: 1px solid #d8d8d8;
+    padding: 0 20px;
+    li {
+      .fl;
+      padding: 8px 20px;
+      border-bottom: 1px solid transparent;
+      .pr;
+      top: 1px;
+      &.active {
+        border-bottom: 1px solid #DD3730;
+      }
+    }
+  }
+}
+
+.flights-body {
+  background: #FFF;
+  border: 1px solid #E6E6E6;
+  padding: 0;
+  margin: 0;
+  .flights-btnadd {
+    .fr;
+    margin: 15px;
+  }
+}
+
+// 报销标准 公用grid
+.standard-grid {
+  .table {
+    margin-bottom: 0;
+    color: @importantFontColor;
+    border: 1px solid #E6E6E6;
+    thead tr {
+      border-width: 1px;
+      color: #FFF;
+      background-color: #C7CCD0;
+      th {
+        border: 0;
+        white-space: nowrap;
+        padding: 0 12px;
+        height: 48px;
+        line-height: 48px;
+        .f14;
+        &:first-child {
+          padding-left: 59px;
+        }
+      }
+    }
+    tbody tr {
+      border-top: 1px solid #E6E6E6;
+      background: #FFF;
+      td {
+        border: 0;
+        .ellipsis;
+        max-width: 150px;
+        padding: 0 12px;
+        height: 55px;
+        line-height: 55px;
+        .f12;
+        color: @importantFontColor;
+        &:first-child {
+          padding-left: 59px;
+        }
+      }
+      td:last-child > a, td:last-child span {
+        color: transparent;
+        .mr10;
+      }
+      &:hover {
+        td {
+          border: 0;
+        }
+        background-color: @gridHoverBackColor;
+        td:last-child > a, td:last-child > span {
+          color: @mainColor;
+          display: inline-block;
+          .pointer;
+          &:hover {
+            color: @darkColor;
+          }
+          &:focus, &:active {
+            color: @darkColor;
+          }
+        }
+      }
+    }
+  }
+
+  // 分页
+  .pagination {
+    float: right;
+    li > a, li > span {
+      color: #333;
+      &:focus, &:hover {
+        color: #DD3730;
+        border-color: #DD3730;
+        background-color: #fff;
+      }
+    }
+    li.active > a, li.active > a:focus, li.active > a:hover, li.active > span, li.active > span:focus, li.active > span:hover {
+      color: #FFF;
+      border-color: #DD3730;
+      background-color: #DD3730;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: auto;
+  }
+}
+
+// 友报账新的需求的样式
+.stdreimburse-box {
+  background: #FFF;
+  border: 1px solid #E6E6E6;
+  padding: 20px 30px;
+  .mb20;
+}
+
+.standard-name-label {
+  .f12;
+  color: #B2B2B2;
+  .pa;
+  top: 5px;
+  transition: all ease-in 0.5s;
+}
+
+.standard-name-input {
+  display: inline-block;
+  padding: 3px 12px 3px 0;
+  border: none;
+  border-bottom: 1px solid #E6E6E6;
+  width: 200px;
+  margin: 10px 0 20px 0;
+  .f12;
+  color: @importantFontColor;
+  &:focus {
+    outline: none;
+  }
+}
+
+.start-note {
+  width: 10px;
+  height: 10px;
+  background: url(../images/start-note.png) no-repeat center;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.end-note {
+  width: 10px;
+  height: 10px;
+  background: url(../images/end-note.png) no-repeat center;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.travel-check　 {
+  position: relative;
+  left: -9px;
+  top: 9px;
+  width: 18px;
+  height: 14px;
+  background: url(../images/check-bg.png) no-repeat center;
+}
+
+.screen-condition {
+  .f14;
+  font-weight: 700;
+  color: @importantFontColor;
+}
+
+.screen-condition-label {
+  .f12;
+  font-weight: 400;
+  color: #B2B2B2;
+  margin-bottom: 5px;
+}
+.screen-condition-title{
+  font-size: 16px;
+  line-height: 30px;
+  margin: 0 0 30px 0;
+}
+.standard-content {
+  display: inline-block;
+  .f14;
+  color: @importantFontColor;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.standard-detail {
+  .f12;
+  color: @importantFontColor;
+  display: inline-block;
+}
+
+.standard-detail-name { // 匹配用户删除按钮
+  .f12;
+  color: @importantFontColor;
+  display: inline-block;
+  .pr;
+  border: 1px solid transparent;
+  padding: 3px;
+  cursor: pointer;
+  .tip {
+    .pa;
+    top: -5px;
+    right: -5px;
+    display: inline-block;
+    opacity: 0;
+    z-index: 999;
+    color: #FFF;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    background: #DD3730;
+    .tc;
+    .f12;
+    cursor: pointer;
+  }
+  &:hover {
+    border: 1px solid #DD3730;
+    border-radius: 3px;
+    .tip {
+      opacity: 1;
+    }
+  }
+}
+
+.standard-checkbox {
+  display: inline-block;
+  margin-bottom: 0;
+  label {
+    padding-left: 0;
+  }
+}
+
+.standard-formgroup {
+  margin-bottom: 0;
+}
+
+/* 模态框 */
+.static-modal {
+  .modal-dialog {
+    min-width: 800px;
+    .modal-body {
+      max-height: 500px;
+      overflow: inherit;
+    }
+  }
+}
+
+// checkbox组件的颜色
+.rc-checkbox:hover .rc-checkbox-inner, .rc-checkbox-input:focus + .rc-checkbox-inner {
+  border-color: #DD3730;
+}
+
+.rc-checkbox-checked:hover .rc-checkbox-inner {
+  border-color: #DD3730;
+}
+
+.rc-checkbox-checked .rc-checkbox-inner {
+  border-color: #DD3730;
+  background-color: #DD3730;
+}
+
+.rc-checkbox-inner {
+  margin-right: 5px;
+}
+
+// 报销单据
+.details_title {
+  background: #fff;
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 44px;
+  color: #333;
+  .f16;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.details-h {
+  margin-bottom: 15px;
+  .f12;
+  text-align: left;
+  .details-h-t {
+    color: #B2B2B2;
+    width: 90%;
+    float: left;
+  }
+  .details-h-v {
+    color: #333;
+    width: 90%;
+    height: 18px;
+    float: left;
+    border-bottom: 1px solid #d8d8d8;
+  }
+}
+
+.details_table {
+  background: #fff;
+  .details_table_t {
+    margin: 0px 15px;
+    line-height: 45px;
+  }
+}
+.details_title_total{
+  font-size: 16px;
+  line-height: 40px;
+  margin-left: 30px;
+}
+// U8U9对接方案
+.lead-title {
+  .f18;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+  font-weight: 700;
+  line-height: 25px;
+  margin-bottom: 30px;
+}
+
+.lead-title-page {
+  text-align: center;
+  .f13;
+  color: #666666;
+  height: 15px;
+  line-height: 15px;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+  &:hover {
+    color: @mainColor;
+  }
+}
+
+.lead-Lightbulb {
+  width: 11px;
+  height: 15px;
+  margin-right: 10px;
+  .pr;
+  top: 3px;
+  display: inline-block;
+  background: url(../images/erp-tip.png) no-repeat;
+  transition: all ease-out .4s;
+  &:hover {
+    transform: translateX(10px);
+  }
+}
+
+.lead-title-link {
+  width: 100%;
+  height: 130px;
+  margin: 30px auto;
+  li {
+    .fl;
+    width: 170px;
+    height: 100px;
+    text-align: center;
+    margin-left: 85px;
+    img {
+      height: 89px;
+      transition: all ease-out .4s;
+      &:hover {
+        transform: translateX(10px);
+      }
+    }
+    span {
+      display: block;
+      margin-top: 20px;
+      .f16;
+      color: #333333;
+      &:hover {
+        color: @mainColor;
+      }
+    }
+  }
+}
+
+.lead-title-btn {
+  text-align: center;
+}
+
+.erp-success {
+  width: 40px;
+  height: 40px;
+  background: url(../images/erp-success.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  transition: all ease-out .4s;
+  &:hover {
+    transform: translateX(10px);
+  }
+}
+
+.register-page {
+  .f18;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+}
+
+.register-content {
+  width: 300px;
+  margin: 0 auto;
+  p {
+    .f16;
+    color: #333333;
+    letter-spacing: 0;
+    margin: 20px 0;
+  }
+}
+
+.register-next {
+  .f12;
+  color: #B2B2B2;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.register-box {
+  width: 80%;
+  margin: 10px auto;
+  p {
+    height: 30px;
+    line-height: 30px;
+    span {
+      color: red;
+      margin: 0 3px;
+    }
+  }
+}
+
+// 友报账web端填报
+.details_table_b {
+  border: 1px solid #e6e6e6;
+  //border-bottom: none;
+}
+
+.webimport-grid {
+  .table {
+    margin-bottom: 0;
+    color: @importantFontColor;
+    //border: 1px solid #E6E6E6;
+    thead tr {
+      border-width: 1px;
+      color: #333;
+      background: #EAECEA;
+      th {
+        border: 0;
+        white-space: nowrap;
+        padding: 0 12px;
+        height: 48px;
+        line-height: 48px;
+        .f14;
+        font-weight: 700;
+        &:first-child {
+          padding-left: 28px;
+        }
+      }
+    }
+    tbody tr {
+      border-top: 1px solid #E6E6E6;
+      background: #FFF;
+      td {
+        border: 0;
+        .ellipsis;
+        max-width: 150px;
+        padding: 0 12px;
+        height: 55px;
+        line-height: 55px;
+        .f12;
+        color: @importantFontColor;
+        &:first-child {
+          padding-left: 28px;
+        }
+      }
+      td:last-child > a, td:last-child span {
+        color: transparent;
+        .mr10;
+      }
+      &:hover {
+        td {
+          border: 0;
+        }
+        background-color: @gridHoverBackColor;
+        td:last-child > a, td:last-child > span {
+          color: @mainColor;
+          display: inline-block;
+          .pointer;
+          &:hover {
+            color: @darkColor;
+          }
+          &:focus, &:active {
+            color: @darkColor;
+          }
+        }
+      }
+    }
+  }
+
+  // 分页
+  .pagination {
+    float: right;
+    li > a, li > span {
+      color: #333;
+      &:focus, &:hover {
+        color: #DD3730;
+        border-color: #DD3730;
+        background-color: #fff;
+      }
+    }
+    li.active > a, li.active > a:focus, li.active > a:hover, li.active > span, li.active > span:focus, li.active > span:hover {
+      color: #FFF;
+      border-color: #DD3730;
+      background-color: #DD3730;
+    }
+  }
+}
+
+// web填报 交通
+.web {
+  width: 100%;
+  padding-right: 430px;
+}
+
+.web-left {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #e6e6e6;
+  display: inline-block;
+  .fl;
+}
+
+.web-right {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #e6e6e6;
+  display: inline-block;
+  .fl;
+}
+
+.web-name-input {
+  width: 100px;
+}
+
+.web-remarks {
+  width: 100%;
+}
+
+.web-p {
+  margin-bottom: 8px;
+  .f12;
+  color: #B2B2B2;
+}
+
+input[type="radio"].web-radio {
+  margin: 0 8px 0 0;
+}
+
+/*.radio-check {
+  display: inline-block;
+  padding: 5px 0 5px 30px;
+  background: url(../images/radio.png) no-repeat left center;
+}
+.radio-checked {
+  display: inline-block;
+  padding: 5px 0 5px 30px;
+  background: url(../images/radiocheck.png) no-repeat left center;
+}*/
+
+// 上传组件
+.upload {
+  width: 100%;
+  min-height: 600px;
+  border: 1px solid #e6e6e6;
+  background: #fff;
+  ul {
+    width: 50%;
+    height: 27px;
+    margin: 50px auto;
+    li {
+      width: 100%;
+      line-height: 27px;
+      text-align: center;
+      .f12;
+      color: #DDDDDD;
+      border: 1px solid #D6D6D6;
+      border-radius: 4px;
+      cursor: pointer;
+      &.active {
+        border-color: #00A995;
+        color: #00A995;
+      }
+    }
+  }
+  .upload-add {
+    width: 75%;
+    height: 264px;
+    margin: 30px auto;
+    background: #FFFFFF;
+    border: 1px dashed #e6e6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .upload-bg {
+      width: 80px;
+      height: 80px;
+      display: block;
+      background: url(../images/upload-add.png) no-repeat center;
+      cursor: pointer;
+    }
+  }
+  .upload-complete{
+    width: 75%;
+    margin: 30px auto;
+    .upload-add-list{
+      p{
+        width: 90%;
+        overflow: hidden;
+        height: 30px;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      span{
+        float: right;
+        margin: -23px 0 0 0;
+        color: red;
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+// 费用归属 删除按钮
+.assignment {
+  border: 1px solid transparent;
+  .pr;
+  .assignment-cancel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    width: 12px;
+    height: 12px;
+    background: url(../images/cancel.png) no-repeat;
+  }
+  &:hover {
+    border-color: #e6e6e6;
+    .assignment-cancel {
+      display: block;
+    }
+  }
+}
+
+
+// 覆盖参照的样式
+.details-h-t + div input.form-control {
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.details-h-t + div input.form-control:focus {
+  box-shadow: none;
+  border-color: #e6e6e6;
+}
+
+.details-h-t + div span.input-group-addon {
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+.table-edit-columns{
+  cursor: pointer;
+}
+// .table-edit-columns:hover{
+//   background: #d2d2d2;
+// }
+// web代理报销
+.agency-input {
+  width: 173px;
+  height: 26px;
+  padding-left: 33px;
+  background: url(../images/search.png) no-repeat 10px 7px;
+  background-color: #F5F5F5;
+  border-radius: 30px;
+  border: 0;
+  outline: none;
+  margin: 15px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  cursor: default;
+}
+
+// 代理模态框
+.agency-modal {
+  min-height: 513px;
+}
+.agency-title {
+  font-size: 18px;
+  color: #333333;
+  margin-top: 38px;
+  margin-bottom: 38px;
+  text-align: center;
+}
+.agency-modal .lead-title-link li {
+  width: 33%;
+  margin-left: 0;
+}
+.agency-modal .lead-title-btn {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+.modal-body-co {
+  height: 371px;
+}
+.body-co-title {
+  height: 38px;
+  line-height: 38px;
+  font-size: 12px;
+  color: #333333;
+  text-align: center;
+}
+.body-co-input {
+  height: 44px;
+  line-height: 44px;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: 40px;
+  padding-right: 17px;
+  input {
+    margin: 0;
+    width: 549px;
+  }
+  span {
+    font-size: 12px;
+    color: #999999;
+  }
+}
+.body-co-list {
+  width: 100%;
+  .left, .right {
+    height: 290px;
+    .fl;
+  }
+  .left {
+    border-right: 1px solid #e6e6e6;
+    width: 263px;
+    overflow: scroll;
+  }
+  .right {
+    width: 573px;
+    overflow-Y: scroll;
+  }
+}
+.agency-success {
+  width: 130px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 45px;
+  background: url(../images/ang-success.png) no-repeat left center;
+  margin: 30px auto;
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+.success-co {
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+  letter-spacing: 0;
+}
+.modal-footer .angency-quxiao {
+  font-size: 12px;
+  color: #666666;
+  letter-spacing: 0;
+  display: inline-block;
+  padding: 7px;
+  margin-right: 50px;
+}
+.angency-yijing {
+  font-size: 12px;
+  color: #333333;
+  letter-spacing: 0;
+  padding: 7px;
+}
+
+// 左树的样式
+.rc-tree-node-selected {
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+}
+.rc-tree li span.rc-tree-iconEle {
+  width: 0;
+  height: 0;
+}

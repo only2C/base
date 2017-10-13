@@ -1,0 +1,966 @@
+[33mcommit 0f079898a78a847ea619c6ebb445ea7b4161262a[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Mar 6 18:33:03 2017 +0800
+
+    增加
+
+[33mcommit f05c38e701da31dec9b865d162c995fcb217b430[m
+Merge: af2165d 1939b9f
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Mar 6 14:50:15 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	client/expense/css/index.css
+    #	client/expense/css/index.less
+    #	client/expense/index.html
+    #	src/expense/components/MyWaitDealt.js
+    #	src/expense/containers/App.js
+
+[33mcommit af2165d27ec646ccfaea50ccb95a98802bc766d1[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Mar 6 14:43:34 2017 +0800
+
+    增加静态页面
+
+[33mcommit 2904480b22f4ad8dc3c28c0623a6177f4f13541a[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Mar 6 14:40:22 2017 +0800
+
+    增加静态页面
+
+[33mcommit 1939b9f2c9e7b40b177efb337fd0330dc2791524[m
+Merge: cd9008d 59c429c
+Author: chenliw <chenliw@yonyou.com>
+Date:   Sat Mar 4 16:19:16 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit cd9008d75229399f62dfd62be9548d9317edb2b2[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Sat Mar 4 16:16:59 2017 +0800
+
+    新增错误提示消息 。
+
+[33mcommit 59c429c8756114f6ee85f46b882f468746e07163[m
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Sat Mar 4 14:49:48 2017 +0800
+
+    update
+
+[33mcommit d2e3ade313e231553bc547a709af4d7607c4d854[m
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Sat Mar 4 14:30:32 2017 +0800
+
+    update json
+
+[33mcommit 37adb3b76658d8a5390b4cee362a82a876d487fd[m
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Sat Mar 4 13:58:14 2017 +0800
+
+    update json
+
+[33mcommit 433961ae27d79d4d6afd78db0c73da893f9b62cf[m
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Sat Mar 4 13:51:57 2017 +0800
+
+    update json
+
+[33mcommit 4172d54bd9cbd0b3d37970c9d8ccce1aba8c80e2[m
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Sat Mar 4 09:32:43 2017 +0800
+
+    update babance
+
+[33mcommit 9cf286dc75ea9920b698e579a15557ba556909dc[m
+Merge: fd90c6d 6a6f147
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Fri Mar 3 16:58:48 2017 +0800
+
+    update babance
+
+[33mcommit fd90c6d8078b019eccf5b8e914b030be558cc246[m
+Author: zhangtch <zhangtch@yonyou.com>
+Date:   Fri Mar 3 16:57:45 2017 +0800
+
+    update babance
+
+[33mcommit 6a6f1473d1a9e71d70b98bd72cf5f5afd355ac43[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Mar 3 16:51:07 2017 +0800
+
+    时间和日期格式化
+
+[33mcommit b583ef3d4f8868fada67efcfff97258669a4771f[m
+Author: duanrx <duanrx@yonyou.com>
+Date:   Fri Mar 3 14:48:04 2017 +0800
+
+    增加加载动画组件, 使用示例见ToMyBill
+
+[33mcommit 0f7750e3ae362b64a6535b8b27e8da36a605745a[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Mar 3 14:22:10 2017 +0800
+
+    测试代码试试git
+
+[33mcommit 99c0fbf0971e535f4e49f5e94f155503934caec9[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Mar 3 10:35:26 2017 +0800
+
+    去掉左侧菜单
+
+[33mcommit 1f8e702a15cfcad97ee3b8a6435a27a2b4507eac[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Mar 3 09:26:31 2017 +0800
+
+    删除url?phone="11111"
+
+[33mcommit 27cb9d524cdfa4375e21383f65c3aa9e9b171eb5[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Mar 2 20:20:16 2017 +0800
+
+    修改Action请求地址
+
+[33mcommit 1aff70dc7d3e1d6db379d9ddbb7c9d3993c6e8da[m
+Merge: 2f03ea4 e3e9385
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Mar 2 20:04:47 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 2f03ea4ccbe806da05d541369e43beceb04db8fa[m
+Author: chenliw@yonyou.com <ufida2013%>
+Date:   Thu Mar 2 16:53:59 2017 +0800
+
+    参数传入引发问题
+
+[33mcommit e3e9385c1a5114cbc65fd33a5989058d22964249[m
+Author: dangwei <dangwei@ufsoft.com.cn>
+Date:   Thu Mar 2 13:34:28 2017 +0800
+
+    Update index.less
+
+[33mcommit b44da3c780f50fafbdeba06f6c1bfce585bf2276[m
+Merge: 647e56a f1852db
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Thu Mar 2 11:10:55 2017 +0800
+
+    Merge branch 'develop' of git.yonyou.com:sscplatform/FC into develop
+
+[33mcommit 647e56a7f3a23ad2852332634b12952b60e973f5[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Thu Mar 2 10:52:41 2017 +0800
+
+    update account文件
+
+[33mcommit f1852dbc5642683bffa139cbbd9ad8c5c5f62eef[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Mar 2 10:33:33 2017 +0800
+
+    解决语法错误引发的模板编译报错。
+
+[33mcommit 646235310e0e1b2d4eac4c64935a57fef29851d5[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Mar 2 09:42:42 2017 +0800
+
+    友报账 --- 我的单据 ，选择单据进行报账
+
+[33mcommit ec696193637bb121894d4df0bb4ea75c35f52b3c[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Wed Mar 1 10:31:42 2017 +0800
+
+    update file
+
+[33mcommit 6fea61fece473d2be1a701bcf339c87d9bba4d7c[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Wed Mar 1 10:27:21 2017 +0800
+
+    update file
+
+[33mcommit a18d509efd6c738bdc193fb4aa94185bee3cd7db[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Wed Mar 1 09:12:03 2017 +0800
+
+    调整图片路径
+
+[33mcommit 846c49e59218e948b5111dfa7e9f29aa338bb941[m
+Merge: 415695a 97c431e
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 19:31:26 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 415695acad66f6c35459951c46a2a3b4f05d4411[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 19:30:56 2017 +0800
+
+    update
+
+[33mcommit 97c431e4be265df0d339dadfb0d657f85673e696[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Tue Feb 28 19:10:03 2017 +0800
+
+    升级SSC-GRID 版本到0.23.1
+
+[33mcommit 5cd987595279fd4d09777931dde76a80f82dff1e[m
+Merge: 3e5ff2d 1f834a3
+Author: chenliw <chenliw@yonyou.com>
+Date:   Tue Feb 28 18:42:07 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 3e5ff2dc8b5a3e9352c7950381c44f4dd68264b4[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Tue Feb 28 18:41:42 2017 +0800
+
+    我的单据  --> 我的账本
+
+[33mcommit 1f834a35658a70ef3edfdffd07de6c411989408d[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 16:40:24 2017 +0800
+
+    update file
+
+[33mcommit 3bf3ed24b8025f1dab71eadacd46c6f6f8f22e44[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 16:24:53 2017 +0800
+
+    update file
+
+[33mcommit 0e81d2b1ba8f911443b555a17420c6b5203f59f5[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 16:19:23 2017 +0800
+
+    update file
+
+[33mcommit 20450ccee6ffb87c6b36660ed43c82868b8eb08f[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 16:14:37 2017 +0800
+
+    update file
+
+[33mcommit 4e08f9c92b75fe2f2a032040cba9fd10deb57ff3[m
+Merge: 3f39664 4de3af7
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 15:10:12 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 3f39664f89d747cfde0741ae09681d2c27ea1a0a[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 15:09:58 2017 +0800
+
+    update file
+
+[33mcommit 4de3af7358672cdc3baed52d7b0c73b50a3c3a9f[m
+Merge: a5aa140 7d8f544
+Author: chenliw <chenliw@yonyou.com>
+Date:   Tue Feb 28 15:05:27 2017 +0800
+
+    Merge branch 'develop' of git.yonyou.com:sscplatform/FC into develop
+
+[33mcommit a5aa1400ff98619bbe5146749311786f721ca6d2[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Tue Feb 28 15:03:29 2017 +0800
+
+    友报账 ---  不批准，驳回流程异常。云审数据异常。
+
+[33mcommit 7d8f54494a1f11162074211ae26b95a2c0e5627c[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 14:18:51 2017 +0800
+
+    update
+
+[33mcommit 281fe79692f949e1c24b853cec3887b7d144390e[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 14:13:00 2017 +0800
+
+    update
+
+[33mcommit c3ebd276ab2fe9709c4cf036c34ad4b39eea7613[m
+Merge: 732150b 4b52332
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 14:09:36 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 732150b0e1e2186603323d7a54c5124f6313ceda[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 14:09:23 2017 +0800
+
+    update index.css
+
+[33mcommit 4b523322260dbb2cc874e9b592c0a8cae735c8aa[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Tue Feb 28 13:02:33 2017 +0800
+
+    相对路径
+
+[33mcommit ba85fd81e5c2a96074e5ca025cfda584585ed88d[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Tue Feb 28 12:34:11 2017 +0800
+
+    相对路径
+
+[33mcommit 94ca2523c9ecd234145ecf42f0a02e0b3b3748c6[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Tue Feb 28 10:17:25 2017 +0800
+
+    update
+
+[33mcommit f4d2b8ced4f15a8bdfea2432ebf8f7a618536f79[m
+Merge: 7ab3ddc 8bb3410
+Author: chenliw <chenliw@yonyou.com>
+Date:   Mon Feb 27 17:08:18 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	src/expense/components/MyWaitDealt.js
+
+[33mcommit 7ab3ddc8111122dd2ba965f307ab8e782c77378c[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Mon Feb 27 17:06:15 2017 +0800
+
+    友报账 --- 已完成、未完成
+
+[33mcommit 8bb34101e0fcea28322e7ae5cabda7d04db1952d[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:49:22 2017 +0800
+
+    update
+
+[33mcommit 1abe0d67af7b40e2fcc4c62f3261a2c49c18c0c2[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:35:04 2017 +0800
+
+    update
+
+[33mcommit 97d063d8731f822ebec23b89bfa1e7847e64cb86[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:29:46 2017 +0800
+
+    update
+
+[33mcommit dcd4c368ebfc0b08abb2a562231ff93ebc4219d6[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:26:59 2017 +0800
+
+    update
+
+[33mcommit f82847c012c32f032fa61323a64aca59d57adaf9[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:20:47 2017 +0800
+
+    update
+
+[33mcommit 319f4438405769ff4c306bb2d138ea4ca16c1d1c[m
+Merge: 590534f 2ab8261
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:18:16 2017 +0800
+
+    Merge branch 'develop' of git.yonyou.com:sscplatform/FC into develop
+    
+    # Conflicts:
+    #	src/expense/components/ToBalance.js
+
+[33mcommit 590534f214c996f5293f1a81a4a31cfc6d4ac39f[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Mon Feb 27 15:15:42 2017 +0800
+
+    update 样式
+
+[33mcommit 2ab826112eadacf8e9eb5abb77d9da5f19ee6aff[m
+Author: maochg <maochg@yonyou.com>
+Date:   Mon Feb 27 14:54:44 2017 +0800
+
+    修正选中状态
+
+[33mcommit 4941cf9e4ca4874fb4ca5143dab46da9e55c96a9[m
+Merge: 1ff6d36 1178683
+Author: maochg <maochg@yonyou.com>
+Date:   Mon Feb 27 13:56:00 2017 +0800
+
+    Merge branch 'develop' of git.yonyou.com:sscplatform/FC into develop
+
+[33mcommit 1ff6d361022bebc717f17acf1075aca427cdeeb3[m
+Author: maochg <maochg@yonyou.com>
+Date:   Mon Feb 27 13:55:50 2017 +0800
+
+    结算中心完整代码
+
+[33mcommit 1178683c6669f4ce70a5ca20ee126d95a9d997f7[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Sat Feb 25 13:28:31 2017 +0800
+
+    update
+
+[33mcommit 5b9b0b080d0d07ef3a9aa458b2877e6791fd47f1[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Sat Feb 25 13:13:45 2017 +0800
+
+    update 表格样式
+
+[33mcommit 601c69ddf492b284ec3bec1753f71a3c6ab27c14[m
+Merge: b39af01 6e15d75
+Author: maochg <maochg@yonyou.com>
+Date:   Fri Feb 24 17:15:20 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit b39af01386116790d7e37290a94e52189df46bb1[m
+Author: maochg <maochg@yonyou.com>
+Date:   Fri Feb 24 17:13:04 2017 +0800
+
+    结算中心完整代码
+
+[33mcommit 6e15d75e7e238e49cab3fef0d85fcdf791e62744[m
+Merge: b06f7e6 cf42670
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Fri Feb 24 16:46:57 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit b06f7e66ca2ab821c76c862e70ecbe80dba18a22[m
+Author: dangwei@yonyou.com <dangwei@yonyou.com>
+Date:   Fri Feb 24 16:46:31 2017 +0800
+
+    调整表格样式
+
+[33mcommit cf4267013dd65f695bf141d16500b3cc6c1b3794[m
+Author: maochg <maochg@yonyou.com>
+Date:   Fri Feb 24 16:23:38 2017 +0800
+
+    test
+
+[33mcommit 40a5c940422153925e4defce81140e342c865ba5[m
+Merge: 79457e8 329b148
+Author: maochg <maochg@yonyou.com>
+Date:   Fri Feb 24 14:57:01 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 79457e842f0426c2a2c5f5763594e0de8f25713c[m
+Author: maochg <maochg@yonyou.com>
+Date:   Fri Feb 24 14:53:37 2017 +0800
+
+    结算中心代码
+
+[33mcommit 329b1487cbc23efbadeb95c3c354310f56384d93[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 14:39:31 2017 +0800
+
+    测试代码 ，，静态数据，@dangwei
+
+[33mcommit 4d3b5cf1b9aaf407d778abf88e5e57954d8670fd[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 14:34:19 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit 6b95973aec9f86493a0a6827add2545634d5bd2b[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 14:00:36 2017 +0800
+
+    git 代码错乱
+
+[33mcommit a58e1c6ffe8512e6d36f226b32d63b167ac937ff[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 13:17:02 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit ff2b68ae75df913c2328a1d7094dbdc32ae0a44f[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 13:15:14 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit 174e48a1957c6e416085158781ff49e475797d58[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 12:58:09 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit 21f92fd8a0611a4540c4f63d908bda3df1210e48[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 12:55:57 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit 9e6f096ce270fc6a2eee59539a3676e1d2617b2b[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 12:52:28 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit 029fe952e331fe37be494ca532fd529a2a96e150[m
+Merge: eb49f76 758c55a
+Author: maochg <maochg@yonyou.com>
+Date:   Fri Feb 24 11:23:16 2017 +0800
+
+    修改package.json
+
+[33mcommit 758c55ae116961e76f15f2e38d5110a26862cb1e[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 10:47:44 2017 +0800
+
+    友报账 --- 待办列表 。。。有问题的话@chenliw
+
+[33mcommit 11579e769120ed3c8ea26b957c11d2c67a9f328b[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 24 10:12:14 2017 +0800
+
+    友报账 --- 我的单据 ，代码为完善 。。。有问题的话@chenliw
+
+[33mcommit caad8313685c9af04e72a82080b68ef4852d4e5e[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 23 20:34:01 2017 +0800
+
+    完善公用弹窗组件，具体看备注 。
+
+[33mcommit 5f1f25f22dcd4be0eede517995afbf8f71da6eff[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 23 16:30:55 2017 +0800
+
+    友报账 ---解决 代码错误，引发内存溢出 。
+
+[33mcommit 90d3c604aa960eaefb7e8bad31726030646bd3df[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 23 15:09:12 2017 +0800
+
+    友报账 --- 我的单据 ，代码未完善 。。。有问题的话@chenliw
+
+[33mcommit eb49f7676052f02d801d904b8308a0ceec7cc01c[m
+Author: maochg <maochg@yonyou.com>
+Date:   Wed Feb 22 18:27:12 2017 +0800
+
+    本地
+
+[33mcommit 13ea87a463d171415da122b1149c3e924b14a0ba[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Wed Feb 22 16:54:35 2017 +0800
+
+    友报账-我的待办 / 已完成    &&　公用ajax 请求方法 。
+
+[33mcommit 8e4b2da90bccd5ddb16a7c970eb53821afef15cc[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Wed Feb 22 16:11:32 2017 +0800
+
+    解决报错问题。。。编译错误
+
+[33mcommit 771335d33626354d39ef476a807ceba61c58e703[m
+Merge: 2411b51 f1b8394
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Tue Feb 21 15:34:16 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 2411b5122c8a6f504077a5391672a7b90f221e84[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Tue Feb 21 15:33:39 2017 +0800
+
+    ssc-grid to ssc-comp
+
+[33mcommit f1b8394bfa52d122ee7b5314e79688f0a09d33ac[m
+Merge: 788fb60 69110fd
+Author: chenliw <chenliw@yonyou.com>
+Date:   Mon Feb 20 13:29:44 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 788fb6040bff0a1b1e5013f34f25343220643a4a[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Mon Feb 20 13:28:57 2017 +0800
+
+    友账表  查询账簿
+
+[33mcommit 69110fd94004082f49ca878b3d565224c9574c2e[m
+Author: maochg <maochg@yonyou.com>
+Date:   Mon Feb 20 13:26:51 2017 +0800
+
+    增加结算中心
+
+[33mcommit 4f137a83af66f222046404df04a46293c5c0be07[m
+Author: maochg <maochg@yonyou.com>
+Date:   Sat Feb 18 11:06:58 2017 +0800
+
+    更新grid
+
+[33mcommit ac5fa20cb67a83606aaadf8a19c09c0f232cc2a2[m
+Merge: b76e07c 7e2b48e
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sat Feb 18 09:51:41 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit b76e07cf604d7caa40452154d07ae2b236765140[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sat Feb 18 09:50:53 2017 +0800
+
+    凭证
+
+[33mcommit 7e2b48efd7d485c3e3437f6e78a59d823dd44b52[m
+Author: maochg <maochg@yonyou.com>
+Date:   Thu Feb 16 18:27:30 2017 +0800
+
+    add gitignore
+
+[33mcommit fe12a4d6fd3e2a0cd9aec72c23c71e61df34d0a5[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Tue Feb 14 16:45:58 2017 +0800
+
+    友报账 我的待办基础代码
+
+[33mcommit 34991f68e908ffc8b1af1d1ce50e639c46af1cb4[m
+Author: siyl <siyl@yonyou.com>
+Date:   Mon Feb 13 20:29:54 2017 +0800
+
+    expense 友报账
+
+[33mcommit 506a384bf1fcfef7e44107200bf615717861e78a[m
+Author: siyl <siyl@yonyou.com>
+Date:   Mon Feb 13 20:26:50 2017 +0800
+
+    expense 友报账
+
+[33mcommit 91152070f1d6872068c524c3a6f80f839b3718d6[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Mon Feb 13 15:44:08 2017 +0800
+
+    友报账 基础路由配置
+
+[33mcommit a0e7e79a35a70924b1145ed9a3609aa6cc1f84c8[m
+Merge: e39dc68 400d95f
+Author: siyl <siyl@yonyou.com>
+Date:   Mon Feb 13 13:48:51 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	src/account/components/VoucherList.js
+
+[33mcommit e39dc6855955f860287853a54477b788c5d056b0[m
+Author: siyl <siyl@yonyou.com>
+Date:   Mon Feb 13 13:47:48 2017 +0800
+
+    VoucherQuery
+
+[33mcommit 400d95f6b6b7ed6b7a4f7fd25e54d901f406b941[m
+Merge: b692062 9ad3afe
+Author: chenliw <chenliw@yonyou.com>
+Date:   Mon Feb 13 11:30:11 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit b69206294fee7a311f3d0711cfc56997f3eaece1[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 10 16:11:02 2017 +0800
+
+    查看凭证，凭证列表。可能需要使用node命令 具体  npm install ssc-grid  --save
+
+[33mcommit 9ad3afe4dd500bd6749d80448c03d25c34db8032[m
+Author: siyl <siyl@yonyou.com>
+Date:   Fri Feb 10 16:11:02 2017 +0800
+
+    index
+
+[33mcommit 85da92c8569fc412bf2de49d27d4f78d3f44f3f6[m
+Merge: 9ed3a44 1e9aa9c
+Author: siyl <siyl@yonyou.com>
+Date:   Fri Feb 10 16:09:12 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 9ed3a44b765a742aa91e0f56e3ca7ef8e2919968[m
+Author: siyl <siyl@yonyou.com>
+Date:   Fri Feb 10 16:08:59 2017 +0800
+
+    voucherList
+
+[33mcommit 1e9aa9cbe8325c58247e1cbde92e38627b9db64c[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 10 16:00:57 2017 +0800
+
+    制单公用部分--table
+
+[33mcommit a47c596a0a9781bf2ffd8fc7e070bbea14aec5da[m
+Merge: fe9ad0b 17faa59
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 10 15:59:58 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit fe9ad0bc6e88476ea59382a9a97f67502d781d6e[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Fri Feb 10 15:59:40 2017 +0800
+
+    制单公用部分
+
+[33mcommit 17faa5943c18d9b6620733948f087ce810d3e531[m
+Merge: 8756bfa 8b09566
+Author: siyl <siyl@yonyou.com>
+Date:   Fri Feb 10 09:47:11 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	client/account/css/index.less
+
+[33mcommit 8756bfa1a65e8be4c45068e1430fe2c0e929cb53[m
+Author: siyl <siyl@yonyou.com>
+Date:   Fri Feb 10 09:41:19 2017 +0800
+
+    topNav sideNav
+
+[33mcommit 8b095666b3a2210971eb5f9fc4001b3d733e6b7c[m
+Merge: 3e9fdc5 46634f5
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Fri Feb 10 09:08:06 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	client/account/css/index.less
+    #	src/account/components/VoucherEdit.js
+
+[33mcommit 3e9fdc58889f0251ede62a8be6a4431903ef37eb[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Fri Feb 10 09:05:11 2017 +0800
+
+    凭证
+
+[33mcommit 46634f59e49f5f2a79aeda2e3696f8ac20843ac6[m
+Merge: 6f6b2b6 6fa6143
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 9 16:52:21 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	client/account/css/index.less
+
+[33mcommit 6f6b2b65fcd6f98c42b043ee40de09c25b7f7022[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 9 16:50:47 2017 +0800
+
+    制单公用部分
+
+[33mcommit 6fa6143e65374d00d9ad59d316861b150851faff[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Thu Feb 9 16:13:08 2017 +0800
+
+    辅助核算
+
+[33mcommit 731a57f2218438e460acc77d64142dbd97078544[m
+Author: siyl <siyl@yonyou.com>
+Date:   Thu Feb 9 15:29:00 2017 +0800
+
+    add 辅助核算
+
+[33mcommit da25490c34bcb00c1b4294c4270ffa744e50dc61[m
+Merge: a25d0df fe57680
+Author: siyl <siyl@yonyou.com>
+Date:   Thu Feb 9 15:26:27 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	src/account/components/Left.js
+
+[33mcommit a25d0df41aa9755ad67a6899f93318052ff1590d[m
+Author: siyl <siyl@yonyou.com>
+Date:   Thu Feb 9 15:24:20 2017 +0800
+
+    菜单
+
+[33mcommit fe5768056126dad0040ae757d90408c9e8d96e31[m
+Merge: bd4f288 d172fc9
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 9 15:12:07 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit bd4f288f2c46ee88d7379f8af992bf7182086996[m
+Author: chenliw <chenliw@yonyou.com>
+Date:   Thu Feb 9 15:11:54 2017 +0800
+
+    源码调试模式
+
+[33mcommit d172fc9ff86ec6d0813655b6037082e7629b61ee[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Thu Feb 9 13:40:31 2017 +0800
+
+    设置
+
+[33mcommit f57fefa813afbe64b9c6f1c63fefc0088d951bf3[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Thu Feb 9 10:59:39 2017 +0800
+
+    目录结构调整
+
+[33mcommit 13e6db1316c3c672abdc78ebd5e1db27801c3dc0[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Thu Feb 9 09:07:17 2017 +0800
+
+    凭证
+
+[33mcommit 407c5f043e350a0440c2bddbffa8594e3ea4181d[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Feb 8 16:02:28 2017 +0800
+
+    fonts
+
+[33mcommit e5f48ce774d2e3d0a341ecf31830ea2e8fd18c71[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Feb 8 10:46:48 2017 +0800
+
+    报表
+
+[33mcommit 9d5271fa207a672e08b7a58f356baf98e97ef3ca[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Feb 8 10:36:42 2017 +0800
+
+    账簿
+
+[33mcommit 97b3d5e41dd8c8714fe8eb2ba5e23f5da5dc1b3f[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Feb 8 10:11:52 2017 +0800
+
+    凭证
+
+[33mcommit 082bcf337d9e071634dfe8ae8256bd69a618cc38[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Feb 8 09:30:57 2017 +0800
+
+    修正
+
+[33mcommit cc6363933319d23c563c2f56dd81417bd8222d31[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Feb 8 09:30:09 2017 +0800
+
+    修正
+
+[33mcommit 9863eab9f90c9814990b17027fc5776eb3037c99[m
+Author: qiufh <qiufh@yonyou.com>
+Date:   Mon Jan 23 17:01:14 2017 +0800
+
+     提交正确大小 的js 文件， 以后定义的js文件类名和文件名要一致（大小要注意），linux 系统敏感
+
+[33mcommit 39b6ce1202782fde8a37bce5067ea3bf28f2a565[m
+Author: qiufh <qiufh@yonyou.com>
+Date:   Mon Jan 23 16:52:36 2017 +0800
+
+    删除错误文件
+
+[33mcommit b1376310f9b08de669c483a4031e8de1d6a5ed06[m
+Author: qiufh <qiufh@yonyou.com>
+Date:   Mon Jan 23 16:25:23 2017 +0800
+
+     the VoucherList from ./components/VoucherEdit bug by fixed!
+
+[33mcommit 65baefc54cbf625853eaa604e9eda1cddfb8d4ff[m
+Author: siyl <siyl@yonyou.com>
+Date:   Sun Jan 22 16:56:23 2017 +0800
+
+    17-01-22
+
+[33mcommit 5d374a5b367facd052848a0f04a1474af71caa39[m
+Author: siyl <siyl@yonyou.com>
+Date:   Sun Jan 22 15:57:35 2017 +0800
+
+    17-01-22
+
+[33mcommit 4e231367ef6884b9702c8981531ecdd37200d759[m
+Merge: 4e43c7f e9a096f
+Author: siyl <siyl@yonyou.com>
+Date:   Sun Jan 22 15:41:30 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	src/app/components/Left.js
+
+[33mcommit 4e43c7fbf6f1e8eb54f6ceb9bd9c66ac501015e1[m
+Author: siyl <siyl@yonyou.com>
+Date:   Sun Jan 22 15:38:54 2017 +0800
+
+    17-01-22
+
+[33mcommit e9a096ff27c2ac36a81a58c92edf5e1278cf9e5a[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 15:30:42 2017 +0800
+
+    菜单
+
+[33mcommit aa57a444b5c9748d3ebafbbdbe70676b405781d1[m
+Merge: 0356a3e 2b9319e
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 15:12:35 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+    
+    # Conflicts:
+    #	src/app/components/Left.js
+
+[33mcommit 0356a3e47f0c3b3576137c2752a726061fb90b7b[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 15:10:27 2017 +0800
+
+    init2
+
+[33mcommit 2b9319e9452b07e4b1b64c023dff415c31b06d65[m
+Merge: 0998129 abef752
+Author: siyl <siyl@yonyou.com>
+Date:   Sun Jan 22 14:38:32 2017 +0800
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+[33mcommit 09981299a18735aa9eba7e759ce67c5b390fbf65[m
+Author: siyl <siyl@yonyou.com>
+Date:   Sun Jan 22 14:38:21 2017 +0800
+
+    17-01-22
+
+[33mcommit abef752a1a58fe5b6ce1d04fc0ae06d24b015016[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 14:30:56 2017 +0800
+
+    菜单
+
+[33mcommit 83409ccf2a0b67fe7d0bc6111529da37251a3105[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 09:48:29 2017 +0800
+
+    菜单
+
+[33mcommit 92b228c6558641eede1265f6704db57473879b69[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 09:26:40 2017 +0800
+
+    init2
+
+[33mcommit ed3c3c57e6bcff494de82a0c07f6b8f016ef4686[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 09:24:57 2017 +0800
+
+    init2
+
+[33mcommit 3e055167bbae5eff6eb0cc10520c0cf22725f316[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Sun Jan 22 09:22:15 2017 +0800
+
+    init2
+
+[33mcommit 613eafc7c0edf85b4bb97ea99510ae1c943f2116[m
+Author: liuyyg <liuyyg@yonyou.com>
+Date:   Wed Jan 18 10:22:38 2017 +0800
+
+    init
+
+[33mcommit 3f922a8accba2f55f7d0b65acf0af3cbc8d278b2[m
+Author: 刘云燕 <liuyyg@yonyou.com>
+Date:   Mon Jan 16 12:32:16 2017 +0800
+
+    Add new file

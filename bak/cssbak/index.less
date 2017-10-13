@@ -1,0 +1,2297 @@
+@import '../common/css/variables';
+@import '../common/css/common';
+@import '../../src/common/components/rc-tree/index.less';   // rc-tree 组件样式
+
+/**************************** 友账表UI基础设计规范 start ***************************/
+// 主题色
+@mainColor: #2CAEDE;            // 主色调 （注：一级按钮、顶部导航背景色、部分按钮、背景文字等）
+@backColor: #F9F9F9;            // 主题大背景色
+@darkColor: #16a5d5;            // 主色选中时色值
+@lightColor: #aaeeff;           // 比主色浅一级
+@headPortraitColor: #B5C9D4;    // 默认头像色
+// 导航色
+@navBarBorderColor: #0596c1;    // 头部导航条边框色
+@sideNavColor: #556071;         // 左侧导航背景色
+@sideNavHover: #909BAD;         // 左侧导航hover色
+@sideNavBorder: #606d7c;        // 左侧导航分割线色
+@twoNavHoverBackColor: #788497; // 二级导航hover
+@twoNavDownBackColor: #556071;  // 二级导航按下
+// 边框色
+@borderColor: #E6E6E6;          // 边框色
+@borderHoverColor: #D3D3D3;     // 边框hover时色值
+@btnBorderColor: #D8D9DA;       // 三级按钮(不重要操作按钮) 边框色
+// 按钮色
+@unSelectColor: #D2D2D2;        // 不可选择色 （不可点击按钮等）
+@btnHoverBackColor: #3AB8E7;    // 按钮鼠标经过
+@btnDownBackColor: #169DCE;     // 按钮按下状态色
+// 表格
+@gridHeaderBackColor: #f0f9fb;  // 表头背景色
+@gridHoverBackColor: #F7F7F7;   // 表格列表hover背景色
+// 文字色
+@wordFontColor: #333333;        // 一级标题文字色
+@twoWordFontColor: #666666;     // 二级文字色
+@otherFontColor: #999999;       // 备注信息、不太重要文字色
+// 其他色
+@placeholderColor: #c7c7c7;     // 辅助色，搜索框内提示颜色
+@errorColor: #fe631f;           // 错误信息提示色、警告框颜色
+@topUnSelectColor: #27A0CB;     // 顶部tab未选中填充色
+@topUnSelectBorderColor: #2694C4; // 顶部tab未选中描边色
+/**************************** 友账表UI基础设计规范 end ***************************/
+
+// 三种状态颜色 success warning error
+.success { color: #5cb85c; }
+.warning { color: #f0ad4e; }
+.error { color: @errorColor; }
+
+// 常用边框
+.b1-default { border: 1px solid @btnBorderColor; }
+.b1-primary { border: 1px solid @borderColor; }
+.b1-hover { border: 1px solid @btnHoverBackColor; }
+.b1-focus { border: 1px solid @btnDownBackColor; }
+
+// 按钮统一样式
+.btn {
+  border-radius: 0;
+  padding: 6px 20px;
+}
+
+.btn-outline {        // 去除按钮的外边框轮廓
+  outline: none;
+  outline-offset: 0;
+}
+
+.btn.btn-primary {    // 重要按钮
+  .f12;
+  background-color: @mainColor;
+  border-color: @mainColor;
+  box-sizing: border-box;
+  &:hover {
+    border-color: @btnHoverBackColor;
+    background-color: @btnHoverBackColor;
+    .btn-outline;
+  }
+  &:focus {
+    border-color: @btnDownBackColor;
+    background-color: @btnDownBackColor;
+    .btn-outline;
+  }
+}
+
+.btn.btn-default {     // 一般按钮
+  .f12;
+  border-color: @btnBorderColor;
+  background-color: @backColor;
+  box-sizing: border-box;
+  &:hover {
+    color: #FFF;
+    border-color: @btnHoverBackColor;
+    background-color: @btnHoverBackColor;
+    .btn-outline;
+  }
+  &:focus {
+    color: #FFF;
+    border-color: @btnDownBackColor;
+    background-color: @btnDownBackColor;
+    .btn-outline;
+  }
+}
+
+.btn-account {       // 去除左右的内边距
+  padding-right: 0;
+  padding-left: 0;
+}
+
+// tab条统一样式 tabs-bar
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover{
+  .b0;
+  .transparent;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+  .b0;
+  color: @mainColor;
+  .transparent;
+}
+.tabs-bar {                     // tab条
+  height: 50px;
+  //padding: 12px 20px;
+  //.mb20;
+  .fff;
+  border: 1px solid @borderColor;
+  .tabs-text {                  // 标题
+    line-height: 35px;
+  }
+  .nav-tabs {                   // tab页
+    .pr;
+    top: 9px;
+  }
+  >.input-group {               // 搜索框
+    width: 280px;
+    .ml30;
+  }
+  >a {
+    line-height: 34px;
+  }
+}
+.tabs-bar-btn .btn-default {    // 右侧按钮
+  color: @mainColor;
+  border-color: @mainColor;
+}
+.nav.nav-tabs {
+  .b0;
+  a {
+    color: @wordFontColor;
+  }
+  >li{
+    .tc;
+    width: 100px;
+    //border-bottom: 2px solid @borderColor;
+    //&:hover, &:focus {
+    //  border-color: @hoverColor;
+    //}
+  }
+  >li.active {
+    border-bottom: 2px solid @mainColor;
+  }
+}
+
+// 适配不同屏幕分辨率
+@media print {
+  .noprint {
+    display: none;
+  }
+  .print {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {  // 模态框的定位
+  .modal-dialog {
+    width: 600px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin-left: -300px;
+  }
+  .col-sm-3 {  // 凭证列表 更多条件 下拉
+    width: 23%;
+  }
+}
+
+.dropdown-menu > li > a { // 覆盖Bootstrap 下拉菜单的内边距 统一
+  padding: 6px 20px;
+}
+
+// 查询栏 统一
+.nav-search {
+  width: 100%;
+  .mt15;
+  .select-4 {
+    .pr;
+  }
+  .nav-select-btn {
+    .fr;
+  }
+}
+
+.nav-select {
+  width: 17%;
+  .fl;
+  margin-right: 2%;
+  height: 34px;
+  background: #FFF;
+  select {
+    width: 100%;
+    height: 34px;
+    border-color: @borderColor;
+    color: @twoWordFontColor;
+    padding: 3px 0 3px 3px;
+    .f12;
+  }
+}
+
+// 查询栏 单个
+.select-one {
+  width: 7%;
+  margin-right: 2%;
+  outline-style: none;
+  select {   // 给select增加form-control类
+    .input-form-control;
+  }
+}
+
+/* navbar begin 单据tab条 */
+.navbar {
+  .pr20;
+  height: 50px;
+  background-color: @mainColor;
+  .container-fluid {
+    padding-left: 0;
+    .navbar-brand {
+      .p0;
+      .ml20;
+    }
+    .collapse.in {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+    }
+  }
+  a {
+    color: #FFF;
+  }
+}
+
+.navbar .nav > li:hover > a, .navbar .nav .open > a {
+  background-color: transparent;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+  background-color: transparent;
+}
+
+.navbar-toggle {
+  width: 70px;
+  height: 50px;
+  .br0;
+  .m0;
+  .transition;
+  &:hover {
+    background-color: @darkColor;
+  }
+  .icon-bar {
+    margin: 0 auto;
+    background-color: #FFF;
+  }
+}
+
+.navbar-header {
+  .pr;
+  .navbar-logo {
+    .pa;
+    top: 10px;
+    left: 70px;
+    width: 133px;
+    height: 31px;
+    background: url(../images/logo.png) no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.navbar-nav > li > .dropdown-menu.navbar-logout {    //用户默认头像
+  width: 54px;
+  min-width: 54px;
+  .p0;
+  .mt10;
+  li {
+    a {
+      font-weight: 400;
+      .f12;
+      color: @twoWordFontColor;
+      .tc;
+      padding: 6px;
+      .pointer;
+      &:hover {
+        color: #FFF;
+        background-color: @btnHoverBackColor;
+      }
+    }
+  }
+}
+
+.navbar-navbar-head-portrait-ul {
+  padding-top: 9px;
+  .pr;
+  li a {
+    .p0;
+  }
+  .navbar-head-portrait {
+    width: 32px;
+    height: 32px;
+    display: block;
+    background: url(../images/default-photo.png) no-repeat;
+    .mr20;
+  }
+  .navbar-head-portrait-caret {
+    .pa;
+    right: 4px;
+    top: 9px;
+    display: block;
+    width: 13px;
+    height: 13px;
+    background: url(../images/top-dropdown.png) no-repeat;
+  }
+}
+/* navbar over 头部导航条 */
+
+/* Left begin 左侧边栏 */
+.sidenav {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  height: 100%;
+}
+
+.sidenav-container {
+  color: #FFF;
+  width: 70px;
+  min-height: 300px;
+  background-color: @sideNavColor;
+}
+
+// 左侧边栏按钮区
+.sidenav .nav li {
+  &:hover {
+    .pointer;
+    background-color: @sideNavHover;
+  }
+  > a {
+    color: #FFF;
+    .p0;
+    .Clearfix;
+    z-index: 9999;
+  }
+  > a:focus, > a:hover {
+    .transparent;
+  }
+}
+
+.nav-item {
+  height: 70px;
+  padding: 10px 0;
+  border-bottom: 1px solid @sideNavBorder;
+  .tc;
+  .transparent;
+  .transition;
+  .pr;
+  .menu-child-list {
+    .none;
+    .pa;
+    top: 0;
+    left: 70px;
+    width: 100px;
+    > li {
+      line-height: 40px;
+    }
+  }
+  &:hover {
+    .menu-child-list {
+      .Clearfix;
+      background-color: @sideNavColor;
+      z-index: 100;
+    }
+  }
+  .nav-icon {
+    .mb5;
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.sidenav-scroll-btn {
+  .w;
+  .pa;
+  bottom: 50px;
+  background: @sideNavColor;
+  .up-btn, .down-btn {
+    .tc;
+    padding: 5px 0;
+    &:hover {
+      .pointer;
+      background-color: @sideNavHover;
+    }
+  }
+}
+/* Left over 左侧边栏 */
+
+/* 内容区 通用 start */
+body {
+  background-color: @backColor;
+}
+
+.content {
+  height: 100%;
+  background-color: @backColor;
+  .mt50;
+  .p20;
+}
+
+.content-left {
+  margin-left: 70px;
+}
+
+.gongsi {
+  .f14;
+  color: #00afdb;
+}
+
+.mr44 {
+  margin-right: 2.66%;
+}
+
+.books {
+  .f14;
+  color: @twoWordFontColor;
+  .mr10;
+}
+
+.books-link {
+  .f12;
+  color: @otherFontColor;
+}
+
+.input-form-control {  // select控件
+  .b1-primary;
+  outline-style: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  &:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+}
+/* 内容区 通用 end */
+
+// 顶部标题栏 通用
+.header {
+  .tc;
+  .oh;
+  .header-title {
+    font-weight: 700;
+    .f17;
+    color: @wordFontColor;
+  }
+  .header-date {
+    .ml10;
+    .vb;
+  }
+}
+
+// 账簿公用
+.form-control-select {
+  padding: 0;
+  height: 28px;
+  .f12;
+}
+
+/* 工作台 start */
+.main {
+  .head {
+    width: 100%;
+    .pr;
+    .tc;
+    .head-l {
+      .pa;
+      top: 0;
+      left: 0;
+      height: 24px;
+      .f12;
+      color: @otherFontColor;
+      .accbook, .form-control {
+        display: inline-block;
+        width: auto;
+      }
+      select.form-control {
+        padding: 0;
+        .f12;
+        height: 28px;
+      }
+    }
+    .head-m {
+      height: 24px;
+      .f12;
+      color: @otherFontColor;
+    }
+    .head-r {
+      .abs-right;
+      top: 0;
+      height: 24px;
+      .pointer;
+      img:hover {
+        background: rgba(0, 0, 0, .1);
+      }
+    }
+  }
+
+  .middle {
+    .mt20;
+    width: 100%;
+    .middle-img {
+      .fl;
+      .b1-primary;
+      width: 23%;
+      height: 120px;
+      background-color: #FFF;
+      p {
+        height: 44px;
+        line-height: 44px;
+        .tc;
+        .f14;
+        color: #546170;
+      }
+    }
+    .middle2-img {      // echats图表
+      .fl;
+      .b1-primary;
+      width: 48%;
+      height: 352px;
+      background-color: #FFF;
+      p {
+        .f14;
+        height: 44px;
+        line-height: 44px;
+        .tc;
+        color: #546170;
+      }
+      .ecchar-btn {  // echats图标切换
+        .pa;
+        top: 7px;
+        right: 7px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        .tc;
+       .f14;
+        display: block;
+        z-index: 999;
+        .pointer;
+        &:hover {
+          background: rgba(0, 0, 0, .1);
+        }
+      }
+      .ecchar-td {
+        .tl;
+        padding: 0 12px;
+        .f12;
+        height: 34px;
+        line-height: 34px;
+        color: @wordFontColor;
+        .pr;
+        input[type=checkbox] {
+         .pa;
+          top: 7px;
+          left: -5px;
+        }
+      }
+    }
+    .img {
+      height: 76px;
+      .tc;
+      .pt5;
+    }
+    .img2 {
+      .tc;
+      height: 312px;
+      .pt15;
+    }
+  }
+
+  .middle-line {
+    height: 24px;
+    .mt20;
+    .middle-line-span {
+      .fl;
+      display: inline-block;
+      .f14;
+      color: @otherFontColor;
+    }
+    hr {
+     .pr;
+      top: 8px;
+    }
+  }
+
+  .bottom {
+    .mt20;
+    width: 100%;
+    .bottom-img {
+      .fl;
+      .b1-primary;
+      width: 23%;
+      height: 156px;
+      background-color: #FFF;
+      box-shadow: 0 4px 10px rgba(7,17,27, .1);
+      transition: .3s all linear;
+      &:hover {
+        z-index: 2;
+        border-color: @mainColor;
+        -webkit-box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        -webkit-transform: translate3d(0, -2px, 0);
+        transform: translate3d(0, -2px, 0);
+        .review-wrapper {
+          height: 76px;
+          opacity: 1;
+        }
+      }
+      h3 {
+        .pl50;
+        height: 45px;
+        line-height: 45px;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: 400;
+        .f16;
+        background: url("../images/hbg.png") no-repeat 18px center;
+        color: @wordFontColor;
+        &:hover {
+          color: @mainColor;
+        }
+      }
+      img {
+        width: 100%;
+        height: 109px;
+      }
+      .review-wrapper {
+        .pt30;
+        .pa;
+        .f12;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        _zoom: 1;
+        background: @mainColor;
+        opacity: 0;
+        -webkit-transition: all .2s linear;
+        transition: all .2s linear;
+        .tc;
+        span {
+          color: #FFF;
+          .f14;
+        }
+      }
+    }
+  }
+}
+/* 工作台 end */
+
+/* 总账 通用 start */
+.ledger {
+  .head {
+    height: 34px;
+    line-height: 34px;
+    //.oh;
+    .mb10;
+    .head-l {
+      .fl;
+      .head-select{
+        display: inline-block;
+        select {
+          width: 120px;
+          height: 30px;
+          padding-left: 15px;
+          .f12;
+          color: @twoWordFontColor;
+          .input-form-control;
+        }
+      }
+      .accbook, .form-control {
+        .clearfix;
+        width: auto;
+      }
+      select.form-control {
+        padding: 0;
+        .f12;
+        height: 28px;
+      }
+    }
+    .head-r {
+      .fr;
+      .dropdown-menu-list {
+        min-width: 91px;
+        a {
+          .pointer;
+          .f12;
+          &:hover {
+            background-color: @mainColor;
+            color: #FFF;
+          }
+        }
+      }
+    }
+  }
+  // 资产负债表、 利润表 顶部公共
+  .head-bottom {
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    .tc;
+    .pr;
+    .mb15;
+    .head-l {
+      .pa;
+      left: 0;
+      top: 0;
+    }
+    .head-m {
+      span {
+        font-weight: 700;
+        .f14;
+        color: @wordFontColor;
+      }
+    }
+    .head-r {
+      .abs-right;
+      top: 0;
+    }
+  }
+
+  // 左树右表结构
+  .ledger-content {
+    .mt10;
+    width: 100%;
+    .ledger-content-left {     // 左树右表 左边
+      .fl;
+      .b1-primary;
+      width: 230px;
+      max-width: 230px;
+      overflow-x: auto;
+      min-height: 300px;
+      height: auto;
+      background: #FFF;
+    }
+    .ledger-content-right {    // 左树右表 右边
+      margin-left: 250px;
+      overflow-x: auto;
+    }
+  }
+
+  // 公共表格
+  .ssc-grid {
+    table {
+      .mb0;
+      color: @wordFontColor;
+      border: 1px solid @borderColor;
+      thead {
+        tr {
+          border-width: 1px;
+          color: @wordFontColor;
+          background-color: #FFF;
+          th {
+            .b0;
+            .ws;
+            padding: 0 12px;
+            height: 56px;
+            line-height: 56px;
+            font-weight: 700;
+            .f14;
+          }
+        }
+      }
+      tbody {
+        tr {
+          border-top: 1px solid @borderColor;
+          background-color: #FFF;
+          td {
+            .b0;
+            .ellipsis;
+            max-width: 150px;
+            padding: 0 12px;
+            height: 35px;
+            line-height: 35px;
+            .f12;
+            color: @wordFontColor;
+          }
+          td:last-child > a, td:last-child span {
+            color: transparent;
+            margin-right: 5px;
+          }
+          &:hover {
+            td {.b0;}
+            border: 1px solid @borderHoverColor;
+            background-color: @gridHoverBackColor;
+            td:last-child > a, td:last-child > span {
+              color: @mainColor;
+              .clearfix;
+              .pointer;
+              &:hover {
+                color: @darkColor;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // 翻页 pagination
+    .pagination {
+      .fr;
+      li.active > a {
+        border-color: @mainColor;
+        background-color: @mainColor;
+        &:hover {
+          border-color: @btnHoverBackColor;
+          background-color: @btnHoverBackColor;
+        }
+        &:focus {
+          border-color: @darkColor;
+          background-color: @darkColor;
+        }
+      }
+    }
+  }
+
+  // 资产负债表
+  .asset-grid {
+    table {
+      .mb0;
+      color: @wordFontColor;
+      border: 1px solid @borderColor;
+      thead {
+        tr {
+          border-width: 1px;
+          color: @wordFontColor;
+          background-color: #FFF;
+          th {
+            .b0;
+            .ws;
+            height: 56px;
+            line-height: 56px;
+            padding: 0 12px;
+            font-weight: 700;
+            .f14;
+            &.text-right {
+              .tr;
+              padding: 0 10px;
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          border-top: 1px solid @borderColor;
+          background-color: #FFF;
+          td {
+            .b0;
+            .ellipsis;
+            max-width: 150px;
+            height: 35px;
+            line-height: 35px;
+            padding: 0 12px;
+            .f12;
+            color: @wordFontColor;
+            &:nth-child(4) {
+              border-right: 1px solid @borderColor;
+            }
+            &.text-right {
+              .tr;
+              padding: 0 10px;
+            }
+          }
+          td:last-child > a, td:last-child span {
+            color: transparent;
+            margin-right: 5px;
+          }
+          &:hover {
+            td {.b0;}
+            border: 1px solid @borderHoverColor;
+            background-color: @gridHoverBackColor;
+            td:last-child > a, td:last-child > span {
+              color: @mainColor;
+              .clearfix;
+              .pointer;
+              &:hover {
+                color: @darkColor;
+              }
+            }
+            td:nth-child(5) {
+                padding-left: 13px;
+                margin-left: -1px;
+            }
+          }
+        }
+      }
+    }
+  }
+  // 公式编辑器
+  .formula-tree-leaf {
+    padding-left: 16px;
+    background: url(../images/file.gif) 0 0 no-repeat;
+    cursor: pointer;
+  }
+
+  .formula-resizenone {
+    resize: none;
+    width: 569px;
+    margin-bottom: 10px;
+  }
+
+  .filetree {
+    padding-top: 10px;
+    height: 150px;
+    overflow-y: auto;
+  }
+
+  .filerefer {
+    padding-top: 10px;
+    height: 150px;
+  }
+
+  .server-message{color:red}
+
+  .btn-bar {    // ssc-30 新增按钮
+    height: 34px;
+    margin-bottom: 10px;
+  }
+}
+
+// 顶部input-group组件
+.head-l {
+  .head-select {
+    max-width: 185px;
+    .bootstrap-typeahead {
+      padding-top: 3px;
+    }
+    .input-group {
+      input.form-control {
+        width: 150px;
+        height: 28px;
+      }
+    }
+    .input-group-addon {
+      padding: 5px 10px;
+    }
+  }
+}
+
+/* 总账 通用 end */
+
+/* 记账凭证 start */
+.voucher-grid {
+  width: 1140px;
+}
+.v-header {
+  width: 100%;
+  height: 30px;
+  .v-header-left {
+     .fl;
+    .btn-group {
+      vertical-align: 0;
+    }
+    .dropdown-menu-list {
+      .p0;
+      min-width: 91px;
+      border-radius: 0;
+      li {
+        width: 100%;
+        a {
+          width: 100%;
+          .tc;
+          font-weight: 400;
+          .f12;
+          color: @twoWordFontColor;
+          .pointer;
+          &:hover {
+            color: #FFF;
+            background-color: @mainColor;
+          }
+        }
+      }
+    }
+    .v-header-save {   // 凭证 保存按钮
+      color: @mainColor;
+      border-color: @mainColor;
+      &:hover {
+        color: #FFF;
+      }
+      &:focus {
+        color: #FFF;
+        border-color: @btnDownBackColor;
+      }
+    }
+  }
+  .v-header-right {
+    .fr;
+    line-height: 30px;
+    a {
+      padding: 5px 12px;
+      margin-top: -1px;
+      margin-left: 12px;
+    }
+    .btn-common {
+      .f16;
+      padding: 2px 15px;
+    }
+  }
+}
+
+.v-table {
+  .mt20;
+  width: 100%;
+  table {
+    background: #FFF;
+    thead {
+       width: 100%;
+    tr {
+      height: 54px;
+      th {
+        .tc;
+        vertical-align: middle;
+        font-weight: 700;
+        .f14;
+        color: @wordFontColor;
+        width: 332px;
+        &.v-table-td-bg {
+          width: 218px;
+          .tc;
+          vertical-align: top;
+          margin-right: 0;
+          padding-top: 7px;
+          background: url(../images/tableUnit.png) no-repeat 0 29px;
+          .pr;
+          button {
+            width: 18px;
+            height: 18px;
+            .pa;
+            bottom: 24px;
+            right: 4px;
+            background: transparent;
+            border-color: transparent;
+            outline-style: none;
+            .p0;
+            &:hover {
+              background: transparent;
+              border-color: transparent;
+              outline-style: none;
+              color: transparent;
+            }
+            &:focus {
+              outline-style: none;
+            }
+          }
+          i {
+            background: url(../images/option-error.png) no-repeat;
+            margin-right: 2px;
+            width: 18px;
+            height: 18px;
+            .pa;
+            right: -5px;
+            bottom: -2px;
+            z-index: 100;
+          }
+        }
+        &.v-table-td.edit-col {
+          width: 352px;
+        }
+      }
+    }
+  }
+  tbody {
+    width: 100%;
+    tr {
+      td {
+        height: 54px;
+        vertical-align: middle;
+        .f12;
+        color: @wordFontColor;
+        .pr;
+        &.v-table-td {
+          .p0;
+          height: 100%;
+          word-break: break-all;
+          word-wrap: break-word;
+          .edit-refer {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+             input {
+               height: 100%;
+               padding: 8px;
+               .f12;
+               color: @wordFontColor;
+             }
+          }
+          &.edit-col {
+            .form-text {
+              .pl10;
+              display: inline-block;
+              word-break: break-all;
+              word-wrap: break-word;
+            }
+          }
+        }
+        &.v-table-td.edit-col {
+          width: 352px;
+        }
+        &.v-table-td-bg {
+          .form-text {
+            font-weight: 700;
+            .f14;
+            color: @wordFontColor;
+            letter-spacing: 11.5px;  // 借方金额 贷方金额 字体间距
+            margin-right: -8px;
+          }
+          .edit-refer {
+            .pa;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        &.v-table-td, &.v-table-td-bg {
+          .form-text {
+            button {
+              width: 18px;
+              height: 18px;
+              .pa;
+              bottom: 3px;
+              right: 4px;
+              background: transparent;
+              border-color: transparent;
+              outline-style: none;
+              .p0;
+              &:hover {
+                background: transparent;
+                border-color: transparent;
+                outline-style: none;
+                color: transparent;
+              }
+              &:focus {
+                outline-style: none;
+              }
+            }
+            i {
+              background: url(../images/option-error.png) no-repeat;
+              margin-right: 2px;
+              width: 18px;
+              height: 18px;
+              .pa;
+              right: -5px;
+              bottom: -2px;
+              z-index: 100;
+            }
+          }
+        }
+      }
+    }
+  }
+  tfoot {
+    tr {
+      height: 54px;
+      td {
+        vertical-align: middle;
+        padding: 0;
+        &.v-table-td-bg {
+          .form-text {
+            font-weight: 700;
+            .f14;
+            color: @wordFontColor;
+            letter-spacing: 11.5px;
+            margin-right: -8px;
+          }
+        }
+        &.v-table-bottom-td-pl {
+          padding-left: 8px;
+        }
+      }
+    }
+  }
+  }
+
+  // 代码可单独提取
+  .v-table-td-bg {
+    &th {
+      width: 218px;
+      .p0;
+      p {
+        .tc;
+        width: 218px;
+      }
+      .v-table-th-bg {
+        width: 218px;
+        height: 23px;
+        background: url("../images/tableUnit.png") repeat;
+      }
+    }
+    .p0;
+    input {
+      height: 54px;
+      width: 100%;
+    }
+    width: 218px;
+    .tr;
+    letter-spacing: 10px;
+    background: url("../images/money_bg.png") repeat 0 0;
+  }
+}
+.v-input-common {
+  display: inline-block;
+  height: 22px;
+  .p0;
+}
+
+.v-table-header {
+  width: 100%;
+  padding: 0 14px;
+  height: 52px;
+  .b1-primary;
+  border-bottom: 0;
+  background: #FFF;
+  .v-table-input30 {
+    width: 40px;
+    margin: 0 10px;
+    .v-input-common;
+    padding: 2px;
+  }
+  .v-table-button30 {
+    .f12;
+    padding: 2px;
+    margin-left: 6px;
+    outline-style: none;
+    width: 18px;
+    height: 18px;
+    background: url(../images/btn-copy.png) no-repeat;
+    &:focus {
+      outline-style: none;
+    }
+  }
+  .v-table-input100 {
+    width: 100px;
+    .ml10;
+    .v-input-common;
+  }
+  .v-table-header-font {
+    line-height: 50px;
+    color: @twoWordFontColor;
+    display: inline-block;
+  }
+  .input-group .date {
+    margin-top: -8px;
+    height: 24px;
+  }
+  .v-table-select {
+    width: 48px;
+    height: 24px;
+    .b1-primary;
+    .f12;
+    color: @twoWordFontColor;
+    padding-left: 4px;
+    .input-form-control;
+  }
+  .v-table-inputdate {
+    display: inline-block;
+    input {
+      margin-top: 13px;
+      margin-left: 5px;
+      padding-left: 8px;
+      padding-right: 16px;
+      width: 105px;
+      height: 24px;
+      .f12;
+      color: @twoWordFontColor;
+      background: url(../images/input-date.png) no-repeat 95% center;
+      .pointer;
+    }
+  }
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+.v-table-bottom {    // 记账凭证 底部
+  .bottom-div {
+    .f12;
+    color: @otherFontColor;
+  }
+  .bottom-div-jz {
+    color: @twoWordFontColor;
+  }
+}
+
+.com-ref-double { // 下拉参照
+  width: 300px;
+  .p10;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  .ref-double-date {
+    display: block;
+    line-height: 30px;
+    .tc;
+    cursor: default;
+    &:hover {
+      color: #FFF;
+      background: @mainColor;
+    }
+  }
+  .com-double-date {  // 下拉参照 会计期间、日期
+    height: 30px;
+    select {
+      width: 32%;
+      .fl;
+      .mt10;
+      height: 30px;
+      line-height: 30px;
+      .f12;
+      padding-left: 2px;
+      padding-right: 0;
+    }
+    span {
+      .fl;
+      line-height: 30px;
+      margin: 10px 2%;
+    }
+    button.btn-refperiod {
+      margin-left: 10px;
+      margin-top: 9px;
+    }
+  }
+  .checkbox-inline {
+    .mt10;
+  }
+}
+.com-ref-double-subject {  // 科目、科目级次
+  .p10;
+  div.col-md-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .bootstrap-typeahead .bootstrap-typeahead-input-main {
+    height: 30px;
+    line-height: 30px;
+    .f12;
+    color: @twoWordFontColor;
+  }
+  .ref-subject-range {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    .tc;
+    color: @twoWordFontColor;
+  }
+  .ref-subject-select {
+    height: 30px;
+    line-height: 30px;
+  }
+  .btn-bottom {
+    .mt15;
+  }
+  .btn-ref-cancel {
+    border-color: transparent;
+    background-color: transparent;
+  }
+  .bootstrap-typeahead-menu {
+    li {
+      a {
+        font-weight: 400;
+        .f12;
+        color: @twoWordFontColor;
+        &:hover {
+          color: #FFF;
+          background: @mainColor;
+        }
+      }
+    }
+  }
+}
+/* 记账凭证 end */
+
+// 更多条件下拉 input参照组件样式
+.ssc-input, .ssc-date {
+  width: 100%;
+  input {
+    width: 100%;
+    height: 34px;
+    .f12;
+    color: @twoWordFontColor;
+    padding: 6px 16px 6px 6px;
+    background: url(../images/input-dropdown.png) no-repeat 96% center;
+    border-radius: 0;
+    .input-form-control;
+  }
+  .react-datepicker__input-container {
+    width: 100%;
+  }
+}
+
+.input-dropdown {
+  .b1-primary;
+  background: #FDFDFD;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+.btn-voucher-more {  // 更多条件按钮
+  .b1-primary;
+  width: 100%;
+  height: 34px;
+  text-align: left;
+  .f12;
+  color: @twoWordFontColor;
+  background-color: #FFF;
+  padding-left: 9px;
+  padding-right: 16px;
+  background: url(../images/input-dropdown.png) no-repeat 96% center;
+  outline-style: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  &:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+}
+
+// 更多条件 下拉菜单
+.ref-voucher-more {
+  .p20;
+  .abs-right;
+  top: 34px;
+  .b1-primary;
+  min-width: 600px;
+  background-color: #FFF;
+  z-index: 9999;
+  -webkit-box-shadow: 0 1px 2px #D0D0D0;
+  box-shadow: 0 1px 2px #D0D0D0;
+  border-top: none;
+  margin-top: 0;
+  .btn-ref-cancel {
+    border-color: transparent;
+    background-color: transparent;
+    &:focus {
+      border: 1px solid transparent;
+      outline: none;
+      outline-offset: 0;
+    }
+  }
+
+  .text-left {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    .form-group {
+      margin-bottom: 0;
+      padding-left: 0;
+      label.control-label {
+        color: @twoWordFontColor;
+        font-weight: 400;
+        .f12;
+        padding-right: 0;
+        padding-left: 0;
+        input[type=checkbox] {
+          margin-top: 1px;
+        }
+        & + div {
+          padding-left: 0;
+          padding-right: 0;
+          .form-control {
+            font-weight: 400;
+            .f12;
+            color: @wordFontColor;
+            padding: 3px;
+            height: 30px;
+            line-height: 30px;
+          }
+        }
+      }
+
+      .ref-voucher-col {
+        margin-left: 15px;
+      }
+
+      .default-voucher {
+        .f12;
+        .btn-outline;
+        border-radius: 0;
+        padding: 0 20px;
+        border: 1px solid @mainColor;
+        color: @mainColor;
+        background: #FFF;
+        margin-top: -2px;
+      }
+
+      .active-voucher {
+        .f12;
+        .btn-outline;
+        border-radius: 0;
+        padding: 0 20px;
+        border: 1px solid @btnDownBackColor;
+        background: @btnDownBackColor;
+        color: #FFF;
+        margin-top: -2px;
+      }
+
+    }
+  }
+}
+
+// 记账凭证 会计科目参照的样式
+.subject_refer {
+  .pa;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.subject_refer_title {
+  width: 100%;
+  height: 100%;
+ .pa;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+td.edit-col .subject_refer  {
+  padding-left: 8px;
+}
+
+.subject_refer_title_span {
+  .pa;
+  bottom: 3px;
+  left: 5px;
+  color: #888;
+  display: inline;
+  z-index: 3;
+  .f12;
+  line-height: 1;
+  width: 70%;
+  .ellipsis;
+}
+
+.subject_refer_btn {
+  .pa;
+  bottom: 3px;
+  right: 5px;
+  z-index: 2;
+  a {
+    .f12;
+  }
+}
+
+.subject_refer_content {
+  .pa;
+  left: 0;
+  z-index: 22;
+  overflow: auto;
+  .b1-primary;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.5);
+  background: #FFF;
+  height: 150px;
+  display: none;
+}
+
+.subject_refer_content li {
+  width: 100%;
+  line-height: 25px;
+  padding: 0 10px;
+  .pointer;
+}
+
+.subject_input{
+  z-index: 3;
+  height: 100%;
+  .pr;
+}
+
+.subject_refer_content li:hover, .subject_refer_content li.active {
+  color: #FFF;
+  background: @mainColor;
+}
+
+.subject_refer_content1 {
+  .pa;
+  left: 0;
+  z-index: 5;
+  .b1-primary;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.5);
+  background: #FFF;
+  display: none;
+}
+
+table td .subject_refer_content1.form-horizontal .form-control {
+  visibility: visible;
+}
+
+.subject_refer_content1.form-horizontal .form-group {
+  margin: 10px 0;
+}
+
+.subject_refer_content1.form-horizontal label {
+  line-height: 1em;
+  font-weight: 400;
+  .f12;
+  color: @twoWordFontColor;
+  .m0;
+  .p0;
+  padding-top: 7px;
+}
+
+.subject_refer_content1 .col-sm-7 .form-control.bootstrap-typeahead-input-main {
+  font-weight: 400;
+  .f12;
+  height: 30px;
+}
+
+.subject_refer_content1 .col-sm-7 .dropdown-menu li {
+  a {
+    font-weight: 400;
+    .f12;
+    color: @otherFontColor;
+    &:hover {
+      display: block;
+      color: #FFF;
+      background: @mainColor;
+    }
+  }
+}
+
+.subject_refer_content1 .col-sm-7 .btn-size-cancle {
+  margin-left: 0;
+}
+
+.subject_refer_content1 .col-sm-7 .btn-size-ok {
+  margin-left: 10px;
+}
+
+.selec_chart_show {
+  .pa;
+  top: 0;
+  right: 23px;
+  width: 150px;
+  height: 132px;
+  padding: 10px;
+  z-index: 9999;
+  background-color: #FFF;
+  border: 1px solid @mainColor;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.selec_chart_hide {
+  display: none;
+}
+
+.content-choose {
+  font-weight: 400;
+  .f12;
+  color: @twoWordFontColor;
+  text-align: left;
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+}
+
+// 设置按钮 点击
+.selec_chart_btn {
+  margin-top: 5px;
+  .btn-size {
+    font-weight: 400;
+    .f12;
+    padding: 3px 12px;
+  }
+}
+// 凭证行编辑按钮，需整理
+.option-btn {
+  .pa;
+  left: -25px;
+  top: 50%;
+  margin-top: -19px;
+  button {
+    display: block;
+    .tc;
+    padding: 0;
+    width: 26px;
+    height: 22px;
+    border: none;
+    outline-style: none;
+    &.option-btn-add {
+      background: url(../images/option-add.png) no-repeat;
+      &:hover {
+        background: url(../images/option-add-hover.png) no-repeat;
+      }
+    }
+    &.option-btn-del {
+      background: url(../images/option-del.png) no-repeat;
+      &:hover {
+        background: url(../images/option-del-hover.png) no-repeat;
+      }
+    }
+  }
+}
+
+// 左树结构
+.rc-tree {
+  padding: 14px;
+  .rc-tree-title {
+    font-weight: 400;
+    .f12;
+    color: @wordFontColor;
+  }
+  .rc-tree-node-selected {
+    background-color: #ffe6b0;
+    border: 1px #ffb951 solid;
+    opacity: 0.8;
+  }
+}
+.rc-tree li {
+  line-height: 30px;
+  .rc-tree-node-content-wrapper {
+     height: auto;
+  }
+}
+.rc-tree li span.rc-tree-switcher, .rc-tree li span.rc-tree-checkbox, .rc-tree li span.rc-tree-iconEle {
+  background-image: none;
+}
+.rc-tree li span.rc-tree-switcher.rc-tree-noline_close {
+   background: url(../images/rc-tree-noline_close.png) no-repeat 0 3px;
+   margin-right: 8px;
+ }
+.rc-tree li span.rc-tree-switcher.rc-tree-noline_open {
+  background: url(../images/rc-tree-noline_open.png) no-repeat 0 0;
+  margin-right: 8px;
+}
+.rc-tree li span.rc-tree-switcher, .rc-tree li span.rc-tree-checkbox, .rc-tree li span.rc-tree-iconEle.rc-tree-icon__close  {
+  background: url(../images/rc-tree-icon__close.png) no-repeat;
+  margin-right: 8px;
+}
+.rc-tree li span.rc-tree-switcher, .rc-tree li span.rc-tree-checkbox, .rc-tree li span.rc-tree-iconEle.rc-tree-icon__open {
+  background: url(../images/rc-tree-icon__open.png) no-repeat;
+  margin-right: 8px;
+}
+.rc-tree li span.rc-tree-switcher, .rc-tree li span.rc-tree-checkbox, .rc-tree li span.rc-tree-iconEle.rc-tree-icon__docu {
+  background: url(../images/rc-tree-icon__docu.png) no-repeat;
+  margin-right: 8px;
+}
+.rc-tree li span.rc-tree-switcher, .rc-tree li span.rc-tree-checkbox, .rc-tree li span.rc-tree-iconEle.rc-tree-icon__docu + span.rc-tree-title {
+  font-weight: 400;
+  .f12;
+  color: @wordFontColor;
+}
+ul.rc-tree-child-tree.rc-tree-child-tree-open li.rc-tree-hover:hover {
+  background: rgb(247, 247, 247);
+}
+.rc-tree .rc-tree-node-selected {  // 左树结构 选中色
+  background-color: #E6F3FC;
+  border: 1px solid #ABD6EA;
+  opacity: 1;
+}
+
+// alert弹框组件
+.ssc-alert {
+  p.alert-tip {  // alert弹出框溢出显示省略号
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+// 记账凭证 上传模板
+.show-grid-panel {
+  width: 100%;
+  .pr;
+  .show-grid-panel-title {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    .f12;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .panel-title-close {
+    .pa;
+    top: 5px;
+    right: 3px;
+  }
+}
+
+// 附件查看
+.btn-image-del {
+  height: 75px;
+  min-height: 75px;
+  max-height: 75px;
+  a {
+    width: 100%;
+    height: 60%;
+    img {
+      width: 100%;
+      height: 60%;
+    }
+  }
+}
+
+.show-grid-body {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.modal-content, .panel, .panel-heading  {
+  border-radius: 0;
+}
+
+.panel-body {
+  .pointer;
+  background: @gridHoverBackColor;
+  .panel-body-list {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    .f12;
+    font-weight: 400;
+    color: @otherFontColor;
+  }
+}
+
+.panel-info {   // 上传模板未选中色
+  border-color: @borderColor;
+}
+
+.panel-info>.panel-heading {
+  color: @twoWordFontColor;
+  background-color: #FFF;
+  border-color: @borderColor;
+}
+
+.panel-primary {
+  border-color: @mainColor;
+}
+
+.panel-primary>.panel-heading {
+  border-color: @mainColor;
+  background-color: @mainColor;
+  color: #FFF;
+}
+
+// 模态框
+.modal-dialog {
+  .modal-header {
+    .modal-title {
+      .f14;
+      font-weight: 400;
+      color: @wordFontColor;
+    }
+  }
+  .modal-body {
+     //padding: 20px 26px;
+     //margin-left: -15px;
+     //margin-right: -15px;
+    .container {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+  }
+}
+
+// 基础设置 账套设置
+.setting-account {
+  .form-group {
+    .col-sm-9 {
+      line-height: 30px;
+    }
+    div.checkbox {
+      label {
+        line-height: 20px;
+      }
+    }
+    .btn-danger {
+      .f12;
+    }
+  }
+}
+
+// 基础设置 账簿设置2
+.account-book-edit {
+  padding: 10px 15px;
+  .header {
+    line-height: 40px;
+  }
+  .form-inline {
+    .row {
+      line-height: 40px;
+    }
+    .form-group {
+      width: 49%;
+      label {
+        .tr;
+        min-width: 120px;
+        padding-right: 15px;
+      }
+    }
+  }
+}
+
+// 账套设置
+.ml-10 {
+  margin-left: -10px;
+}
+
+// 基础档案
+// TODO 请同步一下https://github.com/yyssc/ssc30-admin/blob/master/src/styles/yzb.less
+
+.server-message{color:red}
+
+.table>tbody>tr>td.invalid-td,.table>tbody>tr>td.editing-td{
+  padding: 0;
+  .form-control{
+    border-radius: 0;
+    text-align: right;
+  }
+}
+.table>tbody>tr>td.invalid-td{
+  .form-control{
+    border-color: @errorColor;
+  }
+}
+
+// 覆盖 react-bootstrap-table-all.min.css 中的表格样式
+.react-bs-table {
+  .b0;
+  .br0;
+  .m0;
+  .fff;
+  .table-bordered {
+    border: 1px solid #ddd;
+    thead tr th {
+      border-width: 1px;
+    }
+  }
+}
+
+// table表格 隔行变色时 表头添加背景色
+.table.table-striped thead{
+  background-color: @backColor;
+}
+
+// 试算平衡
+.trial-table1 {
+  .mb15;
+  table {
+    .f14;
+    background-color: @backColor;
+    tr td {
+      width: 50%;
+      .tc;
+    }
+  }
+}
+.trial-table2 {
+  table {
+    border: 1px solid #ddd;
+    display: inline-table;
+    width: 50%;
+    thead th { .fb; }
+  }
+}
+
+// checkout 结账 begin
+.checkout {
+  //.head {
+  //  height: 34px;
+  //  line-height: 34px;
+  //  .mb15;
+  //}
+  .check-up {
+    .fff;
+    .f14;
+    padding: 14px 30px;
+    line-height: 30px;
+    border: 1px solid @borderColor;
+    button {
+      .br3;
+    }
+  }
+}
+.checkout-list {
+  .fff;
+  border-left: 1px solid @borderColor;
+  border-right: 1px solid @borderColor;
+  li {
+    line-height: 40px;
+    border-bottom: 1px solid @borderColor;
+    >div:first-child {
+      .f14;
+      padding: 10px 50px 10px 30px;
+    }
+    .checkout-list-top {
+      .pointer;
+    }
+  }
+}
+.checkout-table {
+  .mb15;
+  padding: 0 10%;
+  th, td {
+    .tc;
+  }
+}
+
+// 会计科目
+.myDialog{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+}
+
+.myDialogContent {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  right: 0px;
+  margin-top: 0px;
+  .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    top: 0px;
+    .modal-content {
+      width: 50%;
+      height: auto;
+      min-height: 100%;
+      border-radius: 0;
+    }
+    .subject-title {
+      .f14;
+      font-weight: 700;
+      color: @wordFontColor;
+    }
+    .subject-close {
+      .pointer;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      background: url(../images/subject-close.png) no-repeat;
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+    }
+  }
+  .pull-right-button {
+    margin-top: -8px;
+  }
+  .form-horizontal .checkbox-inline {
+    margin-right: 10px;
+  }
+  .checkbox-inline+.checkbox-inline {
+    margin-left: 0;
+  }
+  .subject-level {
+    .f12;
+    display: inline-block;
+    padding-top: 7px;
+  }
+}
+
+.subject-books {
+  .f14;
+}
+
+.subject-links {
+  padding: 3px;
+  .b1-default;
+}
+
+// tableTabs组件的固定定位
+.stick {
+  position: fixed;
+  top: 50px;
+  z-index: 1;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .stick {
+    width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .stick {
+    width: 940px;
+  }
+}
+@media (min-width: 1200px) {
+  .stick {
+    width: 1140px;
+  }
+}
+
+// 会计科目的select框
+.form-control-select {
+  padding: 0;
+  height: 28px;
+  .f12;
+}
+
+// 会计科目的表格
+.subject-table {
+  table {
+    .mb0;
+    color: @wordFontColor;
+    border: 1px solid @borderColor;
+    thead {
+      tr {
+        border-width: 1px;
+        color: @wordFontColor;
+        background-color: #FFF;
+        th {
+          .b0;
+          .ws;
+          padding: 0 12px;
+          height: 56px;
+          line-height: 56px;
+          font-weight: 700;
+          .f14;
+          &:first-child {
+            padding-left: 32px;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        border-top: 1px solid @borderColor;
+        background-color: #FFF;
+        td {
+          .b0;
+          .ellipsis;
+          max-width: 150px;
+          padding: 0 12px;
+          height: 35px;
+          line-height: 35px;
+          .f12;
+          color: @wordFontColor;
+          &:first-child {
+            padding-left: 32px;
+          }
+        }
+        td:last-child {
+          opacity: 0;
+          & > div > span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            &.accsubject-add {
+              background: url(../images/accsubject-add.png) no-repeat;
+            }
+            &.accsubject-pencil {
+              background: url(../images/accsubject-pencil.png) no-repeat;
+            }
+            &.accsubject-remove {
+              background: url(../images/accsubject-remove.png) no-repeat;
+            }
+          }
+        }
+        &:hover {
+          td {.b0;}
+          border: 1px solid @borderHoverColor;
+          background-color: @gridHoverBackColor;
+          td:last-child {
+            opacity: 1;
+           & > div > span {
+             .pointer;
+             &:hover {
+               &.accsubject-add {
+                 background: url(../images/accsubject-add-hover.png) no-repeat;
+               }
+               &.accsubject-pencil {
+                 background: url(../images/accsubject-pencil-hover.png) no-repeat;
+               }
+               &.accsubject-remove {
+                 background: url(../images/accsubject-remove-hover.png) no-repeat;
+               }
+             }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.setting-contrast-new-right-table{
+  line-height: 40px;
+  padding-left: 20px;
+}
+.setting-contrast-new-right-table-tr-da{
+  position: absolute;
+  left:-20px;
+}
+.setting-contrast-new-right-table {
+  line-height: 40px;
+  padding-left: 20px;
+}
+.setting-contrast-new-right-table-tr-da {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  display: none;
+}
+
+.setting-contrast-new-right-table-tr-da-a{
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.setting-contrast-new-right-table-tr{
+  position: relative;
+  height: 40px;
+}
+.setting-contrast-new-right-table-tr {
+  position: relative;
+  height: 40px;
+}
+.setting-contrast-new-right-table-tr:hover .setting-contrast-new-right-table-tr-da {
+  display: block;
+}
+.setting-contrast-new-right-table-tr .col-xs-1,
+.setting-contrast-new-right-table-tr .col-xs-2,
+.setting-contrast-new-right-table-tr .col-xs-3,
+.setting-contrast-new-right-table-tr .col-xs-4,
+.setting-contrast-new-right-table-tr .col-xs-5,
+.setting-contrast-new-right-table-tr .col-xs-6,
+.setting-contrast-new-right-table-tr .col-xs-7,
+.setting-contrast-new-right-table-tr .col-xs-8,
+.setting-contrast-new-right-table-tr .col-xs-9,
+.setting-contrast-new-right-table-tr .col-xs-10,
+.setting-contrast-new-right-table-tr .col-xs-11,
+.setting-contrast-new-right-table-tr .col-xs-12{
+  border: 1px solid #d2d2d2;
+  height: 40px;
+  padding: 0;
+  text-align: center;
+}
+.setting-contrast-td{
+  height: 40px;
+}
+
+.table-edit-columns{
+  cursor: pointer;
+}
+.table-edit-columns:hover{
+  background: #757474;
+}

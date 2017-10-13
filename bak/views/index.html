@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>{{ title }}<h1>
+  <p>Welcome to {{ title }}</p>
+
+
+    <div id="maple">{{ maple|safe }}</div>
+    <script type="text/javascript">
+      window.__INITIAL_STATE__  = {{ JSON.stringify(initialState) }};
+    </script>
+    <script src="//cdn.bootcss.com/react/15.0.2/react.js"></script>
+    <script src="//cdn.bootcss.com/react/15.0.2/react-dom.js"></script>
+    <script src="/build/bundle.main.js"></script>
+
+{% endblock  %}
+
