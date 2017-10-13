@@ -8,7 +8,9 @@
 ****
 
 `技术栈`
+
 `(pc)：react  redux  webpack`
+
 `(moblie):react ant `
 
 **初始化：npm install -g**
