@@ -161,6 +161,7 @@
   border: 1px solid #E6E6E6;
   padding: 20px 30px;
   .mb20;
+  overflow: hidden;
 }
 
 .standard-name-label {
@@ -486,7 +487,7 @@
   }
 }
 
-// 友报账web端填报
+//
 .details_table_b {
   border: 1px solid #e6e6e6;
   //border-bottom: none;
@@ -573,57 +574,6 @@
   }
 }
 
-// web填报 交通
-.web {
-  width: 100%;
-  padding-right: 430px;
-}
-
-.web-left {
-  width: 100%;
-  height: 300px;
-  border: 1px solid #e6e6e6;
-  display: inline-block;
-  .fl;
-}
-
-.web-right {
-  width: 100%;
-  height: 600px;
-  border: 1px solid #e6e6e6;
-  display: inline-block;
-  .fl;
-}
-
-.web-name-input {
-  width: 100px;
-}
-
-.web-remarks {
-  width: 100%;
-}
-
-.web-p {
-  margin-bottom: 8px;
-  .f12;
-  color: #B2B2B2;
-}
-
-input[type="radio"].web-radio {
-  margin: 0 8px 0 0;
-}
-
-/*.radio-check {
-  display: inline-block;
-  padding: 5px 0 5px 30px;
-  background: url(../images/radio.png) no-repeat left center;
-}
-.radio-checked {
-  display: inline-block;
-  padding: 5px 0 5px 30px;
-  background: url(../images/radiocheck.png) no-repeat left center;
-}*/
-
 // 上传组件
 .upload {
   width: 100%;
@@ -690,86 +640,6 @@ input[type="radio"].web-radio {
   }
 }
 
-// 费用归属 删除按钮
-.assignment {
-  border: 1px solid transparent;
-  .pr;
-  .assignment-cancel {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: none;
-    width: 12px;
-    height: 12px;
-    background: url(../assets/cancel.png) no-repeat;
-  }
-  &:hover {
-    border-color: #e6e6e6;
-    .assignment-cancel {
-      display: block;
-    }
-  }
-}
-
-
-// 覆盖参照的样式
-.details-h-t + div input.form-control {
-  box-shadow: none;
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.details-h-t + div input.form-control:focus {
-  box-shadow: none;
-  border-color: #e6e6e6;
-}
-
-.details-h-t + div span.input-group-addon {
-  border: none;
-  background-color: transparent;
-  border-radius: 0;
-  border-bottom: 1px solid #e6e6e6;
-}
-.table-edit-columns{
-  cursor: pointer;
-}
-// .table-edit-columns:hover{
-//   background: #d2d2d2;
-// }
-
-
-// web代理报销
-.agency-t {
-  font-size: 18px;
-  font-weight: 700;
-  color: #333333;
-  padding: 0 12px;
-  line-height: 34px;
-}
-.agency-s {
-  width: 100%;
-  height: 34px;
-  line-height: 34px;
-  padding: 0 12px;
-  margin-bottom: 10px;
-  p {
-    height: 100%;
-    line-height: 34px;
-    float: left;
-    color: #666;
-    padding-right: 30px;
-  }
-}
-.agency-h {
-  margin: 15px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #333;
-}
-.agency-h-btn {
-  margin: 15px;
-}
 
 // 左树
 .rc-tree-node-selected {
@@ -782,200 +652,10 @@ input[type="radio"].web-radio {
   height: 0;
 }
 
-// 代理报销模态框
-.agency-modal {
-  .modal-dialog {
-    min-width: 1000px;
+// 老板利润表
+.headerList{
+  .col-md-4{
+    height: 30px;
+    line-height: 30px;
   }
-  .modal-body-co {
-    height: 371px;
-    .co-title {
-      height: 38px;
-      line-height: 38px;
-      font-size: 12px;
-      color: #333333;
-      text-align: center;
-    }
-    // 输入框
-    .co-input {
-      height: 44px;
-      border-top: 1px solid #e6e6e6;
-      border-bottom: 1px solid #e6e6e6;
-      .co-i {
-        width: 600px;
-        height: 44px;
-        line-height: 44px;
-        margin: 0 auto;
-        padding-top: 6px;
-      }
-      .agency-input {
-        width: 500px;
-        height: 30px;
-        padding-left: 30px;
-        background: url(../assets/search.png) no-repeat 10px 7px;
-        background-color: #fff;
-        border: 1px solid #e6e6e6;
-        outline: none;
-        font-size: 12px;
-        letter-spacing: 0.4px;
-        cursor: default;
-        .fl;
-        box-sizing: border-box;
-        border-radius: 30px;
-        margin-right: 30px;
-        &:focus {
-          border-color: @mainColor;
-        }
-      }
-      span.agency-input-s {
-        font-size: 12px;
-        height: 30px;
-        line-height: 30px;
-        display: inline-block;
-        color: #333;
-        .fl;
-        cursor: pointer;
-        &:hover {
-          color: @mainColor;
-        }
-      }
-    }
-    .body-co-list {
-      width: 100%;
-      .left, .right {
-        height: 325px;
-        .fl;
-      }
-      .left {
-        border-right: 1px solid #e6e6e6;
-        width: 263px;
-        overflow: scroll;
-      }
-      .right {
-        width: 673px;
-        overflow-Y: scroll;
-      }
-    }
-  }
-}
-
-// 委托说明
-.agency-radio {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  background: url(../assets/radio.png) no-repeat 0 3px;
-  background-position: center;
-  position: relative;
-  top: 3px;
-}
-.dlwt-message {
-   text-align: center;
-   margin-top: 20px;
-   font-size: 14px;
-   color: #999;
-}
-
-//rich editor style
-.editorstyle {
-  .ql-editor {
-    min-height: 30em;
-  }
-}
-
-
-// 申请单样式
-.sq_inputitem{
-  .col-xs-4{
-    padding-bottom: 8px;
-    height: 80px;
-    p{
-      margin: 0;
-    }
-    .standard-name-input{
-      max-width: none;
-      height: 30px;
-      border-bottom: 0;
-    }
-    .react-datepicker__input-container{
-      display: block;
-      .web-name-input{
-        width: 95%;
-      }
-    }
-  }
-}
-.sq-table{
-  margin: auto -30px;
-  padding: 5px 15px;
-  .sq-header{
-    padding: 8px 0;
-    background: #F4F4F4;
-    border: 1px solid #D3D3D3;
-    border-left: 0;
-    border-right: 0;
-    .sq-header-title{
-      white-space: nowrap;
-      overflow: hidden;
-      overflow-y:ellipsis;
-    }
-  }
-  .sq-body {
-    line-height: 35px;
-    background: #fff;
-    border-bottom: 1px solid #E6E6E6;
-    .sq-header-title{
-      white-space: nowrap;
-      overflow: hidden;
-      overflow-y:ellipsis;
-    }
-  }
-}
-.sq-modal{
-  .react-datepicker__input-container{
-    display: block;
-    .web-name-input{
-      width: 100%;
-      border: 0;
-      max-width:none;
-      height: 34px;
-    }
-  }
-  .sq-error{
-    .details-h-t{
-      color: #900;
-    }
-    .details-h-v{
-      border-bottom-color: #900;
-    }
-  }
-}
-.sq-error{
-  .details-h-t{
-    color: #900;
-  }
-  .details-h-v{
-    border-bottom-color: #900;
-  }
-}
-.sq-show-details{
-  background: #F4F4F4;
-  margin-top: 35px;
-  position: relative;
-  .sq-isshow{
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    z-index: 5;
-  }
-  .sq-show-details-title{
-    color: #B2B2B2;
-  }
-}
-.sq-body-col{
-  line-height: 35px;
-  border-bottom: 1px solid #E6E6E6;
-  overflow: hidden;
-  overflow-x: ellipsis;
-  white-space: nowrap;
 }

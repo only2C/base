@@ -25,9 +25,11 @@ import Bundle from './bundle.js';
 
 import LoanBillContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/webreimburse/LoanBill';
 import TContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/testFile/T';
+import BossBillContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BossBill';
 
 const LoanBill  = (props) => (<Bundle load={LoanBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const T  = (props) => (<Bundle load={TContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const BossBill  = (props) => (<Bundle load={BossBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -56,6 +58,8 @@ ReactDom.render(
     <Route path="/" component={App}>
       <Route path="/loanBill/:type/:billTypePk" component={LoanBill}/>
       <Route path="/t" component={T}/>
+
+      <Route path="/bossBill" component={BossBill}/>
     </Route>
   </Router>,
   document.getElementById('root')
