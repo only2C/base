@@ -50,7 +50,7 @@ export default class BossBill extends React.Component {
                         </div>
                     </div>
                     <div className="fr">
-                        <Button bsStyle="warning" className="mr15">新增订单</Button>
+                        <Button bsStyle="warning" onClick={this.setRouter.bind(this,0)} className="mr15">新增订单</Button>
                         <Button bsStyle="warning" className="mr15">新增收款</Button>
                         <Button bsStyle="warning" className="mr15">计件工资</Button>
                     </div>
@@ -79,6 +79,10 @@ export default class BossBill extends React.Component {
 
             </div>
         )
+    }
+
+    setRouter = (param)=>{
+        window.location.hash= '#/billEdit'
     }
 
 }
