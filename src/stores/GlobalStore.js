@@ -115,8 +115,8 @@ class GlobalStore {
             message ={
                 message: msg,
                 bsSize: bsSize,
-                modelVisible: false,
-                hasCancel: false,
+                modelVisible: true,
+                hasCancel: true,
                 cancelFn: cancelFn,
                 sureFn: sureFn
             };
