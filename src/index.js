@@ -26,10 +26,12 @@ import Bundle from './bundle.js';
 import LoanBillContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/webreimburse/LoanBill';
 import TContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/testFile/T';
 import BossBillContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BossBill';
+import BillEditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BillEdit';
 
 const LoanBill  = (props) => (<Bundle load={LoanBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const T  = (props) => (<Bundle load={TContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BossBill  = (props) => (<Bundle load={BossBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const BillEdit  = (props) => (<Bundle load={BillEditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -60,6 +62,8 @@ ReactDom.render(
       <Route path="/t" component={T}/>
 
       <Route path="/bossBill" component={BossBill}/>
+      <Route path="/billEdit/:pk" component={BillEdit}/> /*编辑*/
+      <Route path="/billEdit" component={BillEdit}/> /* 新增*/
     </Route>
   </Router>,
   document.getElementById('root')

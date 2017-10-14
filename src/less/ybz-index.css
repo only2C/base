@@ -1129,7 +1129,6 @@ a:focus {
   border: 1px solid #E6E6E6;
   padding: 20px 30px;
   margin-bottom: 20px;
-  overflow: hidden;
 }
 .standard-name-label {
   font-size: 12px;
@@ -1626,4 +1625,7 @@ a:focus {
 }
 .b-body .b-body-list .col-md-3 {
   height: 45px;
+}
+.b-title {
+  margin-bottom: 15px;
 }

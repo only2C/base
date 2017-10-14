@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {Button} from 'react-bootstrap';
+import {Button,DropdownButton,MenuItem} from 'react-bootstrap';
 import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import BossBillTableBody from '../../components/bossBill/BossBillTableBody';
@@ -30,11 +30,24 @@ export default class BossBill extends React.Component {
             <div className="content">
                 <div className="details_title">老板利润表</div>
                 <div className="stdreimburse-box">
-                    <div className="fl">
-                       <input type="text" placeholder="请输入SUK编号、合同标号、客户"/>
-                       <button>搜索</button>
+                    <h3 className="b-title">查询条件</h3>
+                    <div style={{"display":'inline-block'}}>
+                        <DropdownButton className= "mr30" bsStyle="default" title="2017-08" key="0" >
+                            <MenuItem eventKey="1">2017-09</MenuItem>
+                            <MenuItem eventKey="2">2017-10</MenuItem>
+                            <MenuItem eventKey="2">全年</MenuItem>
+                        </DropdownButton>
 
-                        <span>筛选条件。。</span>
+                        <DropdownButton className= "mr30" bsStyle="default" title="全部顾客" key="1" >
+                            <MenuItem eventKey="1">张三</MenuItem>
+                            <MenuItem eventKey="2">李四</MenuItem>
+                            <MenuItem eventKey="2">王五</MenuItem>
+                        </DropdownButton>
+
+                        <div className="input-group fr" style={{"width":"300px"}}>
+                            <input type="text" className="form-control" placeholder="请输入SUK编号、合同标号、客户" aria-describedby="basic-addon2"/>
+                            <span className="input-group-addon" id="basic-addon2">搜索</span>
+                        </div>
                     </div>
                     <div className="fr">
                         <Button bsStyle="warning" className="mr15">新增订单</Button>
@@ -43,6 +56,7 @@ export default class BossBill extends React.Component {
                     </div>
                 </div>
                 <div className="stdreimburse-box">
+                    <h3 className="b-title">详细参数</h3>
                     <div className="row b-header">
                         {this.state.headerList.map((m,n)=>{
                             let cssStyle = "";
