@@ -17,7 +17,9 @@ export default class BossBillTableBody extends React.Component {
     }
 
     componentWillReceiveProps(props){
-
+        this.setState({
+            activePage:props.pageData.current_page
+        })
     }
 
     render(){
@@ -28,22 +30,31 @@ export default class BossBillTableBody extends React.Component {
                 {this.props.tableData.map((m,n)=>{
                     return(
                         <div className="row mt30 b-body" key={"n"+n}>
-                            <div className="col-md-2">
-                                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507971655211&di=26a7363740d513b94ba1925a7342b12e&imgtype=0&src=http%3A%2F%2Fbig5.made-in-china.com%2Fimages%2Fcommon%2Fempty_mid.png"
-                                    />
-                            </div>
-                            <div className="col-md-9 b-body-list">
-                                <div className="col-md-3">{m.n0}：{m.v0}</div>
-                                <div className="col-md-3">{m.n1}：{m.v1}</div>
-                                <div className="col-md-3">{m.n2}：{m.v2}</div>
-                                <div className="col-md-3">{m.n3}：{m.v3}</div>
-                                <div className="col-md-3">{m.n4}：{m.v4}</div>
-                                <div className="col-md-3">{m.n5}：{m.v5}</div>
-                                <div className="col-md-3">{m.n6}：{m.v6}</div>
-                                <div className="col-md-3">{m.n7}：{m.v7}</div>
-                                <div className="col-md-3 red">{m.n7}：{m.v7}<span className="ml10 glyphicon glyphicon-arrow-up"></span></div>
-                                <div className="col-md-3 blue">{m.n7}：{m.v7}<span className="ml10 glyphicon glyphicon-arrow-down"></span></div>
-                                <div className="col-md-3 red">{m.n7}：{m.v7}</div>
+                            <div className="col-md-10 b-body-list">
+                                <div className="col-md-3">SKU号：{m.SKU}</div>
+                                <div className="col-md-3">客户：{m.clientName}</div>
+                                <div className="col-md-3">接件单数：{m.order_num}</div>
+                                <div className="col-md-3">出货数：{m.out_num}</div>
+                                <div className="col-md-3">接件价格：{m.order_price}</div>
+                                <div className={m.order_diffnum.type==2 ? "red":(m.order_diffnum.type==3 ?"blue":"")  +"col-md-3"}>
+                                    件数差：{m.order_diffnum.number}
+                                    {m.order_diffnum.type==2 ? (<span className="ml10 glyphicon glyphicon-arrow-up"></span>):
+                                        (m.order_diffnum.type==3 ? (<span className="ml10 glyphicon glyphicon-arrow-down"></span>):"")
+                                    }
+                                </div>
+                                <div className={m.order_maretialprice.type==2 ? "red":(m.order_maretialprice.type==3 ?"blue":"")  +"col-md-3"}>
+                                    单件布款：{m.order_maretialprice.number}
+                                    {m.order_maretialprice.type==2 ? (<span className="ml10 glyphicon glyphicon-arrow-up"></span>):
+                                        (m.order_maretialprice.type==3 ? (<span className="ml10 glyphicon glyphicon-arrow-down"></span>):"")
+                                    }
+                                </div>
+                                <div className={m.order_submaterial.type==2 ? "red":(m.order_submaterial.type==3 ?"blue":"")  +"col-md-3"}>
+                                    单件辅料：{m.order_submaterial.number}
+                                    {m.order_submaterial.type==2 ? (<span className="ml10 glyphicon glyphicon-arrow-up"></span>):
+                                        (m.order_submaterial.type==3 ? (<span className="ml10 glyphicon glyphicon-arrow-down"></span>):"")
+                                    }
+                                </div>
+
                             </div>
                             <div className="col-md-1">
                                 <a className="glyphicon glyphicon-pencil mr15 mt20" title="编辑" href="javascript:;" onClick={that.editBill.bind(this)}></a>
@@ -60,8 +71,9 @@ export default class BossBillTableBody extends React.Component {
                     last
                     ellipsis
                     boundaryLinks
-                    items={20}
+                    items={this.props.pageData.totalPages}
                     maxButtons={5}
+                    className="mt50"
                     activePage={this.state.activePage}
                     onSelect={this.handleSelect} />
 

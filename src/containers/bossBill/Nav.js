@@ -17,7 +17,7 @@ export default class Nav extends React.Component {
                     </div>
                     <div className="col-sm-8">
                         <div className="fr">
-                            <DropdownButton bsStyle="default" title="当前用户" key="9" >
+                            <DropdownButton bsStyle="default" title="Admin" key="9" >
                                 <MenuItem eventKey="1" onClick={this.bindEvent.bind(this,0)}>设置</MenuItem>
                                 <MenuItem eventKey="2" onClick={this.bindEvent.bind(this,1)}>退出</MenuItem>
                             </DropdownButton>

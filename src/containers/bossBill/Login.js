@@ -8,20 +8,26 @@ import {Button,Modal} from 'react-bootstrap';
 
 @observer
 export default class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            userName:"",
+            password:""
+        }
+    }
 
     render(){
         return(
             <div className="b-login">
-
                 <div className="b-login-box">
                     <h1>欢迎登陆系统</h1>
                     <div className="row mt30">
                         <span>用户名：</span>
-                        <input type="text"  value="" placeholder="请输入用户名"/>
+                        <input type="text"  value={this.state.userName} placeholder="请输入用户名" onChange={this.setInput.bind(this,0)}/>
                     </div>
                     <div className="row mt30">
                         <span>密码:</span>
-                        <input type="password"  value="" />
+                        <input type="password"  value={this.state.password} onChange={this.setInput.bind(this,1)}/>
                     </div>
                     <div className="row" >
                         <div className="b-login-box-btn">
@@ -34,6 +40,19 @@ export default class Login extends React.Component {
             </div>
         )
 
+    }
+
+    setInput =(param,e)=>{
+        let val = e.target.value ;
+        if(param == 0){
+            this.setState({
+                userName:val
+            })
+        }else{
+            this.setState({
+                password:val
+            })
+        }
     }
 
     loginSys =()=>{

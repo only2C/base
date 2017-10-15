@@ -31,6 +31,7 @@ import AddMoneyContainer from 'bundle-loader?lazy&name=app-[name]!./containers/b
 import LoginContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Login';
 import CreditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Credit';
 import SettingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Setting';
+import SalaryContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Salary';
 
 const LoanBill  = (props) => (<Bundle load={LoanBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const T  = (props) => (<Bundle load={TContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -40,6 +41,7 @@ const AddMoney  = (props) => (<Bundle load={AddMoneyContainer} {...props}>{ (Pag
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Credit  = (props) => (<Bundle load={CreditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Setting  = (props) => (<Bundle load={SettingContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Salary  = (props) => (<Bundle load={SalaryContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -76,6 +78,7 @@ ReactDom.render(
       <Route path="/Login" component={Login}/> /* 新增收款*/
       <Route path="/credit" component={Credit}/> /* 新增收款*/
       <Route path="/setting" component={Setting}/> /* 新增收款*/
+      <Route path="/salary" component={Salary}/> /* 新增收款*/
     </Route>
   </Router>,
   document.getElementById('root')

@@ -10,7 +10,12 @@ if(window.SERVICESURL!=''){
 //友报账
 // serverUrl='http://172.20.13.229:28080/'
 var Config = {
-    refer:{
+
+     bossBill:{
+         queryOrderList:serverUrl+'/queryOrderList', //查询订单列表
+         upload:serverUrl + '/upload'
+     }
+    /*refer:{
         referDataUrl:serverUrl+'/refbase_ctr/queryRefJSON', //refer 其他参照，调用refbase_ctr/queryRefJSON 10.3.14.240
         referDataUserUrl:serverUrl+'/refbase_ctr/queryRefUserJSON', //人员参照API
         referSassAndNc:serverUrl+'/node/queryRefJSON'
@@ -132,7 +137,7 @@ var Config = {
       atcRefJSON2: serverUrl + '/refbase_ctr/queryRefJSON',
       getBillType: serverUrl + '/common/getBillType', //单据类型查询
       openBillByPk: serverUrl + '/nodeBusinessTrip/openBillByPk', // 根据pk加载单据（单据数据和单据模块数据）
-    }
+    }*/
 
 };
 

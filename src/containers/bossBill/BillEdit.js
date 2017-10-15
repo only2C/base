@@ -53,8 +53,7 @@ export default class BillEdit extends React.Component {
                 <div className="btn-bottom-fixed">
                     <div className="row btn-bottom">
                         <div className="col-sm-12">
-                            <button type="button" className='btn btn-primary fr' onClick={this.submit}>确定</button>
-                            <button type="button" className='btn btn-default fr' onClick={this.exit}>取消</button>
+                            <button type="button" className='btn btn-primary fr' onClick={this.exit}>返回</button>
                         </div>
                     </div>
                 </div>

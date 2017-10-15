@@ -32,7 +32,7 @@ class Upload extends React.Component {
     render() {
         const options = this.props.uploadOptions;
         const uploadOptions = {
-            baseUrl: Config.webreimburse.uploadWebFile,   // 请求地址
+            baseUrl: Config.bossBill.upload,   // 请求地址
             param: options,
             fileFieldName: 'files',
             chooseFile: (file)=> {
