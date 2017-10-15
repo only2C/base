@@ -27,11 +27,19 @@ import LoanBillContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/
 import TContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/testFile/T';
 import BossBillContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BossBill';
 import BillEditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BillEdit';
+import AddMoneyContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/AddMoney';
+import LoginContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Login';
+import CreditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Credit';
+import SettingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Setting';
 
 const LoanBill  = (props) => (<Bundle load={LoanBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const T  = (props) => (<Bundle load={TContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BossBill  = (props) => (<Bundle load={BossBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BillEdit  = (props) => (<Bundle load={BillEditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const AddMoney  = (props) => (<Bundle load={AddMoneyContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Credit  = (props) => (<Bundle load={CreditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Setting  = (props) => (<Bundle load={SettingContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 
 const requireAuth = (nextState, replace, next) => {
   //切换路由时初始化环境
@@ -62,8 +70,12 @@ ReactDom.render(
       <Route path="/t" component={T}/>
 
       <Route path="/bossBill" component={BossBill}/>
-      <Route path="/billEdit/:pk" component={BillEdit}/> /*编辑*/
-      <Route path="/billEdit" component={BillEdit}/> /* 新增*/
+      <Route path="/billEdit/:pk" component={BillEdit}/> /*编辑订单*/
+      <Route path="/billEdit" component={BillEdit}/> /* 新增订单*/
+      <Route path="/addMoney" component={AddMoney}/> /* 新增收款*/
+      <Route path="/Login" component={Login}/> /* 新增收款*/
+      <Route path="/credit" component={Credit}/> /* 新增收款*/
+      <Route path="/setting" component={Setting}/> /* 新增收款*/
     </Route>
   </Router>,
   document.getElementById('root')

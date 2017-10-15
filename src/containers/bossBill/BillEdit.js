@@ -6,9 +6,11 @@ import {DatePicker2} from 'ssc-grid';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import  BillEditOrder  from '../../components/bossBill/BillEditOrder' ;
+import  Nav from '../../containers/bossBill/Nav';
 import  BillEditUploadModule2  from '../../components/bossBill/BillEditUploadModule2' ;
 import  BillEditUploadModule3  from '../../components/bossBill/BillEditUploadModule3' ;
 import  BillEditUploadModule4  from '../../components/bossBill/BillEditUploadModule4' ;
+import  BillEditUploadModule5  from '../../components/bossBill/BillEditUploadModule5' ;
 
 // 编辑和新增
 @observer
@@ -33,7 +35,8 @@ export default class BillEdit extends React.Component {
     }
     render(){
         return (
-            <div className="content">
+            <div className="content mt50">
+                <Nav navIndex="0"/>
                 <div className="details_title">{this.props.router.params.pk ?"编辑":"新增"}订单</div>
                 {/*1、订单信息**/}
                 <BillEditOrder sizeList={this.state.sizeList} setStateData = {this.setStateData}/>
@@ -41,8 +44,12 @@ export default class BillEdit extends React.Component {
                 <BillEditUploadModule2 />
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}
                 <BillEditUploadModule3 />
-                {/*3、拍照上传采购单，录入辅料采购及辅料款支付记录**/}
+                {/*4、拍照上传采购单，录入辅料采购及辅料款支付记录**/}
                 <BillEditUploadModule4 />
+                {/*5、录入裁剪、加工及工艺信息**/}
+                <BillEditUploadModule5 />
+                {/*6、拍照上传收货单，录入出货信息**/}
+                <BillEditUploadModule5 />
                 <div className="btn-bottom-fixed">
                     <div className="row btn-bottom">
                         <div className="col-sm-12">

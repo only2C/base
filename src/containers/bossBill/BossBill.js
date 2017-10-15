@@ -3,6 +3,7 @@ import {observer} from 'mobx-react';
 import {Button,DropdownButton,MenuItem} from 'react-bootstrap';
 import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
+import Nav from '../../containers/bossBill/Nav';;
 import BossBillTableBody from '../../components/bossBill/BossBillTableBody';
 import Util from '../../common/utils';
 @observer
@@ -27,7 +28,8 @@ export default class BossBill extends React.Component {
 
     render(){
         return (
-            <div className="content">
+            <div className="content mt50">
+                <Nav navIndex="0"/>
                 <div className="details_title">老板利润表</div>
                 <div className="stdreimburse-box">
                     <h3 className="b-title">查询条件</h3>
@@ -51,8 +53,8 @@ export default class BossBill extends React.Component {
                     </div>
                     <div className="fr">
                         <Button bsStyle="warning" onClick={this.setRouter.bind(this,0)} className="mr15">新增订单</Button>
-                        <Button bsStyle="warning" className="mr15">新增收款</Button>
-                        <Button bsStyle="warning" className="mr15">计件工资</Button>
+                        <Button bsStyle="warning" onClick={this.setRouter.bind(this,1)} className="mr15">新增收款</Button>
+                        <Button bsStyle="warning" onClick={this.setRouter.bind(this,2)} className="mr15">计件工资</Button>
                     </div>
                 </div>
                 <div className="stdreimburse-box">
@@ -82,7 +84,13 @@ export default class BossBill extends React.Component {
     }
 
     setRouter = (param)=>{
-        window.location.hash= '#/billEdit'
+        let router = "";
+        if(param==0){
+            router = 'billEdit';
+        }else if(param ==1 ){
+            router = 'addMoney'
+        }
+        window.location.hash= '#/'+router;
     }
 
 }
