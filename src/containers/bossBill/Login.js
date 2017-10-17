@@ -11,6 +11,7 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
+            loginError:false,
             userName:"",
             password:""
         }
@@ -28,12 +29,14 @@ export default class Login extends React.Component {
                     <div className="row mt30">
                         <span>密码:</span>
                         <input type="password"  value={this.state.password} onChange={this.setInput.bind(this,1)}/>
+
                     </div>
                     <div className="row" >
                         <div className="b-login-box-btn">
                           <Button onClick={this.loginSys}>登陆</Button>
                         </div>
                     </div>
+                    {this.state.loginError == true ? (<span className="red">用户名或密码错误</span>):""}
 
                 </div>
 
@@ -56,6 +59,12 @@ export default class Login extends React.Component {
     }
 
     loginSys =()=>{
+        if(this.state.userName !="admin" || this.state.password !="admin"){
+            this.setState({
+                loginError:true
+            })
+            return ;
+        }
         window.location.hash='#/bossBill'
     }
 }
