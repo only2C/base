@@ -1773,6 +1773,28 @@ a:focus {
   line-height: 40px;
   font-weight: bold;
 }
+.b-add-h3 {
+  height: 40px;
+  line-height: 40px;
+  background: #c5c5c5;
+  text-indent: 20px;
+}
+.b-add-body {
+  border-left: 1px dashed #cfcfcf ;
+  border-bottom: 1px dashed #cfcfcf ;
+  margin: 0 0 20px 0 ;
+}
+.b-add-body .col-md-3 {
+  border-right: 1px dashed #cfcfcf ;
+}
+.b-add-total {
+  line-height: 40px;
+  height: 40px;
+}
+.b-add-total span {
+  margin-right: 40px;
+  float: left;
+}
 .month-picker {
   position: relative;
 }
