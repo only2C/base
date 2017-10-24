@@ -35,6 +35,7 @@ export default class Login extends React.Component {
                         <div className="b-login-box-btn">
                           <Button onClick={this.loginSys}>登陆</Button>
                         </div>
+                        <p>没有账号? <a href="#/register">立即注册</a></p>
                     </div>
                     {this.state.loginError == true ? (<span className="red">用户名或密码错误</span>):""}
 

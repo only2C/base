@@ -29,6 +29,7 @@ import BossBillContainer from 'bundle-loader?lazy&name=app-[name]!./containers/b
 import BillEditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BillEdit';
 import AddMoneyContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/AddMoney';
 import LoginContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Login';
+import RegisterContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Register';
 import CreditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Credit';
 import SettingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Setting';
 import SalaryContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Salary';
@@ -39,6 +40,7 @@ const BossBill  = (props) => (<Bundle load={BossBillContainer} {...props}>{ (Pag
 const BillEdit  = (props) => (<Bundle load={BillEditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const AddMoney  = (props) => (<Bundle load={AddMoneyContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Credit  = (props) => (<Bundle load={CreditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Setting  = (props) => (<Bundle load={SettingContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Salary  = (props) => (<Bundle load={SalaryContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -75,10 +77,11 @@ ReactDom.render(
       <Route path="/billEdit/:pk" component={BillEdit}/> /*编辑订单*/
       <Route path="/billEdit" component={BillEdit}/> /* 新增订单*/
       <Route path="/addMoney" component={AddMoney}/> /* 新增收款*/
-      <Route path="/Login" component={Login}/> /* 新增收款*/
-      <Route path="/credit" component={Credit}/> /* 新增收款*/
-      <Route path="/setting" component={Setting}/> /* 新增收款*/
-      <Route path="/salary" component={Salary}/> /* 新增收款*/
+      <Route path="/Login" component={Login}/> /* 登陆 */
+      <Route path="/credit" component={Credit}/> /* 贷款*/
+      <Route path="/setting" component={Setting}/> /* 设置*/
+      <Route path="/salary" component={Salary}/> /* 计件工资*/
+      <Route path="/register" component={Register}/> /* 计件工资*/
     </Route>
   </Router>,
   document.getElementById('root')
