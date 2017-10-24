@@ -58,9 +58,9 @@ export default class BillEditOrder extends React.Component {
                     <div className="b-size">
                         {this.props.sizeList.map((m,n)=>{
                             return (
-                                <div className="col-md-1" key={"size"+n}>
+                                <div className="col-md-2" key={"size"+n}>
                                     <p>{m.name}</p>
-                                    <input type="text" value={m.number}/>
+                                    <input type="text" value={m.number} className="b-input" style={{"width":"100px"}} />
                                 </div>
                             )
                         })}
@@ -74,8 +74,8 @@ export default class BillEditOrder extends React.Component {
                         </Modal.Header>
                         <Modal.Body style={{overflow:'auto'}}>
                             <div className="row">
-                                <div className="col-md-6">码数：<input type="text" value={this.state.sizeName} onChange={this.setInput.bind(this,0)}/></div>
-                                <div className="col-md-6">数量：<input type="text" value={this.state.sizeNumber} onChange={this.setInput.bind(this,1)}/></div>
+                                <div className="col-md-3">码数：<input type="text" className="b-input" value={this.state.sizeName} onChange={this.setInput.bind(this,0)}/></div>
+                                <div className="col-md-3">数量：<input type="text" className="b-input" value={this.state.sizeNumber} onChange={this.setInput.bind(this,1)}/></div>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>

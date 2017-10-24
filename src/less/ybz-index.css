@@ -1633,6 +1633,12 @@ a:focus {
   height: 30px;
   line-height: 30px;
 }
+.b-border-line {
+  width: 100%;
+  margin: 20px 0 ;
+  border-top: 2px dashed #9d9d9d;
+  padding-top: 30px;
+}
 .b-header .col-md-4 {
   height: 30px;
   line-height: 30px;

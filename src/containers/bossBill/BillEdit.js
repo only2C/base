@@ -11,6 +11,7 @@ import  BillEditUploadModule2  from '../../components/bossBill/BillEditUploadMod
 import  BillEditUploadModule3  from '../../components/bossBill/BillEditUploadModule3' ;
 import  BillEditUploadModule4  from '../../components/bossBill/BillEditUploadModule4' ;
 import  BillEditUploadModule5  from '../../components/bossBill/BillEditUploadModule5' ;
+import  BillEditUploadModule6  from '../../components/bossBill/BillEditUploadModule6' ;
 
 // 编辑和新增
 @observer
@@ -49,7 +50,7 @@ export default class BillEdit extends React.Component {
                 {/*5、录入裁剪、加工及工艺信息**/}
                 <BillEditUploadModule5 />
                 {/*6、拍照上传收货单，录入出货信息**/}
-                <BillEditUploadModule5 />
+                <BillEditUploadModule6 />
                 <div className="btn-bottom-fixed">
                     <div className="row btn-bottom">
                         <div className="col-sm-12">
