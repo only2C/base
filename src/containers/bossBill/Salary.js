@@ -15,21 +15,24 @@ export default class Salary extends React.Component {
         this.state ={
             worker:[],  // 工人
             profession:[],   // 工种
-            salaryList:{},
+            salaryList:["salaryList"],
             professionModalShow:false,
             workerModalShow:false,
             addWorkerInputValue:{
                 name:"",
                 idCard:""
             } ,
-            addProfessionInputValue:""
+            addProfessionInputValue:"",
+            tPrice:{},
+            tNum:{},
+            tTotal:{}
 
         }
     }
 
     componentWillMount(){
         // ajax result
-        let worker = [{"name":"圣斗士",id:'4548'},{"name":"奥特曼",id:'4548'}];
+        let worker = [{"name":"圣斗士",id:'4548'},{"name":"奥特曼",id:'45148'}];
         let profession = [{"name":"钳工",id:'0'},{"name":"电焊工",id:'1'},{"name":"清洁工",id:'2'}];
         this.setState({
             worker,
@@ -67,31 +70,36 @@ export default class Salary extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr className="b-salary-tr">
-                                <td>1</td>
-                                <td><input type="text" placeholder="输入款号" className="b-input" value="" /></td>
-                                <td>
-                                    <select className="b-select">
-                                        {this.state.worker.map((m,n)=>{
-                                            return(
-                                                <option key={"worker"+n} value={m.id}>{m.name}</option>
-                                            )
-                                        })}
-                                    </select>
-                                </td>
-                                <td>
-                                    <select className="b-select">
-                                        {this.state.profession.map((m,n)=>{
-                                            return(
-                                                <option key={"profession"+n} value={m.id}>{m.name}</option>
-                                            )
-                                        })}
-                                    </select>
-                                </td>
-                                <td><input type="text" placeholder="单价" className="b-input"/></td>
-                                <td><input type="text" placeholder="件数" className="b-input"/></td>
-                                <td><input type="text" placeholder="累计" className="b-input"/></td>
-                            </tr>
+                            {this.state.salaryList.map((m,n)=>{
+                                return (
+                                    <tr className="b-salary-tr" key={"salarylist"+n}>
+                                        <td>{n+1}</td>
+                                        <td><input type="text" placeholder="输入款号" className="b-input" value="" /></td>
+                                        <td>
+                                            <select className="b-select">
+                                                {this.state.worker.map((m,n)=>{
+                                                    return(
+                                                        <option key={"worker"+n} value={m.id}>{m.name}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select className="b-select">
+                                                {this.state.profession.map((m,n)=>{
+                                                    return(
+                                                        <option key={"profession"+n} value={m.id}>{m.name}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </td>
+                                        <td><input type="text" placeholder="单价" value={this.state.tPrice[m]} className="b-input" onChange={this.setTableInput.bind(this,m,0)}/></td>
+                                        <td><input type="text" placeholder="件数" value={this.state.tNum[m]} className="b-input" onChange={this.setTableInput.bind(this,m,1)}/></td>
+                                        <td><input type="text" placeholder="累计" value={this.state.tTotal[m]} className="b-input" disabled/></td>
+                                    </tr>
+                                )
+                            })}
+
                             </tbody>
                         </table>
                     </div>
@@ -149,34 +157,46 @@ export default class Salary extends React.Component {
         )
     }
 
-
-    addTable =(id )=>{
-        id = 2 ;
-        let workerDom = "" , professionDom ="";
-        this.state.worker.map((m)=>{
-            workerDom += "<option value =" + m.id + ">" + m.name + '</option>';
-        })
-        this.state.profession.map((m)=>{
-            professionDom += "<option value =" + m.id + ">" + m.name + '</option>';
+    //新增行 列
+    addTable =()=>{
+        let salaryList = this.state.salaryList;
+        salaryList.push("salaryList"+new Date().getTime());
+        this.setState({
+            salaryList
         })
 
-        let dom =' <tr className="b-salary-tr"> ' +
-            '<td>' + id +'</td> ' +
-            '<td><input type="text" placeholder="输入款号" class="b-input" value=""/></td> ' +
-            '<td><select class="b-select"> '
-                    + workerDom +
-            '</td></select>'+
-            ' <td><select class="b-select">'
-                    + professionDom  +
-            '</select></td>' +
-            '<td><input type="text" placeholder="单价" class="b-input"/></td>' +
-            '<td><input type="text" placeholder="件数" class="b-input"/></td>' +
-            '<td><input type="text" placeholder="累计" class="b-input"/></td>' +
-         '</tr>';
-
-        $(".b-salary-tr").after(dom)
     }
 
+    // 设置表格数据  单价 ，数量 ，总价
+    setTableInput =(m,i,e)=>{
+        let tPrice = this.state.tPrice,
+            tNum = this.state.tNum ,
+            tTotal = this.state.tTotal,
+            el = e.target.value ;
+        if(i==0){
+            tPrice[m] = el ;
+            if(parseFloat(tPrice[m]) && parseFloat(tNum[m])){
+                tTotal[m] =Util.formatCurrency( parseFloat(tPrice[m])*parseFloat(tNum[m])) ;
+            }else
+                tTotal[m] = "0.00"
+            this.setState({
+                tPrice,
+                tTotal
+            })
+
+        }else if(i==1){
+            tNum[m] = el ;
+            if(parseFloat(tPrice[m]) && parseFloat(tNum[m])){
+                tTotal[m] = Util.formatCurrency(  parseFloat(tPrice[m])*parseFloat(tNum[m])) ;
+            }else
+                tTotal[m] = "0.00"
+            this.setState({
+                tNum,
+                tTotal
+            })
+        }
+
+    }
     // 新增工种
     addProfession = () =>{
         this.setState({

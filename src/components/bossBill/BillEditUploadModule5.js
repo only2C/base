@@ -23,6 +23,7 @@ export default class BillEditUploadModule5 extends React.Component {
             money:{},
             time:{},
             param:{},
+            pic:{},
             list1To1:["list1To1"],
             list1To2:["list1To2"],
         }
@@ -98,32 +99,40 @@ export default class BillEditUploadModule5 extends React.Component {
         })
 
     }
+
+    uploadEvent =(data)=>{
+        let pic =this.state.pic ;
+        pic[data.onlySign] = data.url ;
+        this.setState({
+            pic
+        })
+    }
+
     render(){
+        let that = this ;
         return (
             <div className="stdreimburse-box ">
                 <h3 className="b-title">5、录入裁剪、加工及工艺信息<Button className="ml50" onClick={this.addSizeModal}>新增</Button></h3>
-
                 <div className="row" style={{marginTop:"30px"}}>
-                    {this.state.list.map((m)=>{
+                    {this.state.list.map((m,n)=>{
                         return (
                             <div className="col-md-5 mt15">
-                                <div className="col-md-5">
-                                    <FileUpload />
+                                <div className="b-upload-box col-md-6">
+                                    <p className="b-upload-box-tag">{n+1}</p>
+                                    {this.state.pic[m] ? (<img src={that.state.pic[m]}/>):(
+                                        <FileUpload ref="fileUpload" onlySign={m} successCallBack ={this.uploadEvent}/>
+                                    )}
                                 </div>
                                 <div className="col-md-6">
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
-                                            <div className="col-md-6">实际裁数：</div>
-                                            <div className="col-md-6">
-                                                <input type="text" placeholder="实际裁数" className="b-input" value={this.state.money[m]} onChange={this.setInput.bind(this,m)}/>
-                                            </div>
+                                            实际裁数：
+                                            <input type="text" placeholder="实际裁数" className="b-input ml5" value={this.state.money[m]} onChange={this.setInput.bind(this,m)}/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
-                                            <div className="col-md-6">完成时间：</div>
-                                            <div className="col-md-6">
-                                                <DatePicker2 id={ "example-datepicker" + m } className="b-input"
-                                                             dateFormat="YYYY-MM-DD" value={this.state.time[m]} onChange={this.setTime.bind(this,m)}/>
-                                            </div>
+                                            完成时间：
+                                            <DatePicker2 id={ "example-datepicker" + m } className="b-input ml5"
+                                                         dateFormat="YYYY-MM-DD" value={this.state.time[m]} onChange={this.setTime.bind(this,m)}/>
                                         </div>
                                     </div>
                                 </div>

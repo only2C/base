@@ -24,19 +24,16 @@ class Upload extends React.Component {
 
     }
 
-    // 保存后，生成PK 开始上传
-    continueUpload = ()=> {
-       // $("#fileUpload").click();
-    }
 
     render() {
-        const options = this.props.uploadOptions;
+        let that = this ;
+        const options = this.props.uploadOptions || {};
         const uploadOptions = {
             baseUrl: Config.bossBill.upload,   // 请求地址
             param: options,
             fileFieldName: 'files',
             chooseFile: (file)=> {
-                let result =this.state.fileList;
+                /*let result =this.state.fileList;
                 let bool = true ;
                 _.forEach(file,(value,key)=>{
                     // 单文件 或 多文件上传校验是否重复
@@ -53,18 +50,21 @@ class Upload extends React.Component {
                 })
                 this.setState({
                     fileList: result
-                })
+                })*/
             },
             numberLimit: 9,
             multiple: true,            // 多文件同时导入
             accept: 'image/jpeg,image/png,image/gif,application/pdf,application/msword,application/xml-dtd',// 限制文件后缀
-            chooseAndUpload: false,        // 选中后立即导入
+            chooseAndUpload: true,        // 选中后立即导入
             doUpload: ()=> {
                 globalStore.showWait();
             },
-            uploadSuccess: ()=> {
+            uploadSuccess: (data)=> {
                 globalStore.hideWait();
-                console.log("upload status suceess")
+                data.onlySign = this.props.onlySign ;
+                that.props.successCallBack(data);
+
+
             },
             uploadError: (err)=> {
                 globalStore.hideWait();
@@ -75,10 +75,8 @@ class Upload extends React.Component {
 
                 <div className="upload">
                     <div className="upload-add">
-                        <FileUpload options={ uploadOptions } className="file-upload">
-                            <div className="upload-bg choose-btn" ref="chooseBtn"></div>
-                            <button className="btn btn-primary upload-btn hide" ref="uploadBtn" id="fileUpload">上传
-                            </button>
+                        <FileUpload options={ uploadOptions } className="file-upload" >
+                            <div className="upload-bg choose-btn" ref="chooseAndUpload"></div>
                         </FileUpload>
                     </div>
                 </div>

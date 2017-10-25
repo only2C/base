@@ -1628,6 +1628,7 @@ a:focus {
   border-radius: 4px;
   border: 1px solid #9d9d9d;
   padding-left: 3px;
+  min-width: 100px;
 }
 .b-select option {
   height: 30px;
@@ -1636,8 +1637,21 @@ a:focus {
 .b-border-line {
   width: 100%;
   margin: 20px 0 ;
-  border-top: 2px dashed #9d9d9d;
+  border-top: 1px dashed #9d9d9d;
   padding-top: 30px;
+}
+.b-upload-box {
+  width: 200px;
+  height: 150px;
+}
+.b-upload-box .b-upload-box-tag {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #cfcfcf;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
 }
 .b-header .col-md-4 {
   height: 30px;
@@ -1671,13 +1685,20 @@ a:focus {
 .b-edit .col-md-4 {
   padding: 10px;
 }
-.b-edit .col-md-4 input,
-.b-edit .col-md-4 select {
+.b-edit .col-md-4 input {
   border-radius: 5px;
   border: 1px solid #cfcfcf;
   padding-left: 10px;
   height: 30px;
   line-height: 30px;
+}
+.b-edit .b-edit-tit {
+  width: 110px;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+  padding-right: 5px;
 }
 .b-center {
   width: 100px;

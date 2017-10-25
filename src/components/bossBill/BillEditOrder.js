@@ -36,24 +36,24 @@ export default class BillEditOrder extends React.Component {
             <div className="stdreimburse-box ">
                 <h3 className="b-title">1、输入订单信息</h3>
                 <div className="row b-edit">
-                    <div className="col-md-4">合同编号：<input type="text" placeholder="合同编号"/></div>
-                    <div className="col-md-4">SKU编号：<input type="text" placeholder="sku编号"/></div>
-                    <div className="col-md-4">接单单价：<input type="text" placeholder="接单单价"/></div>
-                    <div className="col-md-4">下单件数：<input type="text"  value="123" disabled="true"/></div>
-                    <div className="col-md-4">下单时间：<DatePicker2 id="example-datepicker"
+                    <div className="col-md-4"><span className="b-edit-tit">合同编号：</span> <input type="text" placeholder="合同编号"/></div>
+                    <div className="col-md-4"><span className="b-edit-tit">SKU编号：</span><input type="text" placeholder="sku编号"/></div>
+                    <div className="col-md-4"><span className="b-edit-tit">接单单价：</span><input type="text" placeholder="接单单价"/></div>
+                    <div className="col-md-4"><span className="b-edit-tit">下单件数：</span><input type="text"  value="123" disabled="true"/></div>
+                    <div className="col-md-4"><span className="b-edit-tit">下单时间：</span><DatePicker2 id="example-datepicker"
                                                                 dateFormat="YYYY-MM-DD" value="" onChange=""/></div>
-                    <div className="col-md-4">下单类型：<select><option>1562</option> </select></div>
-                    <div className="col-md-4">客户：<select><option>客户A</option> </select></div>
-                    <div className="col-md-4">客户付款时间：<DatePicker2 id="example-datepicker"
+                    <div className="col-md-4"><span className="b-edit-tit">下单类型：</span><select className="b-select"><option>1562</option> </select></div>
+                    <div className="col-md-4"><span className="b-edit-tit">客户：</span><select className="b-select"><option>客户A</option> </select></div>
+                    <div className="col-md-4"><span className="b-edit-tit">客户付款时间：</span><DatePicker2 id="example-datepicker"
                                                                   dateFormat="YYYY-MM-DD" value="" onChange=""/></div>
-                    <div className="col-md-4">计划交货时间：<DatePicker2 id="example-datepicker"
+                    <div className="col-md-4"><span className="b-edit-tit">计划交货时间：</span><DatePicker2 id="example-datepicker"
                                                                   dateFormat="YYYY-MM-DD" value="" onChange=""/></div>
                 </div>
                 <div className="row b-center">
                     <Button bsStyle="warning">保存</Button>
                 </div>
 
-                <div className="row">
+                <div className="row b-border-line">
                     <h3 className="b-title">各尺码件数：共{this.state.sizeTotal}件<Button className="ml50" onClick={this.addSizeModal}>新增码数</Button></h3>
                     <div className="b-size">
                         {this.props.sizeList.map((m,n)=>{
