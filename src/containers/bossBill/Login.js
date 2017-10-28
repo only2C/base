@@ -5,7 +5,8 @@ import _ from  'lodash';
 import {DatePicker2} from 'ssc-grid';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
-
+import billStore from '../../stores/bossBill/BossBillStore';
+const store = new billStore();
 @observer
 export default class Login extends React.Component {
     constructor(props) {
@@ -13,8 +14,14 @@ export default class Login extends React.Component {
         this.state ={
             loginError:false,
             userName:"",
-            password:""
+            password:"",
+            userNameError:false,
+            passwordError:false
         }
+    }
+
+    componentWillMount =()=>{
+        $("#root").addClass("b-login")
     }
 
     render(){
@@ -24,20 +31,20 @@ export default class Login extends React.Component {
                     <h1>欢迎登陆系统</h1>
                     <div className="row mt30">
                         <span>用户名：</span>
-                        <input type="text"  value={this.state.userName} placeholder="请输入用户名" onChange={this.setInput.bind(this,0)}/>
+                        <input type="text"  value={this.state.userName} className={this.state.userNameError ?"input-error b-input":"b-input" } placeholder="请输入用户名" onChange={this.setInput.bind(this,0)}/>
                     </div>
                     <div className="row mt30">
                         <span>密码:</span>
-                        <input type="password"  value={this.state.password} onChange={this.setInput.bind(this,1)}/>
+                        <input type="password"  value={this.state.password} className={this.state.passwordError ?"input-error b-input":"b-input" } onChange={this.setInput.bind(this,1)}/>
 
                     </div>
                     <div className="row" >
                         <div className="b-login-box-btn">
                           <Button onClick={this.loginSys}>登陆</Button>
                         </div>
-                        <p>没有账号? <a href="#/register">立即注册</a></p>
+                        {this.state.loginError == true ? (<p className="mt10 mb30 error text-center">用户名或密码错误</p>):""}
+                        <p className="text-center">没有账号? <a href="#/register">立即注册</a></p>
                     </div>
-                    {this.state.loginError == true ? (<span className="red">用户名或密码错误</span>):""}
 
                 </div>
 
@@ -47,25 +54,42 @@ export default class Login extends React.Component {
     }
 
     setInput =(param,e)=>{
-        let val = e.target.value ;
+        let val = $.trim(e.target.value) ;
         if(param == 0){
             this.setState({
-                userName:val
+                userName:val,
+                userNameError:false
             })
         }else{
             this.setState({
-                password:val
+                password:val,
+                passwordError:false
             })
         }
     }
 
     loginSys =()=>{
-        if(this.state.userName !="admin" || this.state.password !="admin"){
+        let userName = this.state.userName , password = this.state.password ;
+        if(!userName){
             this.setState({
-                loginError:true
+                userNameError:true
             })
-            return ;
+            return;
         }
-        window.location.hash='#/bossBill'
+        if(!password){
+            this.setState({
+                passwordError:true
+            })
+            return;
+        }
+        let param = {
+            "username":userName,
+             "userpwd":password
+        }
+        store.userLogin(param,()=>{
+            window.location.hash='#/bossBill';
+            $("#root").removeClass("b-login")
+        });
+
     }
 }
