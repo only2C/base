@@ -12,14 +12,12 @@ export default class BossBillTableBody extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            activePage:1
+
         }
     }
 
     componentWillReceiveProps(props){
-        this.setState({
-            activePage:props.pageData.current_page
-        })
+
     }
 
     render(){
@@ -64,18 +62,7 @@ export default class BossBillTableBody extends React.Component {
                     )
                 })}
 
-                <Pagination
-                    prev
-                    next
-                    first
-                    last
-                    ellipsis
-                    boundaryLinks
-                    items={this.props.pageData.totalPages}
-                    maxButtons={5}
-                    className="mt50"
-                    activePage={this.state.activePage}
-                    onSelect={this.handleSelect} />
+
 
 
 

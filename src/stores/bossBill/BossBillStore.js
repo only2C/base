@@ -111,4 +111,102 @@ export default class BossBillStore {
         })
     }
 
+    @observable queryClientListData = [];
+    @action queryClientList(callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryClientList,
+            dataType: "json",
+            data: JSON.stringify({}),
+            contentType: "application/json",
+            success: data => {
+                if (data) {
+                    that.queryClientListData = Object.assign([],data.clients);
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    @observable saveOrderBaseData = {};
+    @action saveOrderBase (param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveOrderBase,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    that.saveOrderBaseData = Object.assign([],data.data);
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+    @observable getSizeBaseData = [];
+    @action getSizeBase(callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.getSizeBase,
+            dataType: "json",
+            data: JSON.stringify({}),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    that.getSizeBaseData = Object.assign([],data.sizes);
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+    @observable saveOrderSizesData =[];
+    @action saveOrderSizes(){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveOrderSizes,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    that.saveOrderSizesData = Object.assign([],data.data.sizes);
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
 }

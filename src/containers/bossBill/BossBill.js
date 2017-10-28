@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {Button,DropdownButton,MenuItem} from 'react-bootstrap';
+import {Button,DropdownButton,MenuItem,Pagination} from 'react-bootstrap';
 import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Nav from '../../containers/bossBill/Nav';
@@ -17,23 +17,57 @@ export default class BossBill extends React.Component {
         this.state ={ // headerList  ==>   type : 0  正常  -1 重点显示 （红色） 1 普通 蓝色
             searchKey:"",
             timeValue:"", // 时间
+            totalPage:0,
+            activePage:0,
+            clientList:[{"id":0,"name":"全部客户"}],
+            client:{"id":0,"name":"全部客户"}
 
         }
     }
 
     componentWillMount(){
-        this.initOrderList();
+        this.initDate();
+        this.initClient();
+
+    }
+
+    // 初始化日期
+    initDate = ()=>{
+        let initTime = this.state.timeValue ?this.state.timeValue: new Date().getFullYear() + "-" + ( new Date().getMonth()+1);
+        this.setState({
+            timeValue:initTime
+        },()=>{
+            this.initOrderList();
+        })
+    }
+
+    // 初始化客户列表
+    initClient =()=>{
+        store.queryClientList(()=>{
+            this.setState({
+                clientList:store.queryClientListData
+            })
+        });
     }
 
     //初始化数据
     initOrderList =()=>{
-        let param ={};
+        let param ={
+            "queryTS":this.state.timeValue,
+            "client":this.state.client,
+            "currentPage":this.state.activePage,
+            "cond":this.state.searchKey
+        };
         store.queryOrderList(param,()=>{
+            this.setState({
+                totalPage:store.orderListPage.totalPages,
+                activePage:store.orderListPage.current_page
+            })
         })
     }
 
     render(){
-        let initTime = new Date().getFullYear() + "-" + new Date().getMonth();
+        let that = this;
         return (
             <div className="content mt50">
                 <Nav navIndex="0"/>
@@ -42,18 +76,22 @@ export default class BossBill extends React.Component {
                     <h3 className="b-title">查询条件</h3>
                     <div style={{"display":'inline-block'}}>
                         <div className="fl b-monthPicker">
-                            <MonthPicker value={this.state.timeValue?this.state.timeValue:initTime} onChange={this.handleTimeChange}/>
+                            <MonthPicker value={this.state.timeValue} onChange={this.handleTimeChange}/>
                         </div>
-                        <DropdownButton className= "mr30" bsStyle="default" title="全部顾客" key="1" >
-                            <MenuItem eventKey="1">张三</MenuItem>
-                            <MenuItem eventKey="2">李四</MenuItem>
-                            <MenuItem eventKey="2">王五</MenuItem>
-                        </DropdownButton>
+                        <select className="b-select mr20"  onChange={this.setSelect}>
+                            {that.state.clientList.map((m,n)=>{
+                                return (
+                                    <option key={ "client-"+n} value={m.id}>{m.name}</option>
+                                )
+                             })
+                            }
+
+                        </select>
 
                         <div className="input-group fr" style={{"width":"300px"}}>
                             <input type="text" className="form-control" value={this.state.searchKey} onChange={this.setInput.bind(this)}
                                    placeholder="请输入SUK编号、合同标号、客户" />
-                            <span className="input-group-addon" onClick={this.searchData}>搜索</span>
+                            <span className="input-group-addon b-search" onClick={this.initOrderList}>搜索</span>
                         </div>
                     </div>
                     <div className="fr">
@@ -84,8 +122,25 @@ export default class BossBill extends React.Component {
 
                 <BossBillTableBody tableData={store.orderListOrders} pageData={store.orderListPage}/>
 
+                <Pagination
+                    prev
+                    next
+                    first
+                    last
+                    ellipsis
+                    boundaryLinks
+                    items={this.state.totalPage}
+                    maxButtons={5}
+                    className="mt50"
+                    activePage={this.state.activePage}
+                    onSelect={this.handleSelect} />
+
             </div>
         )
+    }
+
+    handleSelect =()=>{
+
     }
 
     setRouter = (param)=>{
@@ -110,6 +165,15 @@ export default class BossBill extends React.Component {
         this.setState({
             timeValue:formattedValue
         })
+    }
+
+    setSelect = (e) =>{
+        let el = $(e.currentTarget).find("option:selected");
+        let client ={"name":el.text() , "id":el.val() };
+        this.setState({
+            client
+        })
+
     }
 
     // 搜索数据

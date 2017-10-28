@@ -19,9 +19,6 @@ export default class BillEdit extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            sizeList:[{name:'xs',number:'12'},{name:'xxs',number:'22'},{name:'m',number:'9'}]
-        };
     }
 
     componentWillMount(){
@@ -40,7 +37,7 @@ export default class BillEdit extends React.Component {
                 <Nav navIndex="0"/>
                 <div className="details_title">{this.props.router.params.pk ?"编辑":"新增"}订单</div>
                 {/*1、订单信息**/}
-                <BillEditOrder sizeList={this.state.sizeList} setStateData = {this.setStateData}/>
+                <BillEditOrder setStateData = {this.setStateData}/>
                 {/*2、拍照上传款式图片，合同照片等**/}
                 <BillEditUploadModule2 />
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}
