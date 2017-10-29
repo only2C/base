@@ -74,13 +74,13 @@ ReactDom.render(
       <Route path="/t" component={T}/>
 
       <Route path="/bossBill" component={BossBill}/>
-      <Route path="/billEdit/:pk" component={BillEdit}/> /*编辑订单*/
-      <Route path="/billEdit" component={BillEdit}/> /* 新增订单*/
-      <Route path="/addMoney" component={AddMoney}/> /* 新增收款*/
+      <Route path="/billEdit/:pk/:add" component={BillEdit}/> /*编辑订单*/
+      <Route path="/billEdit/:pk" component={BillEdit}/> /* 新增订单*/
+      <Route path="/addMoney/:pk" component={AddMoney}/> /* 新增收款*/
       <Route path="/Login" component={Login}/> /* 登陆 */
       <Route path="/credit" component={Credit}/> /* 贷款*/
       <Route path="/setting" component={Setting}/> /* 设置*/
-      <Route path="/salary" component={Salary}/> /* 计件工资*/
+      <Route path="/salary/:pk" component={Salary}/> /* 计件工资*/
       <Route path="/register" component={Register}/> /* 计件工资*/
     </Route>
   </Router>,

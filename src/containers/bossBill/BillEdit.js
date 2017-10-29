@@ -35,19 +35,19 @@ export default class BillEdit extends React.Component {
         return (
             <div className="content mt50">
                 <Nav navIndex="0"/>
-                <div className="details_title">{this.props.router.params.pk ?"编辑":"新增"}订单</div>
+                <div className="details_title">{this.props.router.params.add ?"编辑":"新增"}订单</div>
                 {/*1、订单信息**/}
-                <BillEditOrder setStateData = {this.setStateData}/>
+                <BillEditOrder setStateData = {this.setStateData} orderId={this.props.router.params.pk}/>
                 {/*2、拍照上传款式图片，合同照片等**/}
-                <BillEditUploadModule2 />
+                <BillEditUploadModule2 orderId={this.props.router.params.pk}/>
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}
-                <BillEditUploadModule3 />
+                <BillEditUploadModule3 orderId={this.props.router.params.pk}/>
                 {/*4、拍照上传采购单，录入辅料采购及辅料款支付记录**/}
-                <BillEditUploadModule4 />
+                <BillEditUploadModule4 orderId={this.props.router.params.pk}/>
                 {/*5、录入裁剪、加工及工艺信息**/}
-                <BillEditUploadModule5 />
+                <BillEditUploadModule5 orderId={this.props.router.params.pk}/>
                 {/*6、拍照上传收货单，录入出货信息**/}
-                <BillEditUploadModule6 />
+                <BillEditUploadModule6 orderId={this.props.router.params.pk}/>
                 <div className="btn-bottom-fixed">
                     <div className="row btn-bottom">
                         <div className="col-sm-12">

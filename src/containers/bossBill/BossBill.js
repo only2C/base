@@ -53,10 +53,10 @@ export default class BossBill extends React.Component {
     //初始化数据
     initOrderList =()=>{
         let param ={
-            "queryTS":this.state.timeValue,
-            "client":this.state.client,
-            "currentPage":this.state.activePage,
-            "cond":this.state.searchKey
+            "query_ts":this.state.timeValue,
+            "client_id":this.state.client,
+            "factory_id":"",
+            "query_cond":this.state.searchKey
         };
         store.queryOrderList(param,()=>{
             this.setState({
@@ -105,14 +105,14 @@ export default class BossBill extends React.Component {
                     <div className="row b-header">
                         {store.orderListGather.map((m,n)=>{
                             let cssStyle = "";
-                            if(m.type == 2){
+                            if(m.type == 1){
                                 cssStyle = "red";
-                            }else if(m.type == 3){
+                            }else if(m.type == 2){
                                 cssStyle = "blue";
                             }
                             return (
                                 <div className={ "col-md-4 " +cssStyle}  key={"headerList"+n}>
-                                    <b>{m.name}：</b> {Util.formatCurrency(m.number)}
+                                    <b>{m.name}：</b> {Util.formatCurrency(m.value)}
                                 </div>
                             )
                         })}
@@ -120,27 +120,10 @@ export default class BossBill extends React.Component {
                     </div>
                 </div>
 
-                <BossBillTableBody tableData={store.orderListOrders} pageData={store.orderListPage}/>
-
-                <Pagination
-                    prev
-                    next
-                    first
-                    last
-                    ellipsis
-                    boundaryLinks
-                    items={this.state.totalPage}
-                    maxButtons={5}
-                    className="mt50"
-                    activePage={this.state.activePage}
-                    onSelect={this.handleSelect} />
+                <BossBillTableBody tableData={store.orderListOrders}/>
 
             </div>
         )
-    }
-
-    handleSelect =()=>{
-
     }
 
     setRouter = (param)=>{
@@ -152,7 +135,10 @@ export default class BossBill extends React.Component {
         }else{
             router ='salary'
         }
-        window.location.hash= '#/'+router;
+        store.orderAdd({"factory_id":2345},(pk)=>{
+            window.location.hash= '#/'+router + '/'+ pk
+        });
+
     }
 
     setInput =(e)=>{
@@ -173,12 +159,6 @@ export default class BossBill extends React.Component {
         this.setState({
             client
         })
-
-    }
-
-    // 搜索数据
-    searchData =()=>{
-        //do search event
 
     }
 

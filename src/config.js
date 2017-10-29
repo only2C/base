@@ -12,12 +12,15 @@ var Config = {
          userExsisted:serverUrl + '/userExsisted', //邮箱验证
          userLogin:serverUrl + '/client/login', //用户登录
          upPwd:serverUrl + '/client/updpwd',// 修改密码
-         queryOrderList:serverUrl+'/queryOrderList', //查询订单列表
+         orderAdd:serverUrl + '/order/add', // 新增订单
+         orderSave:serverUrl + '/order/basic/saves', //保存订单
+         queryOrderList:serverUrl+'/order/find', //查询订单列表
+         saveSizes:serverUrl + '/order/size/save',  // 保存尺码信息
+
          upload:serverUrl + '/upload',  //上传
          queryClientList:serverUrl + '/queryClientList' , //查询客户列表
-         saveOrderBase:serverUrl + '/saveOrderBase' , //确定订单基本信息
          getSizeBase:serverUrl + '/getSizeBase',  //获取基础尺码
-         saveOrderSizes:serverUrl + '/saveOrderSizes',  // 保存尺码信息
+
      }
     /*refer:{
         referDataUrl:serverUrl+'/refbase_ctr/queryRefJSON', //refer 其他参照，调用refbase_ctr/queryRefJSON 10.3.14.240

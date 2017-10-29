@@ -70,8 +70,9 @@ export default class BillEditOrder extends React.Component {
                     <div className="col-md-4"><span className="b-edit-tit">下单件数：</span><input type="text" disabled="true" onChange={this.setOrder.bind(this,"price")} value={order['price']}/></div>
                     <div className="col-md-4">
                         <span className="b-edit-tit">下单时间：</span>
-                        <DatePicker2 id="example-datepicker-1" dateFormat="YYYY-MM-DD" value={order['order_ts']} onChange={this.setTime.bind(this,"order_ts")}/></div>
-                    <div classNa="col-md-4">
+                        <DatePicker2 id="example-datepicker-1" dateFormat="YYYY-MM-DD" value={order['order_ts']} onChange={this.setTime.bind(this,"order_ts")}/>
+                    </div>
+                    <div className="col-md-4">
                         <span className="b-edit-tit">下单类型：</span>
                         <select className="b-select" onChange={that.setSelect.bind(this,"order_type")}>
                             <option value="1">1562</option>
@@ -88,12 +89,13 @@ export default class BillEditOrder extends React.Component {
                         </select>
                     </div>
                     <div className="col-md-4">
-                        <span className="b-edit-tit">客户付款时间：</span>
-                        <DatePicker2 id="example-datepicker-2" dateFormat="YYYY-MM-DD" value={order['plansub_ts']} onChange={this.setTime.bind(this,"plansub_ts")}/>
+                        <span className="b-edit-tit">付款时间：</span>
+
+                        <DatePicker2 id="example-datepicker-3" dateFormat="YYYY-MM-DD" value={order['pay_ts']} onChange={this.setTime.bind(this,"pay_ts")}/>
                     </div>
                     <div className="col-md-4">
-                        <span className="b-edit-tit">计划交货时间：</span>
-                        <DatePicker2 id="example-datepicker-3" dateFormat="YYYY-MM-DD" value={order['pay_ts']} onChange={this.setTime.bind(this,"pay_ts")}/>
+                        <span className="b-edit-tit">交货时间：</span>
+                        <DatePicker2 id="example-datepicker-2" dateFormat="YYYY-MM-DD" value={order['deliver_ts']} onChange={this.setTime.bind(this,"deliver_ts")}/>
                     </div>
                 </div>
                 <div className="row b-center">
@@ -107,7 +109,7 @@ export default class BillEditOrder extends React.Component {
                             return (
                                 <div className="col-md-2" key={"size"+n}>
                                     <p>{m.name}</p>
-                                    <input type="text" value={m.number||0} className="b-input" onChange={this.setSize.bind(this,m.id)} style={{"width":"100px"}} />
+                                    <input type="text" value={m.num||0} className="b-input" onChange={this.setSize.bind(this,m.size)} style={{"width":"100px"}} />
                                 </div>
                             )
                         })}
@@ -149,10 +151,11 @@ export default class BillEditOrder extends React.Component {
 
     saveSizeModal =() =>{
         let sizeList = this.state.sizeList ;
-        sizeList.push({name:this.state.sizeName,number:this.state.sizeNumber})
-        this.props.setStateData(sizeList);
+        sizeList.push({size:this.state.sizeName,num:this.state.sizeNumber})
+        // this.props.setStateData(sizeList);
         this.setState({
-            sizeModalShow:false
+            sizeModalShow:false,
+            sizeList
         })
     }
 
@@ -206,25 +209,31 @@ export default class BillEditOrder extends React.Component {
         let order = this.state.order ;
         // TODO 必输校验没有处理 2017年10月28日22:59:34
         let param ={
+            "order_id":this.props.orderId,
             "contract_code":order["contract_code"],
-            "SKU_code":order['SKU_code'],
-            "number":order['number'],
+            "sku_code":order['SKU_code'],
+            "num":order['number'],
             "price":order['price'],
-            "order_ts":order['order_ts'],
-            "order_type":order['order_type'],
-            "plansub_ts":order['plansub_ts'],
+            "type":order['order_type'].id || 0,
+            "deliver_ts":order['deliver_ts'],
+            "pay_ts":order['pay_ts'],
             "client":order['client'],
-            "pay_ts":order['pay_ts']
         }
 
-        store.saveOrderBase(param,()=>{
-            store.saveOrderBaseData
+        store.orderSave(param,()=>{
+
         })
 
     }
 
     saveOrderSize =()=>{
+        let param={
+            order_id:this.props.orderId,
+            sizes:this.state.sizeList
+        }
+        store.saveSizes(param,()=>{
 
+        })
     }
 
 
