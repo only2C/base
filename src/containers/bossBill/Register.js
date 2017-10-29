@@ -13,7 +13,10 @@ export default class Register extends React.Component {
         super(props);
         this.state ={
             login:{},
-            validateList:["userName",'email','idCard','password','password1']
+            validateList:["userName",'email','idCard','password'],
+            sex:[{name:"男",id:"1"},{name:"女",id:"2"}],
+            sexChecked:0,
+            factory:[{id:1,name:'工厂1 '},{id:2,name:'工厂2 '}]
         }
     }
 
@@ -58,13 +61,32 @@ export default class Register extends React.Component {
     isExitedEmail =() =>{
         let login = this.state.login ;
         store.userExsisted({'email':login['email']});
-        if(!store.userExsistedResult &&  login['emailError'] ==""){
+        if( store.userExsistedResult &&  login['emailError'] ==""){
             login['emailError'] = "邮箱已存在！";
         }
 
         this.setState({
             login
         })
+    }
+
+
+    setRadio =(v,sexChecked)=>{
+        let login = this.state.login;
+        login["sex"] = v ;
+        this.setState({
+            login,
+            sexChecked
+        })
+    }
+    setSelect =(e)=>{
+        let el = $(e.currentTarget).find("option:selected");
+        let login = this.state.login ;
+        login['factory'] = {"name":el.text() , "id":el.val() };
+        this.setState({
+                login
+            }
+        )
     }
 
     registUser =()=>{
@@ -87,13 +109,15 @@ export default class Register extends React.Component {
             return ;
         }
 
-
+        login['factory'] = login['factory'] ?login['factory']:
+                                {"id":this.state.factory[0].id,"name":this.state.factory[0].name}
         let param = {
             name:login['userName'],
             pwd:login['password'],
-            pwd1:login['password1'],
-            idCard:login['idCard'],
-            email:login['email']
+            sex:login['sex']||1,
+            factory:login['factory'],
+            iid:login['idCard'],
+            email:login['email'],
         };
         store.userReg(param,()=>{
             globalStore.showTipsModal("恭喜您" + login['userName'] + "注册成功！" ,"small","",()=>{
@@ -127,6 +151,27 @@ export default class Register extends React.Component {
                         <span>身份证号：</span>
                         <input type="text"  className={login['idCardError'] ? "input-error b-input" : "b-input" }   value={login["idCard"]} placeholder="请输入身份证号" onChange={this.setInput.bind(this,"idCard")}/>
                     </div>
+                    <div className="row mt30">
+                        <span>性别：</span>
+                        <ul>
+                        {this.state.sex.map((m,n)=>{
+                            return(
+                                <li key={"sex"+n} onChange={this.setRadio.bind(this,m.id,n)}><input type="radio" className="b-radio"  checked={this.state.sexChecked == n ? true :''}/><span  className="b-radio-1">{m.name}</span></li>
+                            )
+                        })}
+                        </ul>
+                    </div>
+                    <div className="row mt30">
+                        <span>工厂：</span>
+                        <select className="b-select">
+                            {this.state.factory.map((m,n)=>{
+                                return (
+                                    <option key={"factory"+n} value={m.id} onChange={this.setSelect}>{m.name}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+
                     <div className="row mt30">
                         <span>密码:</span>
                         <input type="password"  className={login['passwordError'] ? "input-error b-input" : "b-input" }   value={login["password"]} onChange={this.setInput.bind(this,"password")}/>
