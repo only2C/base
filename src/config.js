@@ -8,9 +8,10 @@ if(window.SERVICESURL!=''){
 var Config = {
 
      bossBill:{
-         userReg:serverUrl + '/userReg', //用户注册
+         userReg:serverUrl + '/client/reg', //用户注册
          userExsisted:serverUrl + '/userExsisted', //邮箱验证
-         userLogin:serverUrl + '/userLogin', //用户登录
+         userLogin:serverUrl + '/client/login', //用户登录
+         upPwd:serverUrl + '/client/updpwd',// 修改密码
          queryOrderList:serverUrl+'/queryOrderList', //查询订单列表
          upload:serverUrl + '/upload',  //上传
          queryClientList:serverUrl + '/queryClientList' , //查询客户列表

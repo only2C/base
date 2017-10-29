@@ -83,8 +83,8 @@ export default class Login extends React.Component {
             return;
         }
         let param = {
-            "username":userName,
-             "userpwd":password
+            "loginname":userName,
+            "loginpwd":password
         }
         store.userLogin(param,()=>{
             window.location.hash='#/bossBill';
