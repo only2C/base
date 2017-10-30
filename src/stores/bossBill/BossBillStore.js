@@ -104,6 +104,16 @@ export default class BossBillStore {
         })
     }
 
+    //获取工厂信息
+    @observable factoryList=[];
+    @action getFactoryList (){
+        let data ={
+            factoryList:[{id:1,name:"工厂A"},{id:2,name:"工厂B"}]
+        };
+        this.factoryList = Object.assign([],data.factoryList)
+
+    }
+
     @action orderSave(param,callback){
         let that = this;
         $.ajax({

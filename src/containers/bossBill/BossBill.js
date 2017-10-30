@@ -20,7 +20,9 @@ export default class BossBill extends React.Component {
             totalPage:0,
             activePage:0,
             clientList:[{"id":0,"name":"全部客户"}],
-            client:{"id":0,"name":"全部客户"}
+            client:"",
+            factoryList:[{"name":"工厂",id:"1"}],
+            factory:""
 
         }
     }
@@ -28,6 +30,7 @@ export default class BossBill extends React.Component {
     componentWillMount(){
         this.initDate();
         this.initClient();
+        this.initFactory();
 
     }
 
@@ -50,12 +53,20 @@ export default class BossBill extends React.Component {
         });
     }
 
+    //初始化工厂列表
+    initFactory =()=>{
+        store.getFactoryList();
+        this.setState({
+            factoryList:store.factoryList
+        })
+    }
+
     //初始化数据
     initOrderList =()=>{
         let param ={
             "query_ts":this.state.timeValue,
-            "client_id":this.state.client,
-            "factory_id":"",
+            "client_id":this.state.client ? this.state.client : this.state.clientList[0],
+            "factory_id":this.state.factory ? this.state.factory : this.state.factoryList[0].id,
             "query_cond":this.state.searchKey
         };
         store.queryOrderList(param,()=>{
@@ -78,14 +89,21 @@ export default class BossBill extends React.Component {
                         <div className="fl b-monthPicker">
                             <MonthPicker value={this.state.timeValue} onChange={this.handleTimeChange}/>
                         </div>
-                        <select className="b-select mr20"  onChange={this.setSelect}>
+                        <select className="b-select mr20"  onChange={this.setSelect.bind(this,"client")}>
                             {that.state.clientList.map((m,n)=>{
                                 return (
                                     <option key={ "client-"+n} value={m.id}>{m.name}</option>
                                 )
                              })
                             }
-
+                        </select>
+                        <select className="b-select mr20"  onChange={this.setSelect.bind(this,"factory")}>
+                            {that.state.factoryList.map((m,n)=>{
+                                return (
+                                    <option key={ "client-"+n} value={m.id}>{m.name}</option>
+                                )
+                            })
+                            }
                         </select>
 
                         <div className="input-group fr" style={{"width":"300px"}}>
@@ -153,13 +171,19 @@ export default class BossBill extends React.Component {
         })
     }
 
-    setSelect = (e) =>{
+    setSelect = (param,e) =>{
         let el = $(e.currentTarget).find("option:selected");
-        let client ={"name":el.text() , "id":el.val() };
-        this.setState({
-            client
-        })
-
+        if(param == "client"){
+            let client ={"name":el.text() , "id":el.val() };
+            this.setState({
+                client
+            })
+        }else{
+            let factory =el.val();
+            this.setState({
+                factory
+            })
+        }
     }
 
 }

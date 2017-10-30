@@ -25,12 +25,12 @@ export default class BillEditOrder extends React.Component {
     }
 
     componentWillMount (){
-        this.getSizeTotal();
+        this.getSizeList();
     }
 
 
     componentWillReceiveProps(props){
-        this.getSizeTotal();
+        this.getSizeList();
     }
 
     setOrder = (param,e)=> {
@@ -107,8 +107,8 @@ export default class BillEditOrder extends React.Component {
                     <div className="b-size">
                         {this.state.sizeList.map((m,n)=>{
                             return (
-                                <div className="col-md-2" key={"size"+n}>
-                                    <p>{m.name}</p>
+                                <div className="b-size-box" key={"size"+n}>
+                                    <p>{m.size}</p>
                                     <input type="text" value={m.num||0} className="b-input" onChange={this.setSize.bind(this,m.size)} style={{"width":"100px"}} />
                                 </div>
                             )
@@ -126,8 +126,8 @@ export default class BillEditOrder extends React.Component {
                         </Modal.Header>
                         <Modal.Body style={{overflow:'auto'}}>
                             <div className="row">
-                                <div className="col-md-3">码数：<input type="text" className="b-input" value={this.state.sizeName} onChange={this.setInput.bind(this,0)}/></div>
-                                <div className="col-md-3">数量：<input type="text" className="b-input" value={this.state.sizeNumber} onChange={this.setInput.bind(this,1)}/></div>
+                                <div className="col-md-4">码数：<input type="text" className="b-input" value={this.state.sizeName} onChange={this.setInput.bind(this,0)}/></div>
+                                <div className="col-md-4">数量：<input type="text" className="b-input" value={this.state.sizeNumber} onChange={this.setInput.bind(this,1)}/></div>
                             </div>
                         </Modal.Body>
                         <Modal.Footer>
@@ -140,6 +140,30 @@ export default class BillEditOrder extends React.Component {
         )
     }
 
+    // 获取尺码相关信息
+    getSizeList = ()=>{
+
+        store.getSizeBase(()=>{
+            this.setState({
+                sizeList:store.getSizeBaseData
+            },()=>{
+                this.getSizeTotal()
+            })
+        })
+
+
+        //  this.setState({sizeTotal})
+    }
+
+    getSizeTotal =()=>{
+        let sizeTotal = 0 ;
+        this.state.sizeList.map((m)=>{
+            sizeTotal += parseFloat(m.num);
+        })
+        this.setState({
+            sizeTotal
+        })
+    }
     //新增码数
     addSizeModal = () =>{
         this.setState({
@@ -153,9 +177,11 @@ export default class BillEditOrder extends React.Component {
         let sizeList = this.state.sizeList ;
         sizeList.push({size:this.state.sizeName,num:this.state.sizeNumber})
         // this.props.setStateData(sizeList);
+        let sizeTotal = this.state.sizeTotal + parseInt( this.state.sizeNumber );
         this.setState({
             sizeModalShow:false,
-            sizeList
+            sizeList,
+            sizeTotal
         })
     }
 
@@ -172,12 +198,16 @@ export default class BillEditOrder extends React.Component {
     setSize = (id , e )=>{
         let sizeList = this.state.sizeList;
         sizeList.forEach((m)=>{
-            if(m.id = id )
-                m.number = parseInt(e.target.value) || 0
+            if(m.size == id ){
+                m.num = e.target.value?e.target.value:0
+            }
         })
         this.setState({
             sizeList
+        },()=>{
+            this.getSizeTotal()
         })
+
     }
 
     // 关闭窗口事件
@@ -187,23 +217,7 @@ export default class BillEditOrder extends React.Component {
         })
     }
 
-    getSizeTotal = ()=>{
-        let sizeTotal = 0 ;
-        store.getSizeBase(()=>{
-            this.setState({
-                sizeList:store.getSizeBaseData
-            })
-        })
 
-        this.state.sizeList.map((m)=>{
-            m.number = m.number || 0 ;
-            sizeTotal += parseFloat(m.number);
-        })
-        this.setState({
-            sizeTotal
-        })
-       //  this.setState({sizeTotal})
-    }
 
     saveOrder = () =>{
         let order = this.state.order ;
