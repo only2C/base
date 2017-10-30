@@ -8,7 +8,8 @@ import _ from 'lodash';
 import Config from '../../config';
 import globalStore from '../../stores/GlobalStore';
 import FileUpload from '../bossBill/Upload';
-
+import BossStore from '../../stores/bossBill/BossBillStore';
+const store = new BossStore();
 
 /**
  * 录入裁剪、加工及工艺信息
@@ -18,39 +19,18 @@ export default class BillEditUploadModule5 extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            list:['n'],
+            pic:[{name:"",url:"",id:"",finish_ts:""}],
+            saveResult:'', // 保存结果
             picName:{},
             money:{},
             time:{},
             param:{},
-            pic:{},
             list1To1:["list1To1"],
             list1To2:["list1To2"],
         }
     }
 
-    addSizeModal =()=>{
-        let list = this.state.list ;
-        list.push("n"+new Date().getTime());
-        this.setState({
-            list
-        })
-    }
 
-    setInput =(m,e)=>{
-        let money=this.state.money ;
-        money[m] = e.target.value ;
-        this.setState({
-            money
-        })
-    }
-    setTime=(m,value, formattedValue)=>{
-        let time = this.state.time ;
-        time[m] =formattedValue ;
-        this.setState({
-            time
-        })
-    }
 
     handlerInput = (m , e ) =>{
         let param = this.state.param;
@@ -99,13 +79,73 @@ export default class BillEditUploadModule5 extends React.Component {
         })
 
     }
-
-    uploadEvent =(data)=>{
-        let pic =this.state.pic ;
-        pic[data.onlySign] = data.url ;
+    
+    addSizeModal = () =>{
+        let pic = this.state.pic;
+        let newPic = {"id":new Date().getTime()}
+        pic.push(newPic);
         this.setState({
             pic
         })
+    }
+
+    uploadEvent =(data)=>{
+        let pic =this.state.pic ;
+        pic.forEach((m,n)=>{
+            if(m.id == data.id ){
+                m.url = data.img_url
+            }
+        })
+        this.setState({pic})
+
+    }
+
+    setInput =(id,e) =>{
+        let pic =this.state.pic ;
+        pic.forEach((m,n)=>{
+            if(m.id == id ){
+                m.name = e.target.value ;
+            }
+        })
+        this.setState({pic})
+    }
+
+    setTime=(id,value, formattedValue)=>{
+        let pic =this.state.pic ;
+        pic.forEach((m,n)=>{
+            if(m.id == id ){
+                m.finish_ts = formattedValue ;
+            }
+        })
+        this.setState({pic})
+    }
+
+
+    saveModule5 =()=>{
+        let pic = this.state.pic ;
+        let that = this;
+        let result = [];
+        pic.forEach((m,n)=>{
+            result.push({"money":m.name , "url": m.url,"finish_ts":m.finish_ts})
+        })
+        let param ={
+            'order_id':this.props.orderId ,
+            'tech':result
+        }
+        store.saveTech(param,()=>{
+            let saveResult = "保存成功!";
+            this.setState({
+                saveResult
+            },()=>{
+                setTimeout(()=>{
+                    that.setState({
+                        saveResult:""
+                    })
+                },3000)
+            })
+
+        })
+
     }
 
     render(){
@@ -114,35 +154,38 @@ export default class BillEditUploadModule5 extends React.Component {
             <div className="stdreimburse-box ">
                 <h3 className="b-title">5、录入裁剪、加工及工艺信息<Button className="ml50" onClick={this.addSizeModal}>新增</Button></h3>
                 <div className="row" style={{marginTop:"30px"}}>
-                    {this.state.list.map((m,n)=>{
+                    {this.state.pic.map((m,n)=>{
+                        m.id=m.id||new Date().getTime();
                         return (
                             <div className="col-md-5 mt15">
                                 <div className="b-upload-box col-md-6">
                                     <p className="b-upload-box-tag">{n+1}</p>
-                                    {this.state.pic[m] ? (<img src={that.state.pic[m]}/>):(
-                                        <FileUpload ref="fileUpload" onlySign={m} successCallBack ={this.uploadEvent}/>
+                                    {m.url ?(<img src={m.url} className="b-upload-pic"/>) :(
+                                        <FileUpload ref="fileUpload" id={m.id} successCallBack ={this.uploadEvent}/>
                                     )}
                                 </div>
                                 <div className="col-md-6">
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
-                                            实际裁数：
-                                            <input type="text" placeholder="实际裁数" className="b-input ml5" value={this.state.money[m]} onChange={this.setInput.bind(this,m)}/>
+                                            裁剪金额：
+                                            <input type="text" value={m.name} placeholder="裁剪金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
-                                            完成时间：
-                                            <DatePicker2 id={ "example-datepicker" + m } className="b-input ml5"
-                                                         dateFormat="YYYY-MM-DD" value={this.state.time[m]} onChange={this.setTime.bind(this,m)}/>
+                                            裁剪时间：
+                                            <DatePicker2 id={ "example-datepicker" +n } className="b-input ml5 w200"
+                                                         dateFormat="YYYY-MM-DD" value={m.finish_ts} onChange={this.setTime.bind(this,m.id)}/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         )
+
                     })}
                 </div>
 
                 <div className="row b-center">
-                    <Button bsStyle="warning" onClick={this.handlerSave0}>保存</Button>
+                    <p className="error">{this.state.saveResult}</p>
+                    <Button bsStyle="warning" onClick={this.saveModule5}>保存</Button>
                 </div>
                 <div className="row b-border-line">
                     <h3 className="b-title">本厂加工</h3>

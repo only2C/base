@@ -61,7 +61,7 @@ class Upload extends React.Component {
             },
             uploadSuccess: (data)=> {
                 globalStore.hideWait();
-                data.onlySign = this.props.onlySign ;
+                data.id = this.props.id ;
                 that.props.successCallBack(data);
 
 

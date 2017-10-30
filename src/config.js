@@ -16,8 +16,12 @@ var Config = {
          orderSave:serverUrl + '/order/basic/saves', //保存订单
          queryOrderList:serverUrl+'/order/find', //查询订单列表
          saveSizes:serverUrl + '/order/size/save',  // 保存尺码信息
-
-         upload:serverUrl + '/upload',  //上传
+         saveOrderImg:serverUrl + '/order/img/save', //保存订单图片信息
+         saveColth:serverUrl + '/order/colth/save', //保存订单布款信息
+         saveSubmaterial:serverUrl +'/order/submaterial/save', //保存订单辅料信息
+         saveTech:serverUrl +'/order/tech/save', //保存订单工艺信息
+         saveDeliver:serverUrl +'/order/deliver/save', //保存订单工艺信息
+         upload:serverUrl + '/comm/upload',  //上传
          queryClientList:serverUrl + '/queryClientList' , //查询客户列表
          getSizeBase:serverUrl + '/getSizeBase',  //获取基础尺码
 

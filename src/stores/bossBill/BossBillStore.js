@@ -191,7 +191,6 @@ export default class BossBillStore {
         })
     }
 
-
     @observable getSizeBaseData = [];
     @action getSizeBase(callback){
         let that = this;
@@ -263,6 +262,119 @@ export default class BossBillStore {
                     }
                 } else {
                     that.globalStore.showError(data.information ? data.information : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+    // 保存订单信息图片
+    @action saveOrderImg(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveOrderImg,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+    @action saveColth(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveColth,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    @action saveSubmaterial(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveSubmaterial,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    @action saveTech(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveTech,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    @action saveDeliver(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveDeliver,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.information ? data.information : "保存失败")
                 }
             },
             error: (xhr, status, err) => {
