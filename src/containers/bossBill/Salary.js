@@ -18,14 +18,23 @@ export default class Salary extends React.Component {
             salaryList:["salaryList"],
             professionModalShow:false,
             workerModalShow:false,
+
             addWorkerInputValue:{
                 name:"",
                 idCard:""
             } ,
             addProfessionInputValue:"",
+
+
             tPrice:{},
             tNum:{},
-            tTotal:{}
+            tTotal:{},
+
+            sex:[{name:"男",id:"1"},{name:"女",id:"2"}],
+            sexChecked:0,
+            factory:[{id:1,name:'工厂1 '},{id:2,name:'工厂2 '}],
+            addWorkerObj:{},
+            sexChecked:0
 
         }
     }
@@ -131,16 +140,35 @@ export default class Salary extends React.Component {
                         </Modal.Header>
                         <Modal.Body>
                             <div className="row ml150 mt10">
-                                <span className="w100 fl">姓名：</span><input type="text" className="ml20 b-input" value={this.state.addWorkerInputValue.name} onChange={this.addProfessionInput.bind(this,"name")} placeholder="请输入姓名"/>
+                                <span className="w100 fl">姓名：</span><input type="text" className="ml20 b-input" value={this.state.addWorkerObj["name"]} onChange={this.handlerAddWorkInput.bind(this,"name")} placeholder="请输入姓名"/>
                             </div>
                             <div className="row ml150 mt10">
-                                <span className="w100 fl">身份证号：</span><input type="text" className="ml20 b-input" value={this.state.addWorkerInputValue.idCard} placeholder="身份证号" onChange={this.addProfessionInput.bind(this,"idCard")}/>
+                                <span className="w100 fl">身份证号：</span><input type="text" className="ml20 b-input" value={this.state.addWorkerObj["iid"]} placeholder="身份证号" onChange={this.handlerAddWorkInput.bind(this,"iid")}/>
                             </div>
-
+                            <div className="row ml150 mt10">
+                                <span className="w100 fl">性别：</span>
+                                <ul>
+                                    {this.state.sex.map((m,n)=>{
+                                        return(
+                                            <li key={"sex"+n} onChange={this.setWorkerRadio.bind(this,m.id,n)}><input type="radio" className="b-radio"  checked={this.state.sexChecked == n ? true :''}/><span  className="b-radio-1">{m.name}</span></li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="row ml150 mt10">
+                                <span className="w100 fl">工厂：</span>
+                                <select className="b-select">
+                                    {this.state.factory.map((m,n)=>{
+                                        return (
+                                            <option key={"factory"+n} value={m.id} onChange={this.setWorkerSelect}>{m.name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal.bind(this,1)}>取消</Button>
-                            <Button bsStyle="warning" onClick={this.handlerAddWorker}>确定</Button>
+                            <Button bsStyle="warning" onClick={this.saveAddWorker}>确定</Button>
                         </Modal.Footer>
                     </Modal>
 
@@ -223,23 +251,37 @@ export default class Salary extends React.Component {
             })
     }
 
-    // 新增工人
+
+    // 新增工人 start
     addWorker =() =>{
         this.setState({
-            workerModalShow:true
+            workerModalShow:true,
+            addWorkerObj:{}
         })
     }
 
-    handlerAddWorker = ()=>{
-
-    }
-
-
-    addWorkerInput =(e)=>{
+    handlerAddWorkInput = (type , e )=>{
+        let addWorkerObj = this.state.addWorkerObj ;
+        addWorkerObj[type] = e.target.value ;
         this.setState({
-            addWorkerInputValue:e.target.value
+            addWorkerObj
         })
     }
+
+    setWorkerRadio = () =>{
+
+    }
+
+    setWorkerSelect = () =>{
+
+    }
+
+    saveAddWorker = ()=>{
+        let addWorkerObj = this.state.addWorkerObj ;
+    }
+
+    // 新增工人 end
+
 
 
     closeModal = (param) =>{
