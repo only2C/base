@@ -26,7 +26,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -49,7 +49,7 @@ export default class BossBillStore {
                 if (data.result == 0 ) {
                     this.userExsistedResult = true ;
                 } else {
-                    //that.globalStore.showError(data.information ? data.information : "查询失败")
+                    //that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -72,7 +72,7 @@ export default class BossBillStore {
                         callback(data)
                     }
                 } else {
-                    //that.globalStore.showError(data.information ? data.information : "查询失败")
+                    //that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -95,7 +95,7 @@ export default class BossBillStore {
                         callback(data.order_id)
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -128,7 +128,7 @@ export default class BossBillStore {
                         callback(data)
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -157,7 +157,7 @@ export default class BossBillStore {
                         callback(data);
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -167,13 +167,13 @@ export default class BossBillStore {
     }
 
     @observable queryClientListData = [];
-    @action queryClientList(callback){
+    @action queryClientList(param,callback){
         let that = this;
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryClientList,
             dataType: "json",
-            data: JSON.stringify({}),
+            data: JSON.stringify(param),
             contentType: "application/json",
             success: data => {
                 if (data) {
@@ -182,7 +182,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -192,13 +192,13 @@ export default class BossBillStore {
     }
 
     @observable getSizeBaseData = [];
-    @action getSizeBase(callback){
+    @action getSizeBase(param,callback){
         let that = this;
         $.ajax({
             type: "POST",
-            url: Config.bossBill.getSizeBase,
+            url: Config.bossBill.getSizeDefault,
             dataType: "json",
-            data: JSON.stringify({}),
+            data: JSON.stringify(param),
             contentType: "application/json",
             success: data => {
                 if (data.result==0) {
@@ -207,7 +207,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -236,7 +236,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -261,7 +261,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -285,7 +285,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -308,7 +308,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -330,7 +330,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -352,7 +352,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -374,7 +374,7 @@ export default class BossBillStore {
                         callback();
                     }
                 } else {
-                    that.globalStore.showError(data.information ? data.information : "保存失败")
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
                 }
             },
             error: (xhr, status, err) => {
@@ -382,4 +382,153 @@ export default class BossBillStore {
             }
         })
     }
+
+    //保存订单本厂加工信息
+    @action saveSelfWork(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveSelfwork,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    //保存订单外发加工信息
+    @action saveOutwork(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveOutwork,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+    //保存外发工艺信息
+    @action saveOutTech(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.saveOutTech,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
+
+    //获取外发工厂   /outfactory/find
+    @observable outFactoryList = [];
+    @action queryOutFactory(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryOutfactory,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    this.outFactoryList = Object.assign([],data.factorys)
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    //获取外发工厂   /outfactory/find
+    @observable outFactoryItemList = [];
+    @action queryOutFactoryItem(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryOutfactoryItem,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    this.outFactoryItemList = Object.assign([],data.items)
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    //获取外发工艺项目   /outtech/find
+    @observable outTechList = [];
+    @action queryOuttechItem(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryOuttechItem,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    this.outTechList = Object.assign([],data.techs)
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
 }

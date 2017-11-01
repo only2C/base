@@ -20,14 +20,23 @@ export default class BillEditOrder extends React.Component {
             sizeNumber:'',
             sizeTotal:0,
             order:{},
-            sizeList:[]
+            sizeList:[],
+            clientList:[]
         }
     }
 
     componentWillMount (){
         this.getSizeList();
+        this.getClientList();
     }
 
+    getClientList = ()=>{
+        store.queryClientList({"factory_id":this.props.orderId},()=>{
+            this.setState({
+                clientList:store.queryClientListData
+            })
+        })
+    }
 
     componentWillReceiveProps(props){
         this.getSizeList();
@@ -83,9 +92,11 @@ export default class BillEditOrder extends React.Component {
                     <div className="col-md-4">
                         <span className="b-edit-tit" >客户：</span>
                         <select className="b-select" onChange={that.setSelect.bind(this,"client")}>
-                            <option value="1">客户A</option>
-                            <option value="2">5</option>
-                            <option value="3">666</option>
+                            {this.state.clientList.map( (m,n)=>{
+                                return (
+                                    <option value={m.id} key={"clientList-"+n}>{m.name}</option>
+                                )
+                            })}
                         </select>
                     </div>
                     <div className="col-md-4">
@@ -143,7 +154,7 @@ export default class BillEditOrder extends React.Component {
     // 获取尺码相关信息
     getSizeList = ()=>{
 
-        store.getSizeBase(()=>{
+        store.getSizeBase({},()=>{
             this.setState({
                 sizeList:store.getSizeBaseData
             },()=>{

@@ -20,10 +20,16 @@ var Config = {
          saveColth:serverUrl + '/order/colth/save', //保存订单布款信息
          saveSubmaterial:serverUrl +'/order/submaterial/save', //保存订单辅料信息
          saveTech:serverUrl +'/order/tech/save', //保存订单工艺信息
+         saveSelfwork:serverUrl + '/order/selfwork/save' , //保存本厂加工信息
+         saveOutwork:serverUrl + '/order/outwork/save' , //保存外发加工信息
+         saveOutTech:serverUrl + '/order/outtech/save',//保存外发工艺信息
          saveDeliver:serverUrl +'/order/deliver/save', //保存订单工艺信息
          upload:serverUrl + '/comm/upload',  //上传
-         queryClientList:serverUrl + '/queryClientList' , //查询客户列表
-         getSizeBase:serverUrl + '/getSizeBase',  //获取基础尺码
+         queryClientList:serverUrl + '/order/client/all' , //查询客户列表
+         getSizeDefault:serverUrl + '/order/size/default',  //获取基础尺码
+         queryOutfactory:serverUrl + '/outfactory/find',   //获取外发工厂
+         queryOutfactoryItem:serverUrl +'/outfactory/item/find',  //获取外发工厂项目
+         queryOuttechItem:serverUrl +'/outtech/find',  //获取外发工艺项目
 
      }
     /*refer:{

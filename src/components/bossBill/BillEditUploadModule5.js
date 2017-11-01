@@ -25,11 +25,41 @@ export default class BillEditUploadModule5 extends React.Component {
             money:{},
             time:{},
             param:{},
-            list1To1:["list1To1"],
-            list1To2:["list1To2"],
+            selfWork:[{"money":"",num:""}],
+            selfWorkResult:"",
+            outWork:[{"money":"","num":"","outfactory_id":"","outitem_id":""}],
+            outWorkResult:"",
+            outTech:[{"money":"","num":"","outfactory_id":"","outitem_id":""}],
+            outTechResult:"",
+            outfactoryList:[],
+            outFactoryItemList:[] , //外发工厂项目
+            outTechList:[], //外发工艺项目
         }
     }
 
+    componentWillMount(){
+        this.queryOutfactoryList();
+    }
+
+    // 获取外发工厂和外发项目
+    queryOutfactoryList = ()=>{
+        let factoryId = ""
+        store.queryOutFactory({factory_id:factoryId},()=>{
+            this.setState({
+                outfactoryList:store.outFactoryList
+            })
+        })
+        store.queryOutFactoryItem({factory_id:factoryId},()=>{
+            this.setState({
+                outFactoryItemList:store.outFactoryItemList
+            })
+        })
+        store.queryOuttechItem({factory_id:factoryId},()=>{
+            this.setState({
+                outTechList:store.outTechList
+            })
+        })
+    }
 
 
     handlerInput = (m , e ) =>{
@@ -40,45 +70,6 @@ export default class BillEditUploadModule5 extends React.Component {
         })
     }
 
-
-    handlerSave0 =()=>{
-
-
-    }
-    handlerSave1 =()=>{
-        let param = this.state.param ;
-        let saveParam={
-            name:param["price1"]
-        }
-        // do ajax
-
-    }
-    handlerSave2 =()=>{
-
-    }
-    handlerSave3 =()=>{
-
-    }
-    handlerSave4 =()=>{
-
-    }
-
-    addEvent1To1  =() =>{
-        let list1To1 = this.state.list1To1 ;
-        list1To1.push(new Date().getTime);
-        this.setState({
-            list1To1
-        })
-
-    }
-    addEvent1To2  =() =>{
-        let list1To2 = this.state.list1To2 ;
-        list1To2.push(new Date().getTime);
-        this.setState({
-            list1To2
-        })
-
-    }
     
     addSizeModal = () =>{
         let pic = this.state.pic;
@@ -148,8 +139,176 @@ export default class BillEditUploadModule5 extends React.Component {
 
     }
 
-    render(){
+    //本厂加工信息 start
+    setSelfWork = (index , type ,e)=>{
+        let selfWork = this.state.selfWork ;
+        selfWork[index][type] = e.target.value ;
+        selfWork
+        this.setState({
+            selfWork
+        })
+
+    }
+
+    addSelfWork = () =>{
+        let selfWork = this.state.selfWork ;
+        selfWork.push({"money":"",num:""});
+        this.setState({
+            selfWork
+        })
+    }
+
+    saveSelfWork =()=>{
         let that = this ;
+        let param ={
+            "order_id":this.props.orderId ,
+            "works":this.state.selfWork
+        }
+        store.saveSelfWork(param ,()=>{
+
+            let selfWorkResult = "保存成功!";
+            this.setState({
+                selfWorkResult
+            },()=>{
+                setTimeout(()=>{
+                    that.setState({
+                        selfWorkResult:""
+                    })
+                },3000)
+            })
+        })
+    }
+
+    //本厂加工信息 end
+
+    // 外厂加工信息 start
+
+    setOutfactorySelect=(param,type , e)=>{
+        let el = $(e.currentTarget).find("option:selected");
+        let outWork = this.state.outWork;
+        outWork[param][type] = el.val();
+        this.setState({
+            outWork
+        })
+
+    }
+
+    addOutWork =()=>{
+        let outWork = this.state.outWork ;
+        outWork.push({"money":"","num":"","outitem_id":"","outfactory_id":""});
+        this.setState({
+            outWork
+        })
+
+    }
+
+    setOutWork =(index , type ,e)=>{
+        let outWork = this.state.outWork ;
+        outWork[index][type]=e.target.value ;
+        this.setState({
+            outWork
+        })
+    }
+
+    saveOutWork =()=>{
+        let that = this ;
+        let outWork = this.state.outWork ;
+        let default1 = this.state.outfactoryList[0].id
+        let default2 = this.state.outFactoryItemList[0].id
+        outWork.forEach((m)=>{
+            if(m.outitem_id ==""){
+                m.outitem_id = default1;
+            }
+            if(m.outfactory_id ==""){
+                m.outfactory_id = default2;
+            }
+        })
+
+        let param = {
+            order_id : this.props.orderId ,
+            outworks:outWork
+        }
+        store.saveOutwork(param,()=>{
+            let outWorkResult = "保存成功!";
+            this.setState({
+                outWorkResult
+            },()=>{
+                setTimeout(()=>{
+                    that.setState({
+                        outWorkResult:""
+                    })
+                },3000)
+            })
+        })
+
+    }
+
+    // 外厂加工信息  end
+
+    // 外厂工艺信息 start
+    setTeachSelect = (param,type , e)=>{
+        let el = $(e.currentTarget).find("option:selected");
+        let outTech = this.state.outTech;
+        outTech[param][type] = el.val();
+        this.setState({
+            outTech
+        })
+
+    }
+    addOutTech =()=>{
+        let outTech = this.state.outTech ;
+        outTech.push({"money":"","num":""});
+        this.setState({
+            outTech
+        })
+
+    }
+
+    setOutTech =(index , type ,e)=>{
+        let outTech = this.state.outTech ;
+        outTech[index][type]=e.target.value ;
+        this.setState({
+            outTech
+        })
+    }
+
+    saveOutTech=()=>{
+        let that = this ;
+        let outTech = this.state.outTech ;
+        let default1 = this.state.outfactoryList[0].id
+        let default2 = this.state.outTechList[0].id
+        outTech.forEach((m)=>{
+            if(m.outitem_id ==""){
+                m.outitem_id = default1;
+            }
+            if(m.outfactory_id ==""){
+                m.outfactory_id = default2;
+            }
+        })
+        let param = {
+            order_id : this.props.orderId ,
+            outsubs:this.state.outTech
+        }
+
+        store.saveOutTech(param,()=>{
+            let outTechResult = "保存成功!";
+            this.setState({
+                outTechResult
+            },()=>{
+                setTimeout(()=>{
+                    that.setState({
+                        outTechResult:""
+                    })
+                },3000)
+            })
+        })
+
+    }
+
+    // 外厂工艺信息  end
+
+    render(){
+        let that = this;
         return (
             <div className="stdreimburse-box ">
                 <h3 className="b-title">5、录入裁剪、加工及工艺信息<Button className="ml50" onClick={this.addSizeModal}>新增</Button></h3>
@@ -172,7 +331,7 @@ export default class BillEditUploadModule5 extends React.Component {
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
                                             裁剪时间：
-                                            <DatePicker2 id={ "example-datepicker" +n } className="b-input ml5 w200"
+                                            <DatePicker2 id={ "example-datepicker-" +n } className="b-input ml5 w200"
                                                          dateFormat="YYYY-MM-DD" value={m.finish_ts} onChange={this.setTime.bind(this,m.id)}/>
                                         </div>
                                     </div>
@@ -187,42 +346,61 @@ export default class BillEditUploadModule5 extends React.Component {
                     <p className="error">{this.state.saveResult}</p>
                     <Button bsStyle="warning" onClick={this.saveModule5}>保存</Button>
                 </div>
-                <div className="row b-border-line">
-                    <h3 className="b-title">本厂加工</h3>
-                    <div className="col-md-5">
-                        单价合计：<input type="text" className="b-input" value={this.state.param["price1"]} onChange={this.handlerInput.bind(this,"price1")}/>
-                    </div>
-                    <div className="col-md-5">
-                        件数：<input type="text" className="b-input" value={this.state.param["count1"]} onChange={this.handlerInput.bind(this,"count1")}/>
-                    </div>
+                <div className="row ">
+                    <h3 className="b-title">本厂加工<Button className="ml50" onClick={this.addSelfWork}>新增</Button></h3>
+                    {this.state.selfWork.map((m,n)=>{
+                        return (
+                            <div className="b-self-box fl" key={"selfwork-"+n}>
+                                <div className="mt15">
+                                    <span className="b-edit-tit">单价合计：</span>
+                                    <input type="text" className="b-input" value={this.state.selfWork[n].money} onChange={this.setSelfWork.bind(this,n,"money")}/>
+                                </div>
+                                <div className="mt15">
+                                    <span className="b-edit-tit">件数：</span>
+                                    <input type="text" className="b-input" value={this.state.selfWork[n].num} onChange={this.setSelfWork.bind(this,n,"num")}/>
+                                </div>
+                            </div>
+                        )
+                    })}
+
                 </div>
                 <div className="row b-center">
-                    <Button bsStyle="warning" onClick={this.handlerSave1}>保存</Button>
+                    <p className="error">{this.state.selfWorkResult}</p>
+                    <Button bsStyle="warning" onClick={this.saveSelfWork}>保存</Button>
                 </div>
 
 
                 <div className="row b-border-line">
-                    <h3 className="b-title">外发加工<Button className="ml50" onClick={this.addEvent1To1}>新增</Button></h3>
-                    {this.state.list1To1.map((m,n)=>{
+                    <h3 className="b-title">外发加工<Button className="ml50" onClick={this.addOutWork}>新增</Button></h3>
+                    {this.state.outWork.map((m,n)=>{
                         return (
                             <div key={"list1to1"+n} className="mt20" style={{"overflow":"hidden"}}>
                                 <div className="col-md-3">
                                     外发工厂：
-                                    <select className="b-select">
-                                        <option>123</option>
+                                    <select className="b-select" onChange={this.setOutfactorySelect.bind(this,n,"outfactory_id")}>
+                                        {that.state.outfactoryList.map((y,z)=>{
+                                            return (
+                                                <option key={"outfactoryList-"+z} value={y.id}>{y.name}</option>
+                                            )
+                                        })}
                                     </select>
                                 </div>
                                 <div className="col-md-3">
                                     外发项目：
-                                    <select className="b-select">
-                                        <option>123</option>
+                                    <select className="b-select" onChange={this.setOutfactorySelect.bind(this,n,"outitem_id")}>
+                                        {that.state.outFactoryItemList.map((r,s)=>{
+                                            return (
+                                                <option key={"outFactoryItemList-"+s} value={r.id}>{r.name}</option>
+                                            )
+
+                                        })}
                                     </select>
                                 </div>
                                 <div className="col-md-3">
-                                    外发价格：<input type="text" className="b-input"/>
+                                    外发价格：<input type="text" className="b-input" value={this.state.outWork[n].money} onChange={this.setOutWork.bind(this,n,"money")}/>
                                 </div>
                                 <div className="col-md-3">
-                                    件数：<input type="text" className="b-input"/>
+                                    件数：<input type="text" className="b-input" value={this.state.outWork[n].num}  onChange={this.setOutWork.bind(this,n,"num")}/>
                                 </div>
 
                             </div>
@@ -230,32 +408,41 @@ export default class BillEditUploadModule5 extends React.Component {
                     })}
                 </div>
                 <div className="row b-center">
-                    <Button bsStyle="warning">保存</Button>
+                    <p className="error">{this.state.outWorkResult}</p>
+                    <Button bsStyle="warning" onClick={this.saveOutWork}>保存</Button>
                 </div>
 
 
                 <div className="row b-border-line">
-                    <h3 className="b-title">外发工艺<Button className="ml50" onClick={this.addEvent1To2}>新增</Button></h3>
-                    {this.state.list1To2.map((m,n)=>{
+                    <h3 className="b-title">外发工艺<Button className="ml50" onClick={this.addOutTech}>新增</Button></h3>
+                    {this.state.outTech.map((m,n)=>{
                         return (
                             <div key={"list1to1"+n} className="mt20" style={{"overflow":"hidden"}}>
                                 <div className="col-md-3">
                                     工艺厂：
-                                    <select className="b-select">
-                                        <option>123</option>
+                                    <select className="b-select" onChange={this.setTeachSelect.bind(this,n,"outfactory_id")}>
+                                        {that.state.outfactoryList.map((y,z)=>{
+                                            return (
+                                                <option key={"outfactoryList-"+z} value={y.id}>{y.name}</option>
+                                            )
+                                        })}
                                     </select>
                                 </div>
                                 <div className="col-md-3">
                                     工艺项目：
-                                    <select className="b-select">
-                                        <option>123</option>
+                                    <select className="b-select" onChange={this.setTeachSelect.bind(this,n,"outitem_id")} >
+                                        {that.state.outTechList.map((y,z)=>{
+                                            return (
+                                                <option key={"outfactoryList-"+z} value={y.id}>{y.name}</option>
+                                            )
+                                        })}
                                     </select>
                                 </div>
                                 <div className="col-md-3">
-                                    工艺价格：<input type="text" className="b-input"/>
+                                    工艺价格：<input type="text" className="b-input" value={this.state.outTech[n].money} onChange={this.setOutTech.bind(this,n,"money")}/>
                                 </div>
                                 <div className="col-md-3">
-                                    件数：<input type="text" className="b-input"/>
+                                    件数：<input type="text" className="b-input" value={this.state.outTech[n].num}  onChange={this.setOutTech.bind(this,n,"num")}/>
                                 </div>
 
                             </div>
@@ -263,7 +450,8 @@ export default class BillEditUploadModule5 extends React.Component {
                     })}
                 </div>
                 <div className="row b-center">
-                    <Button bsStyle="warning">保存</Button>
+                    <p className="error">{this.state.outTechResult}</p>
+                    <Button bsStyle="warning" onClick={this.saveOutTech}>保存</Button>
                 </div>
 
 

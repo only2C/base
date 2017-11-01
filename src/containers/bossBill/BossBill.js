@@ -46,7 +46,7 @@ export default class BossBill extends React.Component {
 
     // 初始化客户列表
     initClient =()=>{
-        store.queryClientList(()=>{
+        store.queryClientList({"factory_id":""},()=>{
             this.setState({
                 clientList:store.queryClientListData
             })
@@ -71,8 +71,7 @@ export default class BossBill extends React.Component {
         };
         store.queryOrderList(param,()=>{
             this.setState({
-                totalPage:store.orderListPage.totalPages,
-                activePage:store.orderListPage.current_page
+
             })
         })
     }
