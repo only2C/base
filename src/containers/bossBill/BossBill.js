@@ -152,8 +152,8 @@ export default class BossBill extends React.Component {
         }else{
             router ='salary'
         }
-        store.orderAdd({"factory_id":2345},(pk)=>{
-            window.location.hash= '#/'+router + '/'+ pk
+        store.orderAdd({"factory_id":globalStore.getCache("factoryId")},(pk)=>{
+            window.location.hash= '#/'+router + '/'+ pk + '/'+ globalStore.getCache("factoryId")
         });
 
     }

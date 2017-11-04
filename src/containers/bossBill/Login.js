@@ -86,7 +86,9 @@ export default class Login extends React.Component {
             "loginname":userName,
             "loginpwd":password
         }
-        store.userLogin(param,()=>{
+        store.userLogin(param,(data)=>{
+            globalStore.setCache("factoryId",data.factory.id)
+            globalStore.setCache("userName",data.user.name)
             window.location.hash='#/bossBill';
             $("#root").removeClass("b-login")
         });

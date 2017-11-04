@@ -61,15 +61,6 @@ export default class BillEditUploadModule5 extends React.Component {
         })
     }
 
-
-    handlerInput = (m , e ) =>{
-        let param = this.state.param;
-        param[m]=e.target.value ;
-        this.setState({
-            param
-        })
-    }
-
     
     addSizeModal = () =>{
         let pic = this.state.pic;

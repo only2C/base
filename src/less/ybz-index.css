@@ -1904,6 +1904,13 @@ input.b-radio:hover {
   margin-right: 40px;
   float: left;
 }
+.b-salary-radio li {
+  float: left;
+  padding-right: 20px;
+}
+.b-salary-radio li input {
+  margin-top: 5px;
+}
 .month-picker {
   position: relative;
 }

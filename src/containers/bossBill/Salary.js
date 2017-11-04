@@ -5,8 +5,9 @@ import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Util from '../../common/utils';
 import Nav from '../../containers/bossBill/Nav';
+import bossStore from '../../stores/bossBill/BossBillStore';
 // 计件工资
-
+const store = new bossStore();
 @observer
 export default class Salary extends React.Component {
 
@@ -15,46 +16,48 @@ export default class Salary extends React.Component {
         this.state ={
             worker:[],  // 工人
             profession:[],   // 工种
-            salaryList:["salaryList"],
+            salaryList:[{"sku_code":"","worker":"","work":"","price":"","num":""}],
             professionModalShow:false,
             workerModalShow:false,
-
-            addWorkerInputValue:{
-                name:"",
-                idCard:""
-            } ,
             addProfessionInputValue:"",
-
-
-            tPrice:{},
-            tNum:{},
-            tTotal:{},
-
             sex:[{name:"男",id:"1"},{name:"女",id:"2"}],
             sexChecked:0,
             factory:[{id:1,name:'工厂1 '},{id:2,name:'工厂2 '}],
             addWorkerObj:{},
-            sexChecked:0
+            salaryListResult:""
+
 
         }
     }
 
     componentWillMount(){
         // ajax result
-        let worker = [{"name":"圣斗士",id:'4548'},{"name":"奥特曼",id:'45148'}];
+    /*    let worker = [{"name":"圣斗士",id:'4548'},{"name":"奥特曼",id:'45148'}];
         let profession = [{"name":"钳工",id:'0'},{"name":"电焊工",id:'1'},{"name":"清洁工",id:'2'}];
         this.setState({
             worker,
             profession
+        })*/
+        let factoryId= this.props.router.params.pk;
+        store.queryAllWorker({"factory_id":factoryId},(worker)=>{
+            this.setState({
+                worker,
+            })
+        })
+        store.queryAllWork({"factory_id":factoryId},(profession)=>{
+            this.setState({
+                profession
+            })
         })
     }
+
+
 
     componentWillReceiveProps(props) {
         // this.setState({})
     }
 
     render(){
-
         return(
             <div className="content mt50">
                 <Nav navIndex="0"/>
@@ -83,28 +86,28 @@ export default class Salary extends React.Component {
                                 return (
                                     <tr className="b-salary-tr" key={"salarylist"+n}>
                                         <td>{n+1}</td>
-                                        <td><input type="text" placeholder="输入款号" className="b-input" value="" /></td>
+                                        <td><input type="text" placeholder="输入款号" className="b-input" value={m["sku_code"]} onChange={this.setSKU.bind(this,n)}/></td>
                                         <td>
-                                            <select className="b-select">
-                                                {this.state.worker.map((m,n)=>{
+                                            <select className="b-select" onClick={this.setSalaryListInput.bind(this,n,"worker")}>
+                                                {this.state.worker.map((a,b)=>{
                                                     return(
-                                                        <option key={"worker"+n} value={m.id}>{m.name}</option>
+                                                        <option key={"worker"+b} value={a.id}>{a.name}</option>
                                                     )
                                                 })}
                                             </select>
                                         </td>
                                         <td>
-                                            <select className="b-select">
-                                                {this.state.profession.map((m,n)=>{
+                                            <select className="b-select"  onClick={this.setSalaryListInput.bind(this,n,"work")}>
+                                                {this.state.profession.map((c,d)=>{
                                                     return(
-                                                        <option key={"profession"+n} value={m.id}>{m.name}</option>
+                                                        <option key={"profession"+d} value={c.id}>{c.name}</option>
                                                     )
                                                 })}
                                             </select>
                                         </td>
-                                        <td><input type="text" placeholder="单价" value={this.state.tPrice[m]} className="b-input" onChange={this.setTableInput.bind(this,m,0)}/></td>
-                                        <td><input type="text" placeholder="件数" value={this.state.tNum[m]} className="b-input" onChange={this.setTableInput.bind(this,m,1)}/></td>
-                                        <td><input type="text" placeholder="累计" value={this.state.tTotal[m]} className="b-input" disabled/></td>
+                                        <td><input type="text" placeholder="单价" value={m["price"]} className="b-input" onChange={this.setTableInput.bind(this,n,0)}/></td>
+                                        <td><input type="text" placeholder="件数" value={m["num"]} className="b-input" onChange={this.setTableInput.bind(this,n,1)}/></td>
+                                        <td><input type="text" placeholder="累计" value={m["total"]} className="b-input" disabled/></td>
                                     </tr>
                                 )
                             })}
@@ -114,7 +117,8 @@ export default class Salary extends React.Component {
                     </div>
 
                     <div className="row b-center">
-                        <Button bsStyle="warning">保存</Button>
+                        <p className="error">{this.state.salaryListResult}</p>
+                        <Button bsStyle="warning" onClick={this.saveSalaryList}>保存</Button>
                     </div>
 
                     {/**新增工种*/}
@@ -129,7 +133,7 @@ export default class Salary extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal.bind(this,0)}>取消</Button>
-                            <Button bsStyle="warning" onClick={this.handlerAddProfession}>确定</Button>
+                            <Button bsStyle="warning" onClick={this.saveAddProfession}>确定</Button>
                         </Modal.Footer>
                     </Modal>
 
@@ -140,27 +144,27 @@ export default class Salary extends React.Component {
                         </Modal.Header>
                         <Modal.Body>
                             <div className="row ml150 mt10">
-                                <span className="w100 fl">姓名：</span><input type="text" className="ml20 b-input" value={this.state.addWorkerObj["name"]} onChange={this.handlerAddWorkInput.bind(this,"name")} placeholder="请输入姓名"/>
+                                <span className="w100 fl">姓名：</span><input type="text" className=" b-input" value={this.state.addWorkerObj["name"]} onChange={this.handlerAddWorkInput.bind(this,"name")} placeholder="请输入姓名"/>
                             </div>
                             <div className="row ml150 mt10">
-                                <span className="w100 fl">身份证号：</span><input type="text" className="ml20 b-input" value={this.state.addWorkerObj["iid"]} placeholder="身份证号" onChange={this.handlerAddWorkInput.bind(this,"iid")}/>
+                                <span className="w100 fl">身份证号：</span><input type="text" className=" b-input" value={this.state.addWorkerObj["iid"]} placeholder="身份证号" onChange={this.handlerAddWorkInput.bind(this,"iid")}/>
                             </div>
                             <div className="row ml150 mt10">
                                 <span className="w100 fl">性别：</span>
-                                <ul>
+                                <ul className="b-salary-radio">
                                     {this.state.sex.map((m,n)=>{
                                         return(
-                                            <li key={"sex"+n} onChange={this.setWorkerRadio.bind(this,m.id,n)}><input type="radio" className="b-radio"  checked={this.state.sexChecked == n ? true :''}/><span  className="b-radio-1">{m.name}</span></li>
+                                            <li key={"sex"+n} onChange={this.setWorkerRadio.bind(this,m.id,n)}><input type="radio"  checked={this.state.sexChecked == n ? true :''}/><span  className="b-radio-1">{m.name}</span></li>
                                         )
                                     })}
                                 </ul>
                             </div>
                             <div className="row ml150 mt10">
                                 <span className="w100 fl">工厂：</span>
-                                <select className="b-select">
+                                <select className="b-select"  onChange={this.setWorkerSelect}>
                                     {this.state.factory.map((m,n)=>{
                                         return (
-                                            <option key={"factory"+n} value={m.id} onChange={this.setWorkerSelect}>{m.name}</option>
+                                            <option key={"factory"+n} value={m.id}>{m.name}</option>
                                         )
                                     })}
                                 </select>
@@ -188,43 +192,77 @@ export default class Salary extends React.Component {
     //新增行 列
     addTable =()=>{
         let salaryList = this.state.salaryList;
-        salaryList.push("salaryList"+new Date().getTime());
+        salaryList.push({"sku_code":"","worker":"","work":"","price":"","num":""});
         this.setState({
             salaryList
         })
 
     }
 
-    // 设置表格数据  单价 ，数量 ，总价
-    setTableInput =(m,i,e)=>{
-        let tPrice = this.state.tPrice,
-            tNum = this.state.tNum ,
-            tTotal = this.state.tTotal,
-            el = e.target.value ;
-        if(i==0){
-            tPrice[m] = el ;
-            if(parseFloat(tPrice[m]) && parseFloat(tNum[m])){
-                tTotal[m] =Util.formatCurrency( parseFloat(tPrice[m])*parseFloat(tNum[m])) ;
-            }else
-                tTotal[m] = "0.00"
-            this.setState({
-                tPrice,
-                tTotal
-            })
-
-        }else if(i==1){
-            tNum[m] = el ;
-            if(parseFloat(tPrice[m]) && parseFloat(tNum[m])){
-                tTotal[m] = Util.formatCurrency(  parseFloat(tPrice[m])*parseFloat(tNum[m])) ;
-            }else
-                tTotal[m] = "0.00"
-            this.setState({
-                tNum,
-                tTotal
-            })
-        }
-
+    setSKU = (id,e)=>{
+        let salaryList = this.state.salaryList ;
+        salaryList[id]["sku_code"] = e.target.value ;
+        this.setState({
+            salaryList
+        })
     }
+
+    setSalaryListInput =(id,type,e)=>{
+        let el = $(e.currentTarget).find("option:selected");
+        let salaryList = this.state.salaryList ;
+        salaryList[id][type] = el.val();
+        this.setState({
+            salaryList
+        })
+    }
+
+
+    // 设置表格数据  单价 ，数量 ，总价
+    setTableInput =(i,type,e)=>{
+        let salaryList = this.state.salaryList ;
+        if(type == 0 ){
+            salaryList[i]["price"] = e.target.value
+        }
+        if(type == 1 ){
+            salaryList[i]["num"] = e.target.value
+        }
+        if(salaryList[i]["price"] && salaryList[i]["num"] ){
+            salaryList[i]["total"] = Util.formatCurrency( parseFloat(salaryList[i]["price"] )*parseFloat(salaryList[i]["num"] ))
+        }
+        this.setState({
+            salaryList
+        })
+    }
+
+    saveSalaryList = ()=>{
+        let salaryList = this.state.salaryList;
+        //
+        let that = this;
+        let worker = this.state.worker ? this.state.worker[0].id :"" ;
+        let work = this.state.profession ?this.state.profession[0].id:"";
+        salaryList.forEach((m)=>{
+            if(m["worker"] == ""){
+                m["worker"] = worker
+            }
+            if(m["work"] == ""){
+                m["work"] = work
+            }
+        })
+
+        store.addSalary(salaryList,()=>{
+
+            this.setState({
+                salaryListResult:"保存成功！"
+            },()=>{
+                setTimeout(()=>{
+                    that.setState({
+                        salaryListResult:""
+                    })
+                },3000)
+            })
+        })
+    }
+
     // 新增工种
     addProfession = () =>{
         this.setState({
@@ -232,23 +270,26 @@ export default class Salary extends React.Component {
         })
     }
 
-    handlerAddProfession =() =>{
+    saveAddProfession =() =>{
+        let param = {
+            name:this.state.addProfessionInputValue,
+            facrtory_id:this.props.router.params.pk
+        }
+        let profession = this.state.profession;
+        store.addWork(param,()=>{
+            profession.push({id:new Date().getTime(),name:param.name });
+            this.setState({
+                profession,
+                professionModalShow:false
+            })
 
+        })
     }
 
-    addProfessionInput =(type , e)=>{
-        if(type =="name")
-            this.setState({
-                addProfessionInputValue:{
-                  name:Object.assign(type , e.target.value)
-                }
-            })
-        else
-            this.setState({
-                addProfessionInputValue:{
-                    idCard:Object.assign(type , e.target.value)
-                }
-            })
+    addProfessionInput =(e)=>{
+       this.setState({
+           addProfessionInputValue:e.target.value 
+       })
     }
 
 
@@ -268,25 +309,50 @@ export default class Salary extends React.Component {
         })
     }
 
-    setWorkerRadio = () =>{
-
+    setWorkerRadio = (v,n) =>{
+        let addWorkerObj = this.state.addWorkerObj;
+        addWorkerObj["sex"] = v
+        this.setState({
+            sexChecked:n,
+            addWorkerObj
+        })
     }
 
-    setWorkerSelect = () =>{
-
+    setWorkerSelect = (e) =>{
+        let addWorkerObj = this.state.addWorkerObj ;
+        let el = $(e.currentTarget).find("option:selected");
+        addWorkerObj["factory_id"] = el.val();
+        this.setState({
+            addWorkerObj
+        })
     }
 
     saveAddWorker = ()=>{
         let addWorkerObj = this.state.addWorkerObj ;
+        let worker = this.state.worker ;
+        let param ={
+            name:addWorkerObj["name"],
+            sex:addWorkerObj["sex"] || 1,
+            iid:addWorkerObj["iid"] ,
+            factory_id:addWorkerObj["factory_id"] || this.state.factory[0].id
+        }
+        store.addWorker(param,()=>{
+            worker.push({id:"",name:param.name})
+            this.setState({
+                worker,
+                workerModalShow:false
+            })
+
+        })
+
     }
 
     // 新增工人 end
 
-
-
     closeModal = (param) =>{
         if(param == 0 ){
             this.setState({
+                addProfessionInputValue:"",
                 professionModalShow:false
             })
         }else{

@@ -6,7 +6,9 @@ import _ from  'lodash';
 import Util from '../../common/utils';
 @observer
 export default class Nav extends React.Component {
-
+    componentWillMount =()=>{
+        console.log("sssssss"+globalStore.getCache("userName"))
+    }
     render(){
         return(
             <div className="btn-bottom-fixed-top">
@@ -17,7 +19,7 @@ export default class Nav extends React.Component {
                     </div>
                     <div className="col-sm-8">
                         <div className="fr">
-                            <DropdownButton bsStyle="default" title="Admin" key="9" >
+                            <DropdownButton bsStyle="default" title={globalStore.getCache("userName")} key="9" >
                                 <MenuItem eventKey="1" onClick={this.bindEvent.bind(this,0)}>设置</MenuItem>
                                 <MenuItem eventKey="2" onClick={this.bindEvent.bind(this,1)}>退出</MenuItem>
                             </DropdownButton>

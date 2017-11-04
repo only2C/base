@@ -11,10 +11,8 @@ class GlobalStore {
 
     //全局缓存对象, 放置科目,参照等信息
     cache = {
-        subjectTree: null,
-        accSubjectType: [],
-        accbookAll: [],
-        accBalance: ""//期初余额页面的已选中的账簿
+        userName:"",
+        factoryId:""
     }
 
     //设置缓存
