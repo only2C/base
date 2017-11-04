@@ -35,6 +35,10 @@ var Config = {
          addSalary:serverUrl +'/salary/add',  // 新增工资
          queryAllWorker:serverUrl + '/worker/all' , //查找所有工人
          queryAllWork:serverUrl + '/work/all' , //查找所有工种
+         addIncome:serverUrl + '/income/add' , //新增收款
+         addIncomeClient:serverUrl + '/income_client/add' , //新增收款客户
+         queryIncome:serverUrl + '/income/find' , //查询收款
+
      }
 
 

@@ -363,6 +363,6 @@ export default class Salary extends React.Component {
     }
     //取消
     exit = ()=>{
-        window.location.hash= '#/bossBill'
+        window.location.hash= '#/bossBill/'+this.props.router.params.factoryId
     }
 }

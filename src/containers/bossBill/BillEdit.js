@@ -22,7 +22,6 @@ export default class BillEdit extends React.Component {
     }
 
     componentWillMount(){
-        this.props.router.params.pk
     }
 
     setStateData = (data, callback) => {
@@ -37,7 +36,7 @@ export default class BillEdit extends React.Component {
                 <Nav navIndex="0"/>
                 <div className="details_title">{this.props.router.params.add ?"编辑":"新增"}订单</div>
                 {/*1、订单信息**/}
-                <BillEditOrder setStateData = {this.setStateData} orderId={this.props.router.params.pk}/>
+                <BillEditOrder setStateData = {this.setStateData} orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
                 {/*2、拍照上传款式图片，合同照片等**/}
                 <BillEditUploadModule2 orderId={this.props.router.params.pk}/>
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}
@@ -66,6 +65,6 @@ export default class BillEdit extends React.Component {
 
     //取消
     exit = ()=>{
-        window.location.hash= '#/bossBill'
+        window.location.hash= '#/bossBill/'+this.props.router.params.factoryId
     }
 }

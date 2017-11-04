@@ -649,6 +649,75 @@ export default class BossBillStore {
             }
         })
     }
+    // 新增收款
+    @action addIncome(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.addIncome,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback(data);
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    // 新增收款客户
+    @action addIncomeClient(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.addIncomeClient,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback(data);
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+    //查询收款
+    @action queryIncome(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryIncome,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback(data.incomes);
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
 
 
 }

@@ -14,7 +14,7 @@ export default class Nav extends React.Component {
             <div className="btn-bottom-fixed-top">
                 <div className="row btn-bottom">
                     <div className="col-sm-4 b-nav" >
-                        <a href="#/bossBill" className={this.props.navIndex == 0 ? "b-nav-active":""}>订单</a>
+                        <a href={ "#/bossBill/" + globalStore.getCache("factoryId")}className={this.props.navIndex == 0 ? "b-nav-active":""}>订单</a>
                         <a href="#/credit" className={this.props.navIndex == 1 ? "b-nav-active":""}>贷款</a>
                     </div>
                     <div className="col-sm-8">

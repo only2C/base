@@ -46,7 +46,7 @@ export default class BossBill extends React.Component {
 
     // 初始化客户列表
     initClient =()=>{
-        store.queryClientList({"factory_id":""},()=>{
+        store.queryClientList({"factory_id":this.props.router.params.factoryId},()=>{
             this.setState({
                 clientList:store.queryClientListData
             })

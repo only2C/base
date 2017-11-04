@@ -73,8 +73,8 @@ ReactDom.render(
       <Route path="/loanBill/:type/:billTypePk" component={LoanBill}/>
       <Route path="/t" component={T}/>
 
-      <Route path="/bossBill" component={BossBill}/>
-      <Route path="/billEdit/:pk/:add" component={BillEdit}/> /*编辑订单*/
+      <Route path="/bossBill/:factoryId" component={BossBill}/>
+      <Route path="/billEdit/:pk/:factoryId/:add" component={BillEdit}/> /*编辑订单*/
       <Route path="/billEdit/:pk/:factoryId" component={BillEdit}/> /* 新增订单*/
       <Route path="/addMoney/:pk/:factoryId" component={AddMoney}/> /* 新增收款*/
       <Route path="/Login" component={Login}/> /* 登陆 */
