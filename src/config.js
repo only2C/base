@@ -8,10 +8,10 @@ if(window.SERVICESURL!=''){
 var Config = {
 
      bossBill:{
-         userReg:serverUrl + '/client/reg', //用户注册
-         userExsisted:serverUrl + '/userExsisted', //邮箱验证
-         userLogin:serverUrl + '/client/login', //用户登录
-         upPwd:serverUrl + '/client/updpwd',// 修改密码
+         userReg:serverUrl + '/user/reg', //用户注册
+         userExsisted:serverUrl + '/user/email', //邮箱验证
+         userLogin:serverUrl + '/user/login', //用户登录
+         upPwd:serverUrl + '/user/updpwd',// 修改密码
          orderAdd:serverUrl + '/order/add', // 新增订单
          orderSave:serverUrl + '/order/basic/saves', //保存订单
          queryOrderList:serverUrl+'/order/find', //查询订单列表

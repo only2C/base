@@ -6,6 +6,8 @@ import {DatePicker2} from 'ssc-grid';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import  Nav from '../../containers/bossBill/Nav';
+import billStore from '../../stores/bossBill/BossBillStore';
+const store = new billStore();
 
 // 设置
 @observer
@@ -80,6 +82,7 @@ export default class Setting extends React.Component {
                     </div>
                     <div className="row" >
                         <div className="b-regist-box-btn">
+                            <p className="error">{this.state.passwordError}</p>
                             <Button bsStyle="warning" onClick={this.updateSys}>确定</Button>
                             <Button onClick={this.exit}>取消</Button>
                         </div>
@@ -91,7 +94,17 @@ export default class Setting extends React.Component {
         )
     }
     updateSys =()=>{
+        // TODO  user_id
 
+        let param ={
+            user_id:1,
+            pwd:this.state.password
+        };
+        store.userUpatePassword(param,()=>{
+            this.setState({
+                passwordError:"修改成功!"
+            })
+        })
     }
     //取消
     exit = ()=>{

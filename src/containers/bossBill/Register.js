@@ -115,7 +115,7 @@ export default class Register extends React.Component {
             name:login['userName'],
             pwd:login['password'],
             sex:login['sex']||1,
-            factory:login['factory'],
+            factory:{"name":"北京","id":1},
             iid:login['idCard'],
             email:login['email'],
         };
@@ -161,7 +161,7 @@ export default class Register extends React.Component {
                         })}
                         </ul>
                     </div>
-                    <div className="row mt30">
+                    {/*<div className="row mt30">
                         <span>工厂：</span>
                         <select className="b-select">
                             {this.state.factory.map((m,n)=>{
@@ -170,7 +170,7 @@ export default class Register extends React.Component {
                                 )
                             })}
                         </select>
-                    </div>
+                    </div>*/}
 
                     <div className="row mt30">
                         <span>密码:</span>

@@ -46,8 +46,8 @@ export default class BossBillStore {
             data: JSON.stringify(param),
             contentType: "application/json",
             success: data => {
-                if (data.result == 0 ) {
-                    this.userExsistedResult = true ;
+                if (data.result == 1 ) {
+                    this.userExsistedResult = false ;
                 } else {
                     //that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
@@ -57,6 +57,30 @@ export default class BossBillStore {
             }
         })
     }
+    // 修改用户密码
+    @action userUpatePassword (param , callback ){
+        let that = this ;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.upPwd,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data) {
+                    if (typeof callback == "function") {
+                        callback();
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
 
     @action userLogin(param,callback){
         let that = this ;
@@ -72,7 +96,7 @@ export default class BossBillStore {
                         callback(data)
                     }
                 } else {
-                    //that.globalStore.showError(data.error ? data.error : "查询失败")
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
                 }
             },
             error: (xhr, status, err) => {
