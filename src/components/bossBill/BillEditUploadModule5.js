@@ -39,11 +39,12 @@ export default class BillEditUploadModule5 extends React.Component {
 
     componentWillMount(){
         this.queryOutfactoryList();
+
     }
 
     // 获取外发工厂和外发项目
     queryOutfactoryList = ()=>{
-        let factoryId = ""
+        let factoryId =this.props.factoryId
         store.queryOutFactory({factory_id:factoryId},()=>{
             this.setState({
                 outfactoryList:store.outFactoryList
@@ -106,12 +107,19 @@ export default class BillEditUploadModule5 extends React.Component {
     saveModule5 =()=>{
         let pic = this.state.pic ;
         let that = this;
-        let result = [];
+        let result = {};
         pic.forEach((m,n)=>{
-            result.push({"money":m.name , "url": m.url,"finish_ts":m.finish_ts})
+            if(n==0){
+                result.num = m.name
+                result.url = m.url
+                result.finish_ts = m.finish_ts
+            }
+
+            // result.push({"money":m.name , "url": m.url,"finish_ts":m.finish_ts})
         })
+
         let param ={
-            'order_id':this.props.orderId ,
+            'order_id': this.props.orderId,
             'tech':result
         }
         store.saveTech(param,()=>{
@@ -134,7 +142,6 @@ export default class BillEditUploadModule5 extends React.Component {
     setSelfWork = (index , type ,e)=>{
         let selfWork = this.state.selfWork ;
         selfWork[index][type] = e.target.value ;
-        selfWork
         this.setState({
             selfWork
         })
@@ -153,7 +160,7 @@ export default class BillEditUploadModule5 extends React.Component {
         let that = this ;
         let param ={
             "order_id":this.props.orderId ,
-            "works":this.state.selfWork
+            "works":this.state.selfWork[0]
         }
         store.saveSelfWork(param ,()=>{
 
@@ -302,15 +309,15 @@ export default class BillEditUploadModule5 extends React.Component {
         let that = this;
         return (
             <div className="stdreimburse-box ">
-                <h3 className="b-title">5、录入裁剪、加工及工艺信息<Button className="ml50" onClick={this.addSizeModal}>新增</Button></h3>
+                <h3 className="b-title">5、录入裁剪、加工及工艺信息</h3>
                 <div className="row" style={{marginTop:"30px"}}>
                     {this.state.pic.map((m,n)=>{
                         m.id=m.id||new Date().getTime();
                         return (
-                            <div className="col-md-5 mt15">
+                            <div className="col-md-6 mt15">
                                 <div className="b-upload-box col-md-6">
                                     <p className="b-upload-box-tag">{n+1}</p>
-                                    {m.url ?(<img src={m.url} className="b-upload-pic"/>) :(
+                                    {m.url ?(<img src={Config.serverUrl + m.url} className="b-upload-pic"/>) :(
                                         <FileUpload ref="fileUpload" id={m.id} successCallBack ={this.uploadEvent}/>
                                     )}
                                 </div>
@@ -338,7 +345,7 @@ export default class BillEditUploadModule5 extends React.Component {
                     <Button bsStyle="warning" onClick={this.saveModule5}>保存</Button>
                 </div>
                 <div className="row ">
-                    <h3 className="b-title">本厂加工<Button className="ml50" onClick={this.addSelfWork}>新增</Button></h3>
+                    <h3 className="b-title">本厂加工{/*<Button className="ml50" onClick={this.addSelfWork}>新增</Button>*/}</h3>
                     {this.state.selfWork.map((m,n)=>{
                         return (
                             <div className="b-self-box fl" key={"selfwork-"+n}>

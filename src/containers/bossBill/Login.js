@@ -6,6 +6,7 @@ import {DatePicker2} from 'ssc-grid';
 import Util from '../../common/utils';
 import {Button,Modal} from 'react-bootstrap';
 import billStore from '../../stores/bossBill/BossBillStore';
+import localforage from 'localforage';
 const store = new billStore();
 @observer
 export default class Login extends React.Component {
@@ -87,10 +88,20 @@ export default class Login extends React.Component {
             "loginpwd":password
         }
         store.userLogin(param,(data)=>{
-            globalStore.setCache("factoryId",data.factory.id)
+        /*    globalStore.setCache("factoryId",data.factory.id)
             globalStore.setCache("userName",data.user.name)
-            window.location.hash='#/bossBill/'+data.factory.id;
-            $("#root").removeClass("b-login")
+            globalStore.setCache("userId",data.user.id)*/
+            localforage.setItem("userName",data.user.name)
+
+
+            localforage.setItem("loginInfo",data,()=>{
+                window.location.hash='#/bossBill/'+data.factory.id;
+                $("#root").removeClass("b-login")
+            }).then(()=>{
+
+            }).catch(()=>{
+
+            })
         });
 
     }

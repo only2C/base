@@ -491,7 +491,7 @@ export default class BossBillStore {
             contentType: "application/json",
             success: data => {
                 if (data.result==0) {
-                    this.outFactoryList = Object.assign([],data.factorys)
+                    this.outFactoryList = Object.assign([],data.factory)
                     if (typeof callback == "function") {
                         callback();
                     }

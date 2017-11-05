@@ -9,6 +9,7 @@ import Util from '../../common/utils';
 import { MonthPicker } from 'ssc-grid'
 import BossStore from '../../stores/bossBill/BossBillStore';
 const store = new BossStore();
+import localforage from 'localforage';
 @observer
 export default class BossBill extends React.Component {
 
@@ -22,12 +23,20 @@ export default class BossBill extends React.Component {
             clientList:[{"id":0,"name":"全部客户"}],
             client:"",
             factoryList:[{"name":"工厂",id:"1"}],
-            factory:""
+            factory:"",
+            factoryId:""
 
         }
     }
 
     componentWillMount(){
+        let that = this;
+        localforage.getItem("loginInfo",function(err,value){
+            that.setState({
+                factoryId:value.factory.id
+            })
+        });
+
         this.initDate();
         this.initClient();
         this.initFactory();
@@ -152,7 +161,7 @@ export default class BossBill extends React.Component {
         }else{
             router ='salary'
         }
-        store.orderAdd({"factory_id":globalStore.getCache("factoryId")},(pk)=>{
+        store.orderAdd({"factory_id":this.state.factoryId},(pk)=>{
             window.location.hash= '#/'+router + '/'+ pk + '/'+ globalStore.getCache("factoryId")
         });
 

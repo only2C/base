@@ -8,7 +8,7 @@ import {Button,Modal} from 'react-bootstrap';
 import  Nav from '../../containers/bossBill/Nav';
 import billStore from '../../stores/bossBill/BossBillStore';
 const store = new billStore();
-
+import localforage from 'localforage';
 // 设置
 @observer
 export default class Setting extends React.Component {
@@ -18,11 +18,20 @@ export default class Setting extends React.Component {
         this.state ={
             password:"",
             password2:"",
-            passwordError:false
+            passwordError:false,
+            userId:""
         }
     }
 
     componentWillMount(){
+        let that = this;
+        localforage.getItem("loginInfo",function(err,value){
+            that.setState({
+                userId:value.user.id
+            })
+        });
+
+
         $("#root").addClass("b-login")
     }
 
@@ -82,7 +91,7 @@ export default class Setting extends React.Component {
                     </div>
                     <div className="row" >
                         <div className="b-regist-box-btn">
-                            <p className="error">{this.state.passwordError}</p>
+                            <p className="error">{this.state.passwordSuccess}</p>
                             <Button bsStyle="warning" onClick={this.updateSys}>确定</Button>
                             <Button onClick={this.exit}>取消</Button>
                         </div>
@@ -94,15 +103,13 @@ export default class Setting extends React.Component {
         )
     }
     updateSys =()=>{
-        // TODO  user_id
-
         let param ={
-            user_id:1,
+            user_id:this.state.userId,
             pwd:this.state.password
         };
         store.userUpatePassword(param,()=>{
             this.setState({
-                passwordError:"修改成功!"
+                passwordSuccess:"修改成功!"
             })
         })
     }

@@ -11,8 +11,8 @@ class GlobalStore {
 
     //全局缓存对象, 放置科目,参照等信息
     cache = {
-        userName:"123",
-        factoryId:"12345"
+        userName:"liucong",
+        factoryId:"1"
     }
 
     //设置缓存

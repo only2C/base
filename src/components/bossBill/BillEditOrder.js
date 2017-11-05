@@ -21,7 +21,9 @@ export default class BillEditOrder extends React.Component {
             sizeTotal:0,
             order:{},
             sizeList:[],
-            clientList:[]
+            clientList:[],
+            saveOrderResult:"",
+            saveOrderResult2:true
         }
     }
 
@@ -31,7 +33,7 @@ export default class BillEditOrder extends React.Component {
     }
 
     getClientList = ()=>{
-        store.queryClientList({"factory_id":this.props.orderId},()=>{
+        store.queryClientList({"factory_id":this.props.factoryId},()=>{
             this.setState({
                 clientList:store.queryClientListData
             })
@@ -75,8 +77,8 @@ export default class BillEditOrder extends React.Component {
                 <div className="row b-edit">
                     <div className="col-md-4"><span className="b-edit-tit">合同编号：</span> <input type="text" onChange={this.setOrder.bind(this,"contract_code")} value={order['contract_code']} placeholder="合同编号"/></div>
                     <div className="col-md-4"><span className="b-edit-tit">SKU编号：</span><input type="text" onChange={this.setOrder.bind(this,"SKU_code")} value={order['SKU_code']} placeholder="sku编号"/></div>
-                    <div className="col-md-4"><span className="b-edit-tit">接单单价：</span><input type="text" placeholder="接单单价" onChange={this.setOrder.bind(this,"number")} value={order['number']}/></div>
-                    <div className="col-md-4"><span className="b-edit-tit">下单件数：</span><input type="text" disabled="true" onChange={this.setOrder.bind(this,"price")} value={order['price']}/></div>
+                    <div className="col-md-4"><span className="b-edit-tit">接单单价：</span><input type="text" placeholder="接单单价" onChange={this.setOrder.bind(this,"price")} value={order['price']}/></div>
+                    <div className="col-md-4"><span className="b-edit-tit">下单件数：</span><input type="text" disabled="true" onChange={this.setOrder.bind(this,"number")} value={order['number']}/></div>
                     <div className="col-md-4">
                         <span className="b-edit-tit">下单时间：</span>
                         <DatePicker2 id="example-datepicker-1" dateFormat="YYYY-MM-DD" value={order['order_ts']} onChange={this.setTime.bind(this,"order_ts")}/>
@@ -84,9 +86,8 @@ export default class BillEditOrder extends React.Component {
                     <div className="col-md-4">
                         <span className="b-edit-tit">下单类型：</span>
                         <select className="b-select" onChange={that.setSelect.bind(this,"order_type")}>
-                            <option value="1">1562</option>
-                            <option value="2">1565</option>
-                            <option value="3">1567</option>
+                            <option value="1">首单</option>
+                            <option value="2">翻单</option>
                         </select>
                     </div>
                     <div className="col-md-4">
@@ -110,7 +111,8 @@ export default class BillEditOrder extends React.Component {
                     </div>
                 </div>
                 <div className="row b-center">
-                    <Button bsStyle="warning" onClick={this.saveOrder}>保存</Button>
+                    <p className="error">{this.state.saveOrderResult}</p>
+                    {this.state.saveOrderResult2 ?(<Button bsStyle="warning" onClick={this.saveOrder}>保存</Button>):"" }
                 </div>
 
                 <div className="row b-border-line">
@@ -239,13 +241,23 @@ export default class BillEditOrder extends React.Component {
             "sku_code":order['SKU_code'],
             "num":order['number'],
             "price":order['price'],
-            "type":order['order_type'].id || 0,
+            "type":order['order_type'] ?order['order_type'].id: 0,
             "deliver_ts":order['deliver_ts'],
             "pay_ts":order['pay_ts'],
-            "client":order['client'],
+            "client":order['client'] ? order['client'] : this.state.clientList[0],
         }
-
+        let that = this;
         store.orderSave(param,()=>{
+            this.setState({
+                saveOrderResult:"保存成功！",
+                saveOrderResult2:false
+            },()=>{
+                setTimeout(()=>{
+                    that.setState({
+                        saveOrderResult:""
+                    })
+                },3000)
+            })
 
         })
 
@@ -256,10 +268,10 @@ export default class BillEditOrder extends React.Component {
             order_id:this.props.orderId,
             sizes:this.state.sizeList
         }
+        let order = this.state.order;
         store.saveSizes(param,()=>{
-
+            order["num"] = this.state.sizeTotal
         })
     }
-
 
 }

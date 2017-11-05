@@ -6,14 +6,14 @@ if(window.SERVICESURL!=''){
 }
 
 var Config = {
-
+    serverUrl:serverUrl,
      bossBill:{
          userReg:serverUrl + '/user/reg', //用户注册
          userExsisted:serverUrl + '/user/email', //邮箱验证
          userLogin:serverUrl + '/user/login', //用户登录
          upPwd:serverUrl + '/user/updpwd',// 修改密码
          orderAdd:serverUrl + '/order/add', // 新增订单
-         orderSave:serverUrl + '/order/basic/saves', //保存订单
+         orderSave:serverUrl + '/order/basic/save', //保存订单
          queryOrderList:serverUrl+'/order/find', //查询订单列表
          saveSizes:serverUrl + '/order/size/save',  // 保存尺码信息
          saveOrderImg:serverUrl + '/order/img/save', //保存订单图片信息
@@ -27,9 +27,9 @@ var Config = {
          upload:serverUrl + '/comm/upload',  //上传
          queryClientList:serverUrl + '/order/client/all' , //查询客户列表
          getSizeDefault:serverUrl + '/order/size/default',  //获取基础尺码
-         queryOutfactory:serverUrl + '/outfactory/find',   //获取外发工厂
-         queryOutfactoryItem:serverUrl +'/outfactory/item/find',  //获取外发工厂项目
-         queryOuttechItem:serverUrl +'/outtech/find',  //获取外发工艺项目
+         queryOutfactory:serverUrl + '/outfac/find',   //获取外发工厂
+         queryOutfactoryItem:serverUrl +'/outfac/findItem',  //获取外发工厂项目
+         queryOuttechItem:serverUrl +'/outfac/findTech',  //获取外发工艺项目
          addWorker:serverUrl +'/worker/add',  // 新增工人
          addWork:serverUrl +'/work/add',  // 新增工种
          addSalary:serverUrl +'/salary/add',  // 新增工资

@@ -4,10 +4,23 @@ import {Button,DropdownButton,MenuItem} from 'react-bootstrap';
 import globalStore from '../../stores/GlobalStore';
 import _ from  'lodash';
 import Util from '../../common/utils';
+import localforage from 'localforage';
 @observer
 export default class Nav extends React.Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            userName:""
+        }
+    }
+
     componentWillMount =()=>{
-        console.log("sssssss"+globalStore.getCache("userName"))
+        let that = this;
+        localforage.getItem("loginInfo",function(err,value){
+             that.setState({
+                 userName:value.user.name
+             })
+        });
     }
     render(){
         return(
@@ -19,7 +32,7 @@ export default class Nav extends React.Component {
                     </div>
                     <div className="col-sm-8">
                         <div className="fr">
-                            <DropdownButton bsStyle="default" title={globalStore.getCache("userName")} key="9" >
+                            <DropdownButton bsStyle="default" title={this.state.userName } key="9" >
                                 <MenuItem eventKey="1" onClick={this.bindEvent.bind(this,0)}>设置</MenuItem>
                                 <MenuItem eventKey="2" onClick={this.bindEvent.bind(this,1)}>退出</MenuItem>
                             </DropdownButton>

@@ -102,10 +102,10 @@ export default class BillEditUploadModule2 extends React.Component {
                     {this.state.pic.map((m,n)=>{
                         m.id=m.id||new Date().getTime();
                         return (
-                            <div className="col-md-5 mt15">
+                            <div className="col-md-6 mt15">
                                 <div className="b-upload-box col-md-6">
                                     <p className="b-upload-box-tag">{n+1}</p>
-                                    {m.url ?(<img src={m.url} className="b-upload-pic"/>) :(
+                                    {m.url ?(<img src={Config.serverUrl+ m.url} className="b-upload-pic"/>) :(
                                         <FileUpload ref="fileUpload" id={m.id} successCallBack ={this.uploadEvent}/>
                                     )}
                                 </div>

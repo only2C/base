@@ -42,11 +42,11 @@ export default class BillEdit extends React.Component {
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}
                 <BillEditUploadModule3 orderId={this.props.router.params.pk}/>
                 {/*4、拍照上传采购单，录入辅料采购及辅料款支付记录**/}
-                <BillEditUploadModule4 orderId={this.props.router.params.pk}/>
+                <BillEditUploadModule4 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
                 {/*5、录入裁剪、加工及工艺信息**/}
-                <BillEditUploadModule5 orderId={this.props.router.params.pk}/>
+                <BillEditUploadModule5 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
                 {/*6、拍照上传收货单，录入出货信息**/}
-                <BillEditUploadModule6 orderId={this.props.router.params.pk}/>
+                <BillEditUploadModule6 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
                 <div className="btn-bottom-fixed">
                     <div className="row btn-bottom">
                         <div className="col-sm-12">
