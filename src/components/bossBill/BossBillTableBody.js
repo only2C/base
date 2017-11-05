@@ -28,13 +28,14 @@ export default class BossBillTableBody extends React.Component {
                 {this.props.tableData.map((m,n)=>{
                     return(
                         <div className="row mt30 b-body" key={"n"+n}>
+                            <div style={{"width":"2%"}} className="fl"><span className="b-body-spanIcon">{n+1}</span></div>
                             <div className="col-md-10 b-body-list">
                                 <div className="col-md-3">sku编码：{m.sku_code}</div>
                                 <div className="col-md-3">客户：{m.client.name}</div>
                                 <div className="col-md-3">单价：{m.price}</div>
                                 <div className="col-md-3">数量：{m.num}</div>
                                 <div className="col-md-3">发货数量：{m.deliver_num}</div>
-                                <div className={( m.num_diff.type==1 ? "red":(m.num_diff.type==2 ?"blue":"") ) +" col-md-3"}>
+                                {/*<div className={( m.num_diff.type==1 ? "red":(m.num_diff.type==2 ?"blue":"") ) +" col-md-3"}>
                                     件数差：{m.num_diff.value}
                                     {m.num_diff.type==1 ? (<span className="ml10 glyphicon glyphicon-arrow-up"></span>):
                                         (m.num_diff.type==2 ? (<span className="ml10 glyphicon glyphicon-arrow-down"></span>):"")
@@ -51,7 +52,7 @@ export default class BossBillTableBody extends React.Component {
                                     {m.submaterial_money.type==1 ? (<span className="ml10 glyphicon glyphicon-arrow-up"></span>):
                                         (m.submaterial_money.type==2 ? (<span className="ml10 glyphicon glyphicon-arrow-down"></span>):"")
                                     }
-                                </div>
+                                </div>*/}
 
                             </div>
                             <div className="col-md-1">

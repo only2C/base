@@ -30,14 +30,16 @@ var Config = {
          queryOutfactory:serverUrl + '/outfac/find',   //获取外发工厂
          queryOutfactoryItem:serverUrl +'/outfac/findItem',  //获取外发工厂项目
          queryOuttechItem:serverUrl +'/outfac/findTech',  //获取外发工艺项目
-         addWorker:serverUrl +'/worker/add',  // 新增工人
-         addWork:serverUrl +'/work/add',  // 新增工种
-         addSalary:serverUrl +'/salary/add',  // 新增工资
-         queryAllWorker:serverUrl + '/worker/all' , //查找所有工人
-         queryAllWork:serverUrl + '/work/all' , //查找所有工种
+         addWorker:serverUrl +'/salary/addWorker',  // 新增工人
+         addWork:serverUrl +'/salary/addProfession',  // 新增工种
+         addSalary:serverUrl +'/salary/addSalary',  // 新增工资
+         queryAllWorker:serverUrl +'/salary/findWorker' , //查找所有工人
+         queryAllWork:serverUrl + '/salary/findProfession' , //查找所有工种
+         queryAllSalary:serverUrl + '/salary/findSalary',  //查询列表
          addIncome:serverUrl + '/income/add' , //新增收款
-         addIncomeClient:serverUrl + '/income_client/add' , //新增收款客户
+         addIncomeClient:serverUrl + '/income/addClient' , //新增收款客户
          queryIncome:serverUrl + '/income/find' , //查询收款
+         queryIncomeClient:serverUrl + '/income/getClients' , //获取收款客户
 
      }
 

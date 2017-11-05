@@ -720,6 +720,7 @@ export default class BossBillStore {
         })
     }
     //查询收款
+    @observable setSummarizes ={}
     @action queryIncome(param,callback){
         let that = this;
         $.ajax({
@@ -732,6 +733,7 @@ export default class BossBillStore {
                 if (data.result==0) {
                     if (typeof callback == "function") {
                         callback(data.incomes);
+                        this.setSummarizes = Object.assign({},data.summarizes)
                     }
                 } else {
                     that.globalStore.showError(data.error ? data.error : "保存失败")
@@ -742,6 +744,52 @@ export default class BossBillStore {
             }
         })
     }
-
+  //查询收款
+    @action queryIncomeClient(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryIncomeClient,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback(data.clients);
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+  //查询收款
+    @observable allSalaryList ={};
+    @action queryAllSalary(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryAllSalary,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    if (typeof callback == "function") {
+                        callback(data);
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "保存失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
 
 }

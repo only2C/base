@@ -15,7 +15,7 @@ export default class AddMoney extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            timeValue: new Date().getFullYear() + "-" + new Date().getMonth(), // 时间
+            timeValue: new Date().getFullYear() + "-" + ( new Date().getMonth()+1), // 时间
             clientList:[],
             client:"",
             searchResult:[],
@@ -27,17 +27,18 @@ export default class AddMoney extends React.Component {
         }
     }
     componentWillMount (){
+        this.getClient();
+    }
 
-        store.queryClientList({"factory_id":this.props.router.params.factoryId},()=>{
+    getClient = ()=>{
+        store.queryIncomeClient({"factory_id":this.props.router.params.factoryId},(data)=>{
             this.setState({
-                clientList:store.queryClientListData
+                clientList:data
             },()=>{
                 this.searchEvent();
             })
         });
-
     }
-
     render(){
         return(
             <div className="content mt50">
@@ -65,7 +66,7 @@ export default class AddMoney extends React.Component {
                     </div>
                 </div>
                 <div className="stdreimburse-box">
-            {/*        <div className="row">
+                    <div className="row">
                         <div className="col-md-5">
                             <ReactEcharts
                                 option={this.getOption()}
@@ -74,11 +75,11 @@ export default class AddMoney extends React.Component {
                                 theme='my_theme' />
                         </div>
                         <div className="col-md-2 b-add-total">
-                            <span>已收款：12345.45 元</span>
-                            <span className="red">欠收款：12345.45 元</span>
-                            <span className="blue">预收款：12345.45 元</span>
+                            <span>已收款：{store.setSummarizes.hascome}</span>
+                            <span className="red">欠收款：{store.setSummarizes.nohascome}元</span>
+                            <span className="blue">预收款：{store.setSummarizes.expirecome}元</span>
                         </div>
-                    </div>*/}
+                    </div>
 
                     {this.state.searchResult.map((m,n)=>{
                         return(
@@ -95,18 +96,6 @@ export default class AddMoney extends React.Component {
                                 <div className="col-md-4">
                                     <span className="b-add-body-tit">付款时间：</span>
                                     <span>{m.income_ts}</span>
-                                </div>
-                                <div className="col-md-4">
-                                    <span className="b-add-body-tit">已收款：</span>
-                                    <span>{m.summarizes.hascome}</span>
-                                </div>
-                                <div className="col-md-4 red">
-                                    <span className="b-add-body-tit">欠收款：</span>
-                                    <span>{m.summarizes.nohascome}</span>
-                                </div>
-                                <div className="col-md-4 blue">
-                                    <span className="b-add-body-tit">逾期款：</span>
-                                    <span>{m.summarizes.expirecome}</span>
                                 </div>
 
                             </div>
@@ -148,7 +137,7 @@ export default class AddMoney extends React.Component {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={this.closeModal.bind(this,1)}>取消</Button>
+                        <Button onClick={this.closeModal.bind(this,0)}>取消</Button>
                         <Button bsStyle="warning" onClick={this.saveModalMoney}>确定</Button>
                     </Modal.Footer>
                 </Modal>
@@ -209,19 +198,38 @@ export default class AddMoney extends React.Component {
     setClient = (e)=>{
         let addMoney = this.state.addMoney;
         let el = $(e.currentTarget).find("option:selected");
-        addMoney["client"] = {"id":el.val(),"name":el.text()}
+        addMoney["client"] = el.val() ;
         this.setState({
             addMoney
         })
+    }
+
+    getNowFormatDate = () => {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+        return currentdate;
     }
 
     saveModalMoney = ()=>{
         let addMoney = this.state.addMoney;
         let clientList = this.state.clientList ;
         let param ={
-            client:addMoney["client"] ||clientList[0],
+            client_id:addMoney["client"]||clientList[0].id,
             money:addMoney["money"]||0,
-            create_ts: new Date().getFullYear() + "-" + ( new Date().getMonth()+1)
+            factory_id:this.props.router.params.factoryId,
+            create_ts: this.getNowFormatDate()
         }
 
         store.addIncome(param,()=>{
@@ -237,19 +245,20 @@ export default class AddMoney extends React.Component {
 
     /*新增客户（收款方）*/
     setClientName= (e)=>{
-        let client=this.state.client ;
-        client["name"] = e.target.value ;
+        let addClient=this.state.addClient ;
+        addClient["name"] = e.target.value ;
         this.setState({
-            client
+            addClient
         })
     }
     saveModalClient = ()=>{
         let param ={
-            "name":this.state.client["name"],
+            "name":this.state.addClient["name"],
             "factory_id":this.props.router.params.factoryId
         }
         store.addIncomeClient(param,()=>{
-            this.closeModal(1)
+            this.closeModal(1);
+            this.getClient();
         })
     }
 
@@ -301,9 +310,9 @@ export default class AddMoney extends React.Component {
                     radius : '55%',
                     center: ['50%', '60%'],
                     data:[
-                        {value:310, name:'欠收款'},
-                        {value:335, name:'已收款'},
-                        {value:234, name:'预收款'},
+                        {value:store.setSummarizes.nohascome, name:'欠收款'},
+                        {value:store.setSummarizes.hascome, name:'已收款'},
+                        {value:store.setSummarizes.expirecome, name:'预收款'},
 
                     ],
                     color:['red','blue','#cfcfcf'],

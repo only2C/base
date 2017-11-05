@@ -1706,6 +1706,13 @@ input.b-radio:hover {
 .b-body .b-body-list .col-md-3 {
   height: 45px;
 }
+.b-body .b-body-spanIcon {
+  background: #cfcfcf;
+  width: 100%;
+  float: left;
+  text-align: center;
+  color: #fff;
+}
 .b-title {
   margin-bottom: 15px;
   font-weight: bold;

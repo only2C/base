@@ -17,7 +17,7 @@ export default class BossBill extends React.Component {
         super(props);
         this.state ={ // headerList  ==>   type : 0  正常  -1 重点显示 （红色） 1 普通 蓝色
             searchKey:"",
-            timeValue:"", // 时间
+            timeValue: new Date().getFullYear() + "-" + ( new Date().getMonth()+1), // 时间
             totalPage:0,
             activePage:0,
             clientList:[{"id":0,"name":"全部客户"}],
@@ -74,8 +74,8 @@ export default class BossBill extends React.Component {
     initOrderList =()=>{
         let param ={
             "query_ts":this.state.timeValue,
-            "client_id":this.state.client ? this.state.client : this.state.clientList[0],
-            "factory_id":this.state.factory ? this.state.factory : this.state.factoryList[0].id,
+            "client_id":this.state.client||0,
+            "factory_id":this.props.router.params.factoryId,
             "query_cond":this.state.searchKey
         };
         store.queryOrderList(param,()=>{
@@ -105,20 +105,15 @@ export default class BossBill extends React.Component {
                              })
                             }
                         </select>
-                        <select className="b-select mr20"  onChange={this.setSelect.bind(this,"factory")}>
-                            {that.state.factoryList.map((m,n)=>{
-                                return (
-                                    <option key={ "client-"+n} value={m.id}>{m.name}</option>
-                                )
-                            })
-                            }
-                        </select>
 
-                        <div className="input-group fr" style={{"width":"300px"}}>
+                      {/*  <div className="input-group fr" style={{"width":"300px"}}>
                             <input type="text" className="form-control" value={this.state.searchKey} onChange={this.setInput.bind(this)}
-                                   placeholder="请输入SUK编号、合同标号、客户" />
+                                   placeholder="请输入SKU编号、合同标号、客户" />
                             <span className="input-group-addon b-search" onClick={this.initOrderList}>搜索</span>
-                        </div>
+                        </div>*/}
+
+                       <Button onClick={this.initOrderList} bsStyle="warning    ">搜索</Button>
+
                     </div>
                     <div className="fr">
                         <Button bsStyle="warning" onClick={this.setRouter.bind(this,0)} className="mr15">新增订单</Button>
@@ -161,8 +156,9 @@ export default class BossBill extends React.Component {
         }else{
             router ='salary'
         }
-        store.orderAdd({"factory_id":this.state.factoryId},(pk)=>{
-            window.location.hash= '#/'+router + '/'+ pk + '/'+ globalStore.getCache("factoryId")
+        let factoryId = this.state.factoryId ;
+        store.orderAdd({"factory_id":factoryId},(pk)=>{
+            window.location.hash= '#/'+router + '/'+ pk + '/'+ factoryId
         });
 
     }
@@ -182,7 +178,7 @@ export default class BossBill extends React.Component {
     setSelect = (param,e) =>{
         let el = $(e.currentTarget).find("option:selected");
         if(param == "client"){
-            let client ={"name":el.text() , "id":el.val() };
+            let client = el.val()
             this.setState({
                 client
             })
