@@ -101,12 +101,12 @@ export default class BillEditOrder extends React.Component {
                         </select>
                     </div>
                     <div className="col-md-4">
-                        <span className="b-edit-tit">付款时间：</span>
+                        <span className="b-edit-tit">计划付款时间：</span>
 
                         <DatePicker2 id="example-datepicker-3" dateFormat="YYYY-MM-DD" value={order['pay_ts']} onChange={this.setTime.bind(this,"pay_ts")}/>
                     </div>
                     <div className="col-md-4">
-                        <span className="b-edit-tit">交货时间：</span>
+                        <span className="b-edit-tit">计划交货时间：</span>
                         <DatePicker2 id="example-datepicker-2" dateFormat="YYYY-MM-DD" value={order['deliver_ts']} onChange={this.setTime.bind(this,"deliver_ts")}/>
                     </div>
                 </div>

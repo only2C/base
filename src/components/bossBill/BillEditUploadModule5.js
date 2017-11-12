@@ -328,7 +328,7 @@ export default class BillEditUploadModule5 extends React.Component {
                                             <input type="text" value={m.name} placeholder="裁剪金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
-                                            裁剪时间：
+                                            完成时间：
                                             <DatePicker2 id={ "example-datepicker-" +n } className="b-input ml5 w200"
                                                          dateFormat="YYYY-MM-DD" value={m.finish_ts} onChange={this.setTime.bind(this,m.id)}/>
                                         </div>

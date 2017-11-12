@@ -1,15 +1,15 @@
 module.exports = {
   dev: {
     host: 'http://127.0.0.1',
-    port: '8888',
+    port: '8080',
     path: 'dist',
     publicPath: './',
-    serverHost : "http://192.168.1.103:8080/boss"
+    serverHost : "http://127.0.0.1:8080/boss"
   },
   myHost:{
     path: 'dist',
     publicPath: './',
-    serverHost : "https://127.0.0.1:8888"
+    serverHost : "http://123.56.239.35:8080/boss"
   },
   sybz: {
     path: 'dist',

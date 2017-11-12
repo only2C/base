@@ -112,11 +112,11 @@ export default class BillEditUploadModule2 extends React.Component {
                                 <div className="col-md-6">
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
-                                            布款金额：
+                                            主料金额：
                                             <input type="text" value={m.name} placeholder="布款金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
-                                            布款时间：
+                                            付款时间：
                                             <DatePicker2 id={ "example-datepicker" +n } className="b-input ml5 w200"
                                                          dateFormat="YYYY-MM-DD" value={m.sub_ts} onChange={this.setTime.bind(this,m.id)}/>
                                         </div>
