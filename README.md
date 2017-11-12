@@ -18,9 +18,11 @@
 **运行：npm run dev**
 
 **打包：npm run buildMyHost**
-
-**项目发布配置地址：例如发布地址为192.168.99.99 **
-`文件位置`：
+****
+项目发布配置地址：例如发布地址为192.168.99.99
+****
+****
+`文件位置：`
 **base\config.js**
 `config 中 myHost 基础配置`
 `myHost:{`
@@ -28,11 +30,13 @@
 `publicPath: './',`
 `serverHost : "http://192.168.99.99:8080/boss"`
 `},`
-
+****
+****
 `dos 操作示例`
-
+****
+****
 ![image](https://github.com/webchenli/base/tree/master/src/assets/1510493808.png)
-
+****
 ****
 author: only
 
