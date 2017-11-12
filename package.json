@@ -5,17 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development server=dev  node devApp.js",
     "dll": "webpack --config webpack.config.dll.js",
-    "buildMyHost": "cross-env NODE_ENV=production server=myHost webpack",
-    "buildybz": "cross-env NODE_ENV=production server=sybz webpack --progress --colors",
-    "build241": "cross-env NODE_ENV=production server=s241 webpack",
-    "build88": "cross-env NODE_ENV=production server=s88 webpack",
-    "build89": "cross-env NODE_ENV=production server=s89 webpack",
-    "build90": "cross-env NODE_ENV=production server=s90 webpack",
-    "build230": "cross-env NODE_ENV=production server=s230 webpack",
-    "build229": "cross-env NODE_ENV=production server=s229 webpack",
-    "build238": "cross-env NODE_ENV=production server=s238 webpack",
-    "build220": "cross-env NODE_ENV=production server=s220 webpack",
-    "build2292": "cross-env NODE_ENV=production server=s2292 webpack"
+    "buildMyHost": "cross-env NODE_ENV=production server=myHost webpack"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

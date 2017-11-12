@@ -40,6 +40,7 @@ var Config = {
          addIncomeClient:serverUrl + '/income/addClient' , //新增收款客户
          queryIncome:serverUrl + '/income/find' , //查询收款
          queryIncomeClient:serverUrl + '/income/getClients' , //获取收款客户
+         queryOrderDetail:serverUrl+'/order/detail' ,  //查询单据详情
 
      }
 

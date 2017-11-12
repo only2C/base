@@ -33,11 +33,13 @@ import RegisterContainer from 'bundle-loader?lazy&name=app-[name]!./containers/b
 import CreditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Credit';
 import SettingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Setting';
 import SalaryContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Salary';
+import BillDetailContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BillDetail';
 
 const LoanBill  = (props) => (<Bundle load={LoanBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const T  = (props) => (<Bundle load={TContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BossBill  = (props) => (<Bundle load={BossBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BillEdit  = (props) => (<Bundle load={BillEditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
+const BillDetail  = (props) => (<Bundle load={BillDetailContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const AddMoney  = (props) => (<Bundle load={AddMoneyContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Login  = (props) => (<Bundle load={LoginContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const Register  = (props) => (<Bundle load={RegisterContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -77,7 +79,8 @@ ReactDom.render(
       <Route path="/billEdit/:pk/:factoryId/:add" component={BillEdit}/> /*编辑订单*/
       <Route path="/billEdit/:pk/:factoryId" component={BillEdit}/> /* 新增订单*/
       <Route path="/addMoney/:pk/:factoryId" component={AddMoney}/> /* 新增收款*/
-      <Route path="/Login" component={Login}/> /* 登陆 */
+      <Route path="/billDetail/:pk/:factoryId" component={BillDetail}/> /* 单据详情*/
+      <Route path="/login" component={Login}/> /* 登陆 */
       <Route path="/credit" component={Credit}/> /* 贷款*/
       <Route path="/setting" component={Setting}/> /* 设置*/
       <Route path="/salary/:pk/:factoryId" component={Salary}/> /* 计件工资*/
