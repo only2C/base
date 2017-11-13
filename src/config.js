@@ -4,7 +4,7 @@ var serverUrl = process.env.SERVER;
 if(window.SERVICESURL!=''){
   serverUrl = window.SERVICESURL
 }
-
+serverUrl = "http://127.0.0.1:8080"
 var Config = {
     serverUrl:serverUrl,
      bossBill:{

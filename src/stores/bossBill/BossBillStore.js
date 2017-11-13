@@ -792,4 +792,31 @@ export default class BossBillStore {
         })
     }
 
+   //查询单据详情
+    @observable billDetail ={}
+    @action queryBillDetail(param,callback){
+        let that = this;
+        $.ajax({
+            type: "POST",
+            url: Config.bossBill.queryOrderDetail,
+            dataType: "json",
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: data => {
+                if (data.result==0) {
+                    this.billDetail = Object.assign({},data)
+                    if (typeof callback == "function") {
+                        callback(data);
+
+                    }
+                } else {
+                    that.globalStore.showError(data.error ? data.error : "查询失败")
+                }
+            },
+            error: (xhr, status, err) => {
+                this.globalStore.showError('数据请求失败,错误信息:' + err.toString());
+            }
+        })
+    }
+
 }
