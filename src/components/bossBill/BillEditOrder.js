@@ -28,8 +28,32 @@ export default class BillEditOrder extends React.Component {
     }
 
     componentWillMount (){
-        this.getSizeList();
+        if(!this.props.baseData){
+            this.getSizeList();
+        }
         this.getClientList();
+    }
+
+    componentWillReceiveProps= (props) =>{
+        this.getEditData(props.baseData,props.sizeData);
+    }
+
+    getEditData = (baseData,sizeData)=>{
+        let order = this.state.order;
+        if(baseData){
+            order["contract_code"] = baseData["contract_code"] ;
+            order['SKU_code'] = baseData['sku_code'] ;
+            order['number'] = baseData['num'] ;
+            order['price'] = baseData['price'] ;
+            order['order_type'] = baseData['order_type'] ;
+            order['deliver_ts'] = baseData['deliver_ts'] ;
+            order['pay_ts'] = baseData['pay_ts'] ;
+            order['order_ts'] = baseData['order_ts'] ;
+            order['client'] = baseData['client'] ;
+            this.setState({
+                order
+            })
+        }
     }
 
     getClientList = ()=>{
@@ -71,6 +95,15 @@ export default class BillEditOrder extends React.Component {
     render(){
         let order = this.state.order ;
         let that = this;
+        let sizeList =this.props.sizeData ?  this.props.sizeData.sizes : this.state.sizeList;
+        let sizeTotal  =this.state.sizeTotal;
+        if(this.props.sizeData ){
+            let total = 0 ;
+            this.props.sizeData.sizes.map((m)=>{
+                total+= m.num ;
+            })
+            sizeTotal = total ;
+        }
         return (
             <div className="stdreimburse-box ">
                 <h3 className="b-title">1、输入订单信息</h3>
@@ -86,8 +119,8 @@ export default class BillEditOrder extends React.Component {
                     <div className="col-md-4">
                         <span className="b-edit-tit">下单类型：</span>
                         <select className="b-select" onChange={that.setSelect.bind(this,"order_type")}>
-                            <option value="1">首单</option>
-                            <option value="2">翻单</option>
+                            <option value="1" selected={order["order_type"]== 1 ? "selected":""}>首单</option>
+                            <option value="2" selected={order["order_type"]== 2 ? "selected":""}>翻单</option>
                         </select>
                     </div>
                     <div className="col-md-4">
@@ -95,7 +128,7 @@ export default class BillEditOrder extends React.Component {
                         <select className="b-select" onChange={that.setSelect.bind(this,"client")}>
                             {this.state.clientList.map( (m,n)=>{
                                 return (
-                                    <option value={m.id} key={"clientList-"+n}>{m.name}</option>
+                                    <option value={m.id} key={"clientList-"+n} selected={order["client"].id == m.id ? "selected":""}>{m.name}</option>
                                 )
                             })}
                         </select>
@@ -116,9 +149,9 @@ export default class BillEditOrder extends React.Component {
                 </div>
 
                 <div className="row b-border-line">
-                    <h3 className="b-title">各尺码件数：共{this.state.sizeTotal}件<Button className="ml50" onClick={this.addSizeModal}>新增码数</Button></h3>
+                    <h3 className="b-title">各尺码件数：共{sizeTotal}件<Button className="ml50" onClick={this.addSizeModal}>新增码数</Button></h3>
                     <div className="b-size">
-                        {this.state.sizeList.map((m,n)=>{
+                        {sizeList.map((m,n)=>{
                             return (
                                 <div className="b-size-box" key={"size"+n}>
                                     <p>{m.size}</p>

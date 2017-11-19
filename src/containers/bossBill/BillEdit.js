@@ -12,16 +12,53 @@ import  BillEditUploadModule3  from '../../components/bossBill/BillEditUploadMod
 import  BillEditUploadModule4  from '../../components/bossBill/BillEditUploadModule4' ;
 import  BillEditUploadModule5  from '../../components/bossBill/BillEditUploadModule5' ;
 import  BillEditUploadModule6  from '../../components/bossBill/BillEditUploadModule6' ;
-
+import BossStore from '../../stores/bossBill/BossBillStore';
+const store = new BossStore();
 // 编辑和新增
 @observer
 export default class BillEdit extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state ={
+            baseData:"",
+            sizeData:"",
+            imgData:"",
+            clothData:"",
+            submaterialData:"",
+            techData:"",
+            selfworksData:"",
+            outworkData:"",
+            outtechData:"",
+            deliverData:""
+        }
     }
 
     componentWillMount(){
+        this.isEdit();
+    }
+
+    //是否是编辑状态  0 为编辑  不存在或不传入值为新增
+    isEdit =()=>{
+        if(this.props.router.params.add == 0){
+            this.getDetail();
+        }
+    }
+    getDetail=()=>{
+        store.queryBillDetail({'order_id':this.props.router.params.pk},(billData)=>{
+            this.setState({
+                baseData:billData.base,
+                sizeData:billData.size,
+                imgData:billData.img,
+                clothData:billData.cloth,
+                submaterialData:billData.submaterial,
+                techData:billData.tech,
+                selfworksData:billData.selfworks,
+                outworkData:billData.outwork,
+                outtechData:billData.outtech,
+                deliverData:billData.deliver
+            })
+        })
     }
 
     setStateData = (data, callback) => {
@@ -34,9 +71,10 @@ export default class BillEdit extends React.Component {
         return (
             <div className="content mt50">
                 <Nav navIndex="0"/>
-                <div className="details_title">{this.props.router.params.add ?"编辑":"新增"}订单</div>
+                <div className="details_title">{this.props.router.params.add == 0  ?"编辑":"新增"}订单</div>
                 {/*1、订单信息**/}
-                <BillEditOrder setStateData = {this.setStateData} orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
+                <BillEditOrder setStateData = {this.setStateData} orderId={this.props.router.params.pk}
+                               factoryId={this.props.router.params.factoryId} baseData={this.state.baseData} sizeData={this.state.sizeData}/>
                 {/*2、拍照上传款式图片，合同照片等**/}
                 <BillEditUploadModule2 orderId={this.props.router.params.pk}/>
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}

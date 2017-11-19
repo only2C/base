@@ -44,7 +44,7 @@ export default class BillDetail extends React.Component {
                         <div className="col-md-4"><span className="b-edit-tit">单价：</span>  {billData.base.price} </div>
                         <div className="col-md-4"><span className="b-edit-tit">下单时间：</span>  {billData.base.order_ts} </div>
                         <div className="col-md-4"><span className="b-edit-tit">下单类型：</span>  {billData.base.order_type==1?"首单":"翻单"} </div>
-                        <div className="col-md-4"><span className="b-edit-tit">交付时间：</span>  {billData.base.deliever_ts} </div>
+                        <div className="col-md-4"><span className="b-edit-tit">交付时间：</span>  {billData.base.deliver_ts} </div>
                         <div className="col-md-4"><span className="b-edit-tit">付款时间：</span>  {billData.base.pay_ts} </div>
                         <div className="col-md-4"><span className="b-edit-tit">客户：</span>  {billData.base.client.name} </div>
                     </div>

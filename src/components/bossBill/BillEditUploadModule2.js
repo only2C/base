@@ -54,6 +54,15 @@ export default class BillEditUploadModule2 extends React.Component {
         this.setState({pic})
     }
 
+    //修改上传
+    updateFileUpload = (index) =>{
+        let pic = this.state.pic ;
+        pic[index].url ="";
+        this.setState({
+            pic
+        })
+    }
+
 
     saveModule2 =()=>{
         let pic = this.state.pic ;
@@ -95,9 +104,12 @@ export default class BillEditUploadModule2 extends React.Component {
                             <div className="col-md-3 mt20" key={"up1-"+n}>
                                 <div className="b-upload-box">
                                     <p className="b-upload-box-tag">{n+1}</p>
-                                    {m.url ?(<img src={Config.serverUrl + m.url} className="b-upload-pic"/>) :(
+                                    {m.url  ?(
+                                       <img src={Config.serverUrl + m.url} className="b-upload-pic" onClick={this.updateFileUpload.bind(this,n)}/>
+                                    ) :(
                                         <FileUpload ref="fileUpload" id={m.id} successCallBack ={this.uploadEvent}/>
                                     )}
+
                                 </div>
                                 <input type="text" value={m.name} placeholder="请输入图片名称" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 w200"/>
                             </div>
