@@ -19,7 +19,7 @@ export default class BillEditUploadModule5 extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            pic:[{name:"",url:"",id:"",finish_ts:""}],
+            pic:[{num:"",url:"",id:"",finish_ts:""}],
             saveResult:'', // 保存结果
             picName:{},
             money:{},
@@ -40,6 +40,58 @@ export default class BillEditUploadModule5 extends React.Component {
     componentWillMount(){
         this.queryOutfactoryList();
 
+    }
+
+    componentWillReceiveProps= (props) =>{
+        if(props.techData){  //录入裁剪、加工及工艺信息
+            this.getTechData(props.techData);
+        }
+        if(props.selfworksData){  // 本次加工
+            this.getSelfwork(props.selfworksData)
+
+        }
+        if(props.outworkData){ //外发加工
+            this.getOutwork(props.outworkData)
+        }
+        if(props.outtechData){  //外发工艺
+            this.getOuttech(props.outtechData)
+        }
+
+    }
+
+    getTechData = (data) =>{
+        if(data){
+            this.setState({
+                pic:[ data ]
+            })
+        }
+    }
+
+    getSelfwork = (data) =>{
+        if(data){
+            this.setState({
+                selfWork:[data]
+            })
+        }
+
+    }
+    getOutwork = (data)=>{
+        if(!data.outworks||data.outworks.length<0 ){
+            return ;
+        }
+        this.setState({
+            outWork:data.outworks
+        })
+
+    }
+
+    getOuttech =(data) =>{
+        if(!data.outtechs||data.outtechs.length<0 ){
+            return ;
+        }
+        this.setState({
+            outTech:data.outtechs
+        })
     }
 
     // 获取外发工厂和外发项目
@@ -87,7 +139,7 @@ export default class BillEditUploadModule5 extends React.Component {
         let pic =this.state.pic ;
         pic.forEach((m,n)=>{
             if(m.id == id ){
-                m.name = e.target.value ;
+                m.num = e.target.value ;
             }
         })
         this.setState({pic})
@@ -110,7 +162,7 @@ export default class BillEditUploadModule5 extends React.Component {
         let result = {};
         pic.forEach((m,n)=>{
             if(n==0){
-                result.num = m.name
+                result.num = m.num
                 result.url = m.url
                 result.finish_ts = m.finish_ts
             }
@@ -331,8 +383,8 @@ export default class BillEditUploadModule5 extends React.Component {
                                 <div className="col-md-6">
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
-                                            裁剪金额：
-                                            <input type="text" value={m.name} placeholder="裁剪金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
+                                            裁剪数量：
+                                            <input type="text" value={m.num} placeholder="裁剪数量" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
                                             完成时间：
@@ -384,9 +436,17 @@ export default class BillEditUploadModule5 extends React.Component {
                                     外发工厂：
                                     <select className="b-select" onChange={this.setOutfactorySelect.bind(this,n,"outfactory_id")}>
                                         {that.state.outfactoryList.map((y,z)=>{
-                                            return (
-                                                <option key={"outfactoryList-"+z} value={y.id}>{y.name}</option>
-                                            )
+                                            if(typeof m.outfactory == "object"){
+                                                return (
+                                                    <option key={"outfactoryList-"+z} value={y.id} selected={ m.outfactory.id == y.id ? "selected":""}>{y.name}</option>
+                                                )
+
+                                            }else{
+                                                return (
+                                                    <option key={"outfactoryList-"+z} value={y.id}>{y.name}</option>
+                                                )
+                                            }
+
                                         })}
                                     </select>
                                 </div>
@@ -394,9 +454,17 @@ export default class BillEditUploadModule5 extends React.Component {
                                     外发项目：
                                     <select className="b-select" onChange={this.setOutfactorySelect.bind(this,n,"outitem_id")}>
                                         {that.state.outFactoryItemList.map((r,s)=>{
-                                            return (
-                                                <option key={"outFactoryItemList-"+s} value={r.id}>{r.name}</option>
-                                            )
+                                            if(typeof m.outitem == "object"){
+                                                return (
+                                                    <option key={"outFactoryItemList-"+s} value={r.id} selected={ m.outitem.id == r.id ? "selected":""}>{r.name}</option>
+                                                )
+                                            }else{
+                                                return (
+                                                    <option key={"outFactoryItemList-"+s} value={r.id}>{r.name}</option>
+                                                )
+                                            }
+
+
 
                                         })}
                                     </select>

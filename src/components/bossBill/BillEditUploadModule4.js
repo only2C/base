@@ -19,9 +19,26 @@ export default class BillEditUploadModule4 extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            pic:[{name:"",url:"",id:"",sub_ts:""}],
+            pic:[{money:"",url:"",id:"",sub_ts:""}],
             saveResult:'', // 保存结果
         }
+    }
+
+    componentWillReceiveProps= (props) =>{
+        if(props.submaterialData){
+            this.getEditData(props.submaterialData);
+        }
+
+    }
+
+    getEditData = (data)=>{
+        if(!data.submaterials || data.submaterials.length<0){
+            return ;
+        }
+        this.setState({
+            pic:data.submaterials
+        })
+
     }
 
     addSizeModal = () =>{
@@ -48,7 +65,7 @@ export default class BillEditUploadModule4 extends React.Component {
         let pic =this.state.pic ;
         pic.forEach((m,n)=>{
             if(m.id == id ){
-                m.name = e.target.value ;
+                m.money = e.target.value ;
             }
         })
         this.setState({pic})
@@ -70,7 +87,7 @@ export default class BillEditUploadModule4 extends React.Component {
         let that = this;
         let result = [];
         pic.forEach((m,n)=>{
-            result.push({"money":m.name , "url": m.url,"sub_ts":m.sub_ts})
+            result.push({"money":m.money , "url": m.url,"sub_ts":m.sub_ts})
         })
         let param ={
             'order_id':this.props.orderId ,
@@ -101,7 +118,6 @@ export default class BillEditUploadModule4 extends React.Component {
         })
     }
     render(){
-        let that = this ;
         return (
             <div className="stdreimburse-box ">
                 <h3 className="b-title">4、拍照上传采购单，录入辅料采购及辅料款支付记录<Button className="ml50" onClick={this.addSizeModal}>新增辅料记录</Button></h3>
@@ -120,7 +136,7 @@ export default class BillEditUploadModule4 extends React.Component {
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
                                             辅料金额：
-                                            <input type="text" value={m.name} placeholder="辅料金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
+                                            <input type="text" value={m.money} placeholder="辅料金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
                                             付款时间：

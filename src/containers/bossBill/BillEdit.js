@@ -76,13 +76,14 @@ export default class BillEdit extends React.Component {
                 <BillEditOrder setStateData = {this.setStateData} orderId={this.props.router.params.pk}
                                factoryId={this.props.router.params.factoryId} baseData={this.state.baseData} sizeData={this.state.sizeData}/>
                 {/*2、拍照上传款式图片，合同照片等**/}
-                <BillEditUploadModule2 orderId={this.props.router.params.pk}/>
+                <BillEditUploadModule2 orderId={this.props.router.params.pk} imgData={this.state.imgData}/>
                 {/*3、拍照上传采购单，录入布料采购及布款支付记录**/}
-                <BillEditUploadModule3 orderId={this.props.router.params.pk}/>
+                <BillEditUploadModule3 orderId={this.props.router.params.pk} clothData={this.state.clothData}/>
                 {/*4、拍照上传采购单，录入辅料采购及辅料款支付记录**/}
-                <BillEditUploadModule4 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
+                <BillEditUploadModule4 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId} submaterialData={this.state.submaterialData}/>
                 {/*5、录入裁剪、加工及工艺信息**/}
-                <BillEditUploadModule5 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
+                <BillEditUploadModule5 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}
+                                       techData={this.state.techData} selfworksData={this.state.selfworksData} outworkData={this.state.outworkData} outtechData={this.state.outtechData}/>
                 {/*6、拍照上传收货单，录入出货信息**/}
                 <BillEditUploadModule6 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
                 <div className="btn-bottom-fixed">

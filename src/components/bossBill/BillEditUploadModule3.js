@@ -19,11 +19,25 @@ export default class BillEditUploadModule2 extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            pic:[{name:"",url:"",id:"",sub_ts:""}],
+            pic:[{money:"",url:"",id:"",sub_ts:""}],
             saveResult:'', // 保存结果
         }
     }
+    componentWillReceiveProps= (props) =>{
+        if(props.clothData){
+            this.getEditData(props.clothData);
+        }
 
+    }
+    getEditData = (data)=>{
+        if(!data.coloths || data.coloths.length<0){
+            return ;
+        }
+        this.setState({
+            pic:data.coloths
+        })
+
+    }
     addSizeModal = () =>{
         let pic = this.state.pic;
         let newPic = {"id":new Date().getTime()}
@@ -48,7 +62,7 @@ export default class BillEditUploadModule2 extends React.Component {
         let pic =this.state.pic ;
         pic.forEach((m,n)=>{
             if(m.id == id ){
-                m.name = e.target.value ;
+                m.money = e.target.value ;
             }
         })
         this.setState({pic})
@@ -70,7 +84,7 @@ export default class BillEditUploadModule2 extends React.Component {
         let that = this;
         let result = [];
         pic.forEach((m,n)=>{
-            result.push({"money":m.name , "url": m.url,"sub_ts":m.sub_ts})
+            result.push({"money":m.money , "url": m.url,"sub_ts":m.sub_ts})
         })
         let param ={
             'order_id':this.props.orderId ,
@@ -120,7 +134,7 @@ export default class BillEditUploadModule2 extends React.Component {
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
                                             主料金额：
-                                            <input type="text" value={m.name} placeholder="布款金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
+                                            <input type="text" value={m.money} placeholder="布款金额" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
                                             付款时间：

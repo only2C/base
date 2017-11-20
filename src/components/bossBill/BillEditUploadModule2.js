@@ -32,6 +32,21 @@ export default class BillEditUploadModule2 extends React.Component {
             pic
         })
     }
+    componentWillReceiveProps= (props) =>{
+        if(props.imgData){
+            this.getEditData(props.imgData);
+        }
+
+    }
+
+    getEditData = (data)=>{
+        if(!data.imgs || data.imgs.length <0 ){
+            return ;
+        }
+        this.setState({
+            pic:data.imgs
+        })
+    }
 
     uploadEvent =(data)=>{
         let pic =this.state.pic ;
