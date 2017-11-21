@@ -9,6 +9,6 @@ module.exports = {
   myHost:{
     path: 'dist',
     publicPath: './',
-    serverHost : "http://123.56.239.35:8080/boss"
+    serverHost : "http://121.199.11.175:8080/boss"
   }
 }
