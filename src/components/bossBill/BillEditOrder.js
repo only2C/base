@@ -155,7 +155,7 @@ export default class BillEditOrder extends React.Component {
                             return (
                                 <div className="b-size-box" key={"size"+n}>
                                     <p>{m.size}</p>
-                                    <input type="text" value={m.num||0} className="b-input" onChange={this.setSize.bind(this,m.size)} style={{"width":"100px"}} />
+                                    <input type="text" value={m.num} className="b-input" onChange={this.setSize.bind(this,m.size)} style={{"width":"100px"}} />
                                 </div>
                             )
                         })}
@@ -245,7 +245,7 @@ export default class BillEditOrder extends React.Component {
         let sizeList = this.state.sizeList;
         sizeList.forEach((m)=>{
             if(m.size == id ){
-                m.num = e.target.value?e.target.value:0
+                m.num = e.target.value?e.target.value:""
             }
         })
         this.setState({
