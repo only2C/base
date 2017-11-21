@@ -31,7 +31,7 @@ export default class BossBillTableBody extends React.Component {
                             <div style={{"width":"2%"}} className="fl"><span className="b-body-spanIcon">{n+1}</span></div>
                             <div className="col-md-10 b-body-list">
                                 <div className="col-md-3">sku编码：{m.sku_code}</div>
-                                <div className="col-md-3">客户：{m.client.name}</div>
+                                <div className="col-md-3">客户：{typeof m.client == "object" ? m.client.name:""}</div>
                                 <div className="col-md-3">单价：{m.price}</div>
                                 <div className="col-md-3">数量：{m.num}</div>
                                 <div className="col-md-3">发货数量：{m.deliver_num}</div>
@@ -56,7 +56,7 @@ export default class BossBillTableBody extends React.Component {
 
                             </div>
                             <div className="col-md-1">
-                                <a className="glyphicon glyphicon-pencil mr15 mt20" title="编辑" href="javascript:;" onClick={that.editBill.bind(this)}></a>
+                                <a className="glyphicon glyphicon-pencil mr15 mt20" title="编辑" href="javascript:;" onClick={that.editBill.bind(this,m.id)}></a>
                                 {/* <a className="glyphicon glyphicon-trash mt20" title="删除" href="javascript:;" onClick={that.deleteBill.bind(this)}></a>*/}
                             </div>
                         </div>
@@ -75,8 +75,8 @@ export default class BossBillTableBody extends React.Component {
 
     }
     // 编辑数据
-    editBill = ()=>{
-
+    editBill = (id)=>{
+        window.location.hash ="/billDetail/"+id
     }
 
     //删除数据

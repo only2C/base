@@ -4,7 +4,6 @@ var serverUrl = process.env.SERVER;
 if(window.SERVICESURL!=''){
   serverUrl = window.SERVICESURL
 }
-serverUrl = "http://127.0.0.1:8080"
 var Config = {
     serverUrl:serverUrl,
      bossBill:{
@@ -40,7 +39,7 @@ var Config = {
          addIncomeClient:serverUrl + '/income/addClient' , //新增收款客户
          queryIncome:serverUrl + '/income/find' , //查询收款
          queryIncomeClient:serverUrl + '/income/getClients' , //获取收款客户
-         queryOrderDetail:serverUrl+'/order/detail' ,  //查询单据详情
+         queryOrderDetail:serverUrl+'/order/detial' ,  //查询单据详情
 
      }
 

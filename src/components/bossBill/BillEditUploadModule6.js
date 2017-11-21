@@ -19,8 +19,22 @@ export default class BillEditUploadModule2 extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            pic:[{name:"",url:"",id:"",sub_ts:""}],
+            pic:[{num:"",url:"",id:"",out_ts:""}],
             saveResult:'', // 保存结果
+        }
+    }
+
+    componentWillReceiveProps= (props) =>{
+        if(props.deliverData){
+            this.getEditData(props.deliverData)
+        }
+    }
+
+    getEditData =( data )=>{
+        if(data.delivers && data.delivers.length>0){
+            this.setState({
+                pic:data.delivers
+            })
         }
     }
 
@@ -48,7 +62,7 @@ export default class BillEditUploadModule2 extends React.Component {
         let pic =this.state.pic ;
         pic.forEach((m,n)=>{
             if(m.id == id ){
-                m.name = e.target.value ;
+                m.num = e.target.value ;
             }
         })
         this.setState({pic})
@@ -58,7 +72,7 @@ export default class BillEditUploadModule2 extends React.Component {
         let pic =this.state.pic ;
         pic.forEach((m,n)=>{
             if(m.id == id ){
-                m.sub_ts = formattedValue ;
+                m.out_ts = formattedValue ;
             }
         })
         this.setState({pic})
@@ -70,7 +84,7 @@ export default class BillEditUploadModule2 extends React.Component {
         let that = this;
         let result = [];
         pic.forEach((m,n)=>{
-            result.push({"num":m.name , "url": m.url,"out_ts":m.sub_ts})
+            result.push({"num":m.num , "url": m.url,"out_ts":m.out_ts})
         })
         let param ={
             'order_id':this.props.orderId ,
@@ -119,12 +133,12 @@ export default class BillEditUploadModule2 extends React.Component {
                                     <div className="row b-edit">
                                         <div className=""  style={{"height":"50px"}}>
                                             出货数量：
-                                            <input type="text" value={m.name} placeholder="出货数量" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
+                                            <input type="text" value={m.num} placeholder="出货数量" onChange={this.setInput.bind(this,m.id)} className="b-input mt10 ml5 w200"/>
                                         </div>
                                         <div className="" style={{"height":"50px"}}>
                                             出货时间：
                                             <DatePicker2 id={ "example-datepicker" +n } className="b-input ml5 w200"
-                                                         dateFormat="YYYY-MM-DD" value={m.sub_ts} onChange={this.setTime.bind(this,m.id)}/>
+                                                         dateFormat="YYYY-MM-DD" value={m.out_ts} onChange={this.setTime.bind(this,m.id)}/>
                                         </div>
                                     </div>
                                 </div>

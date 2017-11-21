@@ -203,7 +203,7 @@ export default class BossBillStore {
                 if (data) {
                     that.queryClientListData = Object.assign([],data.clients);
                     if (typeof callback == "function") {
-                        callback();
+                        callback(data.clients);
                     }
                 } else {
                     that.globalStore.showError(data.error ? data.error : "查询失败")

@@ -47,16 +47,16 @@ export default class BillEdit extends React.Component {
     getDetail=()=>{
         store.queryBillDetail({'order_id':this.props.router.params.pk},(billData)=>{
             this.setState({
-                baseData:billData.base,
-                sizeData:billData.size,
-                imgData:billData.img,
-                clothData:billData.cloth,
-                submaterialData:billData.submaterial,
-                techData:billData.tech,
-                selfworksData:billData.selfworks,
-                outworkData:billData.outwork,
-                outtechData:billData.outtech,
-                deliverData:billData.deliver
+                baseData:billData.basic,
+                sizeData:billData.sizes,
+                imgData:billData.imgs,
+                clothData:billData.colths,
+                submaterialData:billData.submaterials,
+                techData: billData.tech,
+                selfworksData:billData.selfwork,
+                outworkData:billData.outfactoryworks,
+                outtechData:billData.outfactorytechs,
+                deliverData:billData.delivers
             })
         })
     }
@@ -85,7 +85,7 @@ export default class BillEdit extends React.Component {
                 <BillEditUploadModule5 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}
                                        techData={this.state.techData} selfworksData={this.state.selfworksData} outworkData={this.state.outworkData} outtechData={this.state.outtechData}/>
                 {/*6、拍照上传收货单，录入出货信息**/}
-                <BillEditUploadModule6 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId}/>
+                <BillEditUploadModule6 orderId={this.props.router.params.pk} factoryId={this.props.router.params.factoryId} deliverData={this.state.deliverData}/>
                 <div className="btn-bottom-fixed">
                     <div className="row btn-bottom">
                         <div className="col-sm-12">

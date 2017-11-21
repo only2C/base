@@ -79,7 +79,7 @@ ReactDom.render(
       <Route path="/billEdit/:pk/:factoryId/:add" component={BillEdit}/> /*编辑订单*/
       <Route path="/billEdit/:pk/:factoryId" component={BillEdit}/> /* 新增订单*/
       <Route path="/addMoney/:pk/:factoryId" component={AddMoney}/> /* 新增收款*/
-      <Route path="/billDetail/:pk/:factoryId" component={BillDetail}/> /* 单据详情*/
+      <Route path="/billDetail/:pk" component={BillDetail}/> /* 单据详情*/
       <Route path="/login" component={Login}/> /* 登陆 */
       <Route path="/credit" component={Credit}/> /* 贷款*/
       <Route path="/setting" component={Setting}/> /* 设置*/

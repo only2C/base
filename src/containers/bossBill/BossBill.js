@@ -112,7 +112,7 @@ export default class BossBill extends React.Component {
                             <span className="input-group-addon b-search" onClick={this.initOrderList}>搜索</span>
                         </div>*/}
 
-                       <Button onClick={this.initOrderList} bsStyle="warning    ">搜索</Button>
+                       <Button onClick={this.initOrderList} bsStyle="warning">搜索</Button>
 
                     </div>
                     <div className="fr">
