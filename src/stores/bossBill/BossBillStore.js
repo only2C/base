@@ -280,7 +280,6 @@ export default class BossBillStore {
             contentType: "application/json",
             success: data => {
                 if (data.result==0) {
-                    that.saveOrderSizesData = Object.assign([],data.data.sizes);
                     if (typeof callback == "function") {
                         callback();
                     }

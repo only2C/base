@@ -57,8 +57,9 @@ export default class BillEditOrder extends React.Component {
     }
 
     getClientList = ()=>{
+        let that = this ;
         store.queryClientList({"factory_id":this.props.factoryId},(data)=>{
-            this.setState({
+            that.setState({
                 clientList:data
             })
         })
@@ -128,11 +129,10 @@ export default class BillEditOrder extends React.Component {
                         <select className="b-select" onChange={that.setSelect.bind(this,"client")}>
                             {this.state.clientList.map( (m,n)=>{
                                 if(order["client"]){
-                                    return
-                                        <option value={m.id} key={"clientList-"+n} selected={order["client"].id == m.id ? "selected":""}>{m.name}</option>
-                                }else
-                                    return
-                                        <option value={m.id} key={"clientList-"+n} >{m.name}</option>
+                                    return  (<option value={m.id} key={"clientList-"+n} selected={order["client"].id == m.id ? "selected":""}>{m.name}</option>)
+                                }else{
+                                    return ( <option value={m.id} key={"clientList-"+n} >{m.name}</option>)
+                                }
                             })}
                         </select>
                     </div>
