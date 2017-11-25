@@ -122,6 +122,6 @@ export default class Credit extends React.Component {
 
     //取消
     exit = ()=>{
-        window.location.hash= '#/bossBill'
+        window.history.back(-1);
     }
 }

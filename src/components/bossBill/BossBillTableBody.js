@@ -24,7 +24,7 @@ export default class BossBillTableBody extends React.Component {
         let that = this ;
         return(
             <div className="stdreimburse-box">
-                <h3 className="b-title">详细信息</h3>
+                <h3 className="b-title"><span className="glyphicon glyphicon-th-list mr5"></span>详细信息</h3>
                 {this.props.tableData.map((m,n)=>{
                     return(
                         <div className="row mt30 b-body" key={"n"+n}>

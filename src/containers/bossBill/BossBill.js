@@ -85,7 +85,7 @@ export default class BossBill extends React.Component {
                 <Nav navIndex="0"/>
                 <div className="details_title">老板利润表</div>
                 <div className="stdreimburse-box">
-                    <h3 className="b-title">查询条件</h3>
+                    <h3 className="b-title"><span className="glyphicon glyphicon-stats mr5"></span> 查询条件</h3>
                     <div style={{"display":'inline-block'}}>
                         <div className="fl b-monthPicker">
                             <MonthPicker value={this.state.timeValue} onChange={this.handleTimeChange}/>
@@ -105,7 +105,7 @@ export default class BossBill extends React.Component {
                             <span className="input-group-addon b-search" onClick={this.initOrderList}>搜索</span>
                         </div>*/}
 
-                       <Button onClick={this.initOrderList} bsStyle="warning">搜索</Button>
+                       <Button onClick={this.initOrderList} bsStyle="warning" className="glyphicon glyphicon-search" ><span className="fr" style={{"margin":"-2px 0 0 4px"}}>搜索</span></Button>
 
                     </div>
                     <div className="fr">
@@ -115,7 +115,7 @@ export default class BossBill extends React.Component {
                     </div>
                 </div>
                 <div className="stdreimburse-box">
-                    <h3 className="b-title">详细参数</h3>
+                    <h3 className="b-title"><span className="glyphicon glyphicon-th-list mr5"></span>详细参数</h3>
                     <div className="row b-header">
                         {store.orderListGather.map((m,n)=>{
                             let cssStyle = "";

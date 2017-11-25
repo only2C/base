@@ -108,14 +108,14 @@ export default class Salary extends React.Component {
                             })
                             }
                         </select>
-                        <Button className="ml30" onClick={this.querySalary}>搜索</Button>
+                        <Button  onClick={this.querySalary} bsStyle="warning" className="glyphicon glyphicon-search ml30" ><span className="fr" style={{"margin":"-2px 0 0 4px"}}>搜索</span></Button>
                         <span className="ml20 mr20">工资总和：{this.state.summarizes ? this.state.summarizes.salary : 0  }</span>
                         <span className="ml20 mr20">件数总和：{this.state.summarizes ? this.state.summarizes.product_num : 0  }</span>
                     </div>
                     <div className="fr mb10 ">
-                        <Button  bsStyle="warning" className="mr20" onClick={this.addTable}>新增计件</Button>
-                        <Button  className="mr20" onClick={this.addProfession}>新增工种</Button>
-                        <Button onClick={this.addWorker}>新增工人</Button>
+                        <Button  className="mr20" bsStyle="warning" onClick={this.addTable}>新增计件</Button>
+                        <Button  className="mr20" bsStyle="warning" onClick={this.addProfession}>新增工种</Button>
+                        <Button onClick={this.addWorker} bsStyle="warning">新增工人</Button>
                     </div>
                     <div className="standard-grid">
                         <table  className="table">
@@ -161,7 +161,7 @@ export default class Salary extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal.bind(this,0)}>取消</Button>
-                            <Button bsStyle="warning" onClick={this.saveAddProfession}>确定</Button>
+                            <Button bsStyle="success" onClick={this.saveAddProfession}>确定</Button>
                         </Modal.Footer>
                     </Modal>
 
@@ -190,7 +190,7 @@ export default class Salary extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal.bind(this,1)}>取消</Button>
-                            <Button bsStyle="warning" onClick={this.saveAddWorker}>确定</Button>
+                            <Button bsStyle="success" onClick={this.saveAddWorker}>确定</Button>
                         </Modal.Footer>
                     </Modal>
 
@@ -248,7 +248,7 @@ export default class Salary extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal.bind(this,2)}>取消</Button>
-                            <Button bsStyle="warning" onClick={this.saveSalaryList}>确定</Button>
+                            <Button bsStyle="success" onClick={this.saveSalaryList}>确定</Button>
                         </Modal.Footer>
                     </Modal>
 

@@ -403,7 +403,7 @@ export default class BillEditUploadModule5 extends React.Component {
                     <p className="error">{this.state.saveResult}</p>
                     <Button bsStyle="warning" onClick={this.saveModule5}>保存</Button>
                 </div>
-                <div className="row ">
+                <div className="row b-border-line">
                     <h3 className="b-title">本厂加工{/*<Button className="ml50" onClick={this.addSelfWork}>新增</Button>*/}</h3>
                     {this.state.selfWork.map((m,n)=>{
                         return (

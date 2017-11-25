@@ -45,7 +45,7 @@ export default class AddMoney extends React.Component {
                 <Nav navIndex="0"/>
                 <div className="details_title">新增收款</div>
                 <div className="stdreimburse-box">
-                    <h3 className="b-title">查询条件</h3>
+                    <h3 className="b-title"><span className="glyphicon glyphicon-stats mr5"></span>查询条件</h3>
                     <div className="row">
                         <div className="fl b-monthPicker">
                             <MonthPicker value={this.state.timeValue} onChange={this.handleTimeChange}/>
@@ -58,10 +58,10 @@ export default class AddMoney extends React.Component {
                             })
                             }
                         </select>
-                        <Button onClick={this.searchEvent}>搜索</Button>
+                        <Button onClick={this.searchEvent} bsStyle="warning" className="glyphicon glyphicon-search" ><span className="fr" style={{"margin":"-2px 0 0 4px"}}>搜索</span></Button>
                         <div className="fr">
                             <Button bsStyle="warning" onClick={this.showModal.bind(this,0)}>新增收款</Button>
-                            <Button className="ml30" onClick={this.showModal.bind(this,1)}>新增收款客户</Button>
+                            <Button bsStyle="warning" className="ml30" onClick={this.showModal.bind(this,1)}>新增收款客户</Button>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@ export default class AddMoney extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.closeModal.bind(this,0)}>取消</Button>
-                        <Button bsStyle="warning" onClick={this.saveModalMoney}>确定</Button>
+                        <Button bsStyle="success" onClick={this.saveModalMoney}>确定</Button>
                     </Modal.Footer>
                 </Modal>
 
@@ -154,7 +154,7 @@ export default class AddMoney extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.closeModal.bind(this,1)}>取消</Button>
-                        <Button bsStyle="warning" onClick={this.saveModalClient}>确定</Button>
+                        <Button bsStyle="success" onClick={this.saveModalClient}>确定</Button>
                     </Modal.Footer>
                 </Modal>
 

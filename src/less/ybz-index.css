@@ -626,6 +626,12 @@ a:focus {
   border-color: #4ecf5b;
   background-color: #4ecf5b;
 }
+.btn.btn-success {
+  background: #2dbb55;
+}
+.btn.btn-success:hover {
+  background: #4ecf5b;
+}
 .btn.btn-default:hover {
   color: #fff;
   border-color: #4ecf5b;
