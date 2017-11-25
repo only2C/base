@@ -52,7 +52,7 @@ export default class Login extends React.Component {
                           <Button onClick={this.loginSys}>登陆</Button>
                         </div>
                         {this.state.loginError == true ? (<p className="mt10 mb30 error text-center">用户名或密码错误</p>):""}
-                        <p className="text-center">没有账号? <a href="#/register">立即注册</a></p>
+                        <p className="text-center">没有账号? <a href="#/register" style={{"color":"red"}}>立即注册</a></p>
                     </div>
 
                 </div>
