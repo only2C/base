@@ -22,7 +22,6 @@ export default class BossBill extends React.Component {
             activePage:0,
             clientList:[{"id":0,"name":"全部客户"}],
             client:"",
-            factoryList:[{"name":"工厂",id:"1"}],
             factory:"",
             factoryId:""
 
@@ -39,7 +38,6 @@ export default class BossBill extends React.Component {
 
         this.initDate();
         this.initClient();
-        this.initFactory();
 
     }
 
@@ -64,13 +62,6 @@ export default class BossBill extends React.Component {
         });
     }
 
-    //初始化工厂列表
-    initFactory =()=>{
-        store.getFactoryList();
-        this.setState({
-            factoryList:store.factoryList
-        })
-    }
 
     //初始化数据
     initOrderList =()=>{

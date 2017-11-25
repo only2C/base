@@ -17,9 +17,13 @@ export default class Nav extends React.Component {
     componentWillMount =()=>{
         let that = this;
         localforage.getItem("loginInfo",function(err,value){
-             that.setState({
-                 userName:value.user.name
-             })
+            if(!value || value == null ||  value.user.name ==""){
+                window.location.hash="#/login";
+            }else{
+                that.setState({
+                    userName:value.user.name
+                })
+            }
         });
     }
     render(){

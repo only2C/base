@@ -12,6 +12,7 @@ export default class BossBillStore {
     //用户注册
     @observable userRegResult = {};
     @action userReg (param , callback ){
+        this.globalStore.hideAlert();
         let that = this ;
         $.ajax({
             type: "POST",
@@ -38,7 +39,7 @@ export default class BossBillStore {
     // 验证邮箱是否存在
     @observable userExsistedResult = false ;
     @action userExsisted (param){
-        let that = this ;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.userExsisted,
@@ -59,6 +60,7 @@ export default class BossBillStore {
     }
     // 修改用户密码
     @action userUpatePassword (param , callback ){
+        this.globalStore.hideAlert();
         let that = this ;
         $.ajax({
             type: "POST",
@@ -83,6 +85,7 @@ export default class BossBillStore {
 
 
     @action userLogin(param,callback){
+        this.globalStore.hideAlert();
         let that = this ;
         $.ajax({
             type: "POST",
@@ -106,6 +109,7 @@ export default class BossBillStore {
     }
 
     @action orderAdd(param,callback){
+        this.globalStore.hideAlert();
         let that = this;
         $.ajax({
             type: "POST",
@@ -129,16 +133,8 @@ export default class BossBillStore {
     }
 
     //获取工厂信息
-    @observable factoryList=[];
-    @action getFactoryList (){
-        let data ={
-            factoryList:[{id:1,name:"工厂A"},{id:2,name:"工厂B"}]
-        };
-        this.factoryList = Object.assign([],data.factoryList)
-
-    }
-
     @action orderSave(param,callback){
+        this.globalStore.hideAlert();
         let that = this;
         $.ajax({
             type: "POST",
@@ -166,6 +162,7 @@ export default class BossBillStore {
     @observable orderListGather=[];
     @observable orderListOrders =[];
     @action queryOrderList(param , callback ){
+        this.globalStore.hideAlert();
         let that = this;
         $.ajax({
             type: "POST",
@@ -192,6 +189,7 @@ export default class BossBillStore {
 
     @observable queryClientListData = [];
     @action queryClientList(param,callback){
+        this.globalStore.hideAlert();
         let that = this;
         $.ajax({
             type: "POST",
@@ -218,6 +216,7 @@ export default class BossBillStore {
     @observable getSizeBaseData = [];
     @action getSizeBase(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.getSizeDefault,
@@ -247,6 +246,7 @@ export default class BossBillStore {
     @observable saveOrderSizesData =[];
     @action saveOrderSizes(){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveOrderSizes,
@@ -272,6 +272,7 @@ export default class BossBillStore {
     //保存尺码
     @action saveSizes(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveSizes,
@@ -296,6 +297,7 @@ export default class BossBillStore {
     // 保存订单信息图片
     @action saveOrderImg(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveOrderImg,
@@ -319,6 +321,7 @@ export default class BossBillStore {
 
     @action saveColth(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveColth,
@@ -341,6 +344,7 @@ export default class BossBillStore {
     }
     @action saveSubmaterial(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveSubmaterial,
@@ -363,6 +367,7 @@ export default class BossBillStore {
     }
     @action saveTech(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveTech,
@@ -385,6 +390,7 @@ export default class BossBillStore {
     }
     @action saveDeliver(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveDeliver,
@@ -409,6 +415,7 @@ export default class BossBillStore {
     //保存订单本厂加工信息
     @action saveSelfWork(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveSelfwork,
@@ -432,6 +439,7 @@ export default class BossBillStore {
     //保存订单外发加工信息
     @action saveOutwork(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveOutwork,
@@ -456,6 +464,7 @@ export default class BossBillStore {
     //保存外发工艺信息
     @action saveOutTech(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.saveOutTech,
@@ -482,6 +491,7 @@ export default class BossBillStore {
     @observable outFactoryList = [];
     @action queryOutFactory(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryOutfactory,
@@ -507,6 +517,7 @@ export default class BossBillStore {
     @observable outFactoryItemList = [];
     @action queryOutFactoryItem(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryOutfactoryItem,
@@ -532,6 +543,7 @@ export default class BossBillStore {
     @observable outTechList = [];
     @action queryOuttechItem(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryOuttechItem,
@@ -557,6 +569,7 @@ export default class BossBillStore {
     //新增工人   /worker/add
     @action addWorker(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.addWorker,
@@ -581,6 +594,7 @@ export default class BossBillStore {
     //新增工种   /work/add
     @action addWork(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.addWork,
@@ -605,6 +619,7 @@ export default class BossBillStore {
     //新增工种   /salary/add
     @action addSalary(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.addSalary,
@@ -629,6 +644,7 @@ export default class BossBillStore {
     //查找所有工人   /worker/all
     @action queryAllWorker(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryAllWorker,
@@ -652,6 +668,7 @@ export default class BossBillStore {
     // 查找所有工种
     @action queryAllWork(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryAllWork,
@@ -698,6 +715,7 @@ export default class BossBillStore {
     // 新增收款客户
     @action addIncomeClient(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.addIncomeClient,
@@ -722,6 +740,7 @@ export default class BossBillStore {
     @observable setSummarizes ={}
     @action queryIncome(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryIncome,
@@ -746,6 +765,7 @@ export default class BossBillStore {
   //查询收款
     @action queryIncomeClient(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryIncomeClient,
@@ -770,6 +790,7 @@ export default class BossBillStore {
     @observable allSalaryList ={};
     @action queryAllSalary(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryAllSalary,
@@ -795,6 +816,7 @@ export default class BossBillStore {
     @observable billDetail ={}
     @action queryBillDetail(param,callback){
         let that = this;
+        this.globalStore.hideAlert();
         $.ajax({
             type: "POST",
             url: Config.bossBill.queryOrderDetail,

@@ -115,6 +115,6 @@ export default class Setting extends React.Component {
     }
     //取消
     exit = ()=>{
-        window.location.hash= '#/bossBill'
+        window.history.back(-1);
     }
 }

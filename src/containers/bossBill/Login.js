@@ -22,6 +22,7 @@ export default class Login extends React.Component {
     }
 
     componentWillMount =()=>{
+        globalStore.hideAlert();
         $("#root").addClass("b-login")
         let that = this;
         document.onkeydown=function(event){

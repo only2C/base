@@ -16,15 +16,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-datepicker/dist/react-datepicker.min.css';
 import 'rc-checkbox/assets/index.css'
 import 'rc-tree/assets/index.css'
-import './less/refer/referStyle.css';
 import './less/ybz-index.less';
 import GlobalStore from './stores/GlobalStore';
 import App from './containers/App';
 import Bundle from './bundle.js';
 
 
-import LoanBillContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/webreimburse/LoanBill';
-import TContainer  from 'bundle-loader?lazy&name=app-[name]!./containers/testFile/T';
 import BossBillContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BossBill';
 import BillEditContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BillEdit';
 import AddMoneyContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/AddMoney';
@@ -35,8 +32,6 @@ import SettingContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bo
 import SalaryContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/Salary';
 import BillDetailContainer from 'bundle-loader?lazy&name=app-[name]!./containers/bossBill/BillDetail';
 
-const LoanBill  = (props) => (<Bundle load={LoanBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
-const T  = (props) => (<Bundle load={TContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BossBill  = (props) => (<Bundle load={BossBillContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BillEdit  = (props) => (<Bundle load={BillEditContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
 const BillDetail  = (props) => (<Bundle load={BillDetailContainer} {...props}>{ (Page) => <Page {...props} />}</Bundle>)
@@ -72,9 +67,6 @@ const requireAuth = (nextState, replace, next) => {
 ReactDom.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <Route path="/loanBill/:type/:billTypePk" component={LoanBill}/>
-      <Route path="/t" component={T}/>
-
       <Route path="/bossBill/:factoryId" component={BossBill}/>
       <Route path="/billEdit/:pk/:factoryId/:add" component={BillEdit}/> /*编辑订单*/
       <Route path="/billEdit/:pk/:factoryId" component={BillEdit}/> /* 新增订单*/
