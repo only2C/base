@@ -23,6 +23,13 @@ export default class Login extends React.Component {
 
     componentWillMount =()=>{
         $("#root").addClass("b-login")
+        let that = this;
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e.keyCode == 13){
+                that.loginSys();
+            }
+        }
     }
 
     render(){
@@ -68,6 +75,7 @@ export default class Login extends React.Component {
             })
         }
     }
+
 
     loginSys =()=>{
         let userName = this.state.userName , password = this.state.password ;
