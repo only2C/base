@@ -8,13 +8,7 @@ const commont = [
   'react-router',
   'mobx',
   'mobx-react',
-  'react-bootstrap',
-  'classnames',
-  'ssc-grid',
-  'rc-checkbox',
-  'rc-tree',
-  'ssc-refer'
-]
+  ]
 module.exports = {
   entry: {
       vendor: commont

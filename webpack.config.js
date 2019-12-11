@@ -52,7 +52,7 @@ if(isPro){
         to: path.join(__dirname, Service.path)
       }
     ]),
-    
+
     new CleanWebpackPlugin([Service.path],{
       root: __dirname,
       verbose: true,
@@ -76,7 +76,7 @@ plugins.push(
   }),
   new ExtractTextPlugin("[name]-[hash].css"),
   new HtmlWebpackPlugin({
-    title:"index-张彤川",
+    title:"index",
     template:"./index.html",
     // chunks:['index'],
     filename:'index.html'
