@@ -48,7 +48,7 @@ export default class Menu extends React.Component{
                                 thumb={thumb}
                             />
                             <Card.Body className="menu-list">
-                                <img src={m.img} />
+                                <div className='menu-img'> <img src={m.img} /></div>
                                 <div>
                                     <label>{this.getFiled('engine')}</label>
                                     <span>{m.engine}</span>
